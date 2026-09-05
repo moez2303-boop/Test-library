@@ -1,8 +1,11 @@
+import { fetchWithTimeout } from "./fetchTimeout";
 import type { DiscoverQuery, DiscoverResult } from "./types";
 
 const SEARCH_BASE = "https://archive.org/advancedsearch.php";
 const METADATA_BASE = "https://archive.org/metadata/";
 const MAX_RESULTS = 8;
+const SEARCH_TIMEOUT_MS = 7000;
+const METADATA_TIMEOUT_MS = 5000;
 
 interface ArchiveDoc {
   identifier: string;
@@ -54,8 +57,11 @@ const LANGUAGE_NAMES: Record<string, string> = {
 function buildQuery(query: DiscoverQuery): string {
   const parts = ["mediatype:texts", "access-restricted-item:false"];
   if (query.text.trim()) {
+    // Deliberately metadata-only (title/creator), not `text:(...)` — that field
+    // does a full-text scan of every scanned page's OCR output and is extremely
+    // slow (tens of seconds) compared to the indexed metadata fields.
     const escaped = query.text.trim().replace(/"/g, '\\"');
-    parts.push(`(title:("${escaped}") OR creator:("${escaped}") OR text:("${escaped}"))`);
+    parts.push(`(title:("${escaped}") OR creator:("${escaped}"))`);
   }
   if (query.genre) parts.push(`subject:("${query.genre}")`);
   if (query.language) {
@@ -67,7 +73,7 @@ function buildQuery(query: DiscoverQuery): string {
 
 async function findPdfFile(identifier: string, signal?: AbortSignal): Promise<string | null> {
   try {
-    const res = await fetch(`${METADATA_BASE}${identifier}`, { signal });
+    const res = await fetchWithTimeout(`${METADATA_BASE}${identifier}`, METADATA_TIMEOUT_MS, signal);
     if (!res.ok) return null;
     const data: ArchiveMetadataResponse = await res.json();
     const pdfFile = data.files?.find(
@@ -96,7 +102,7 @@ export async function searchArchive(
   params.append("fl[]", "language");
   params.append("fl[]", "subject");
 
-  const res = await fetch(`${SEARCH_BASE}?${params.toString()}`, { signal });
+  const res = await fetchWithTimeout(`${SEARCH_BASE}?${params.toString()}`, SEARCH_TIMEOUT_MS, signal);
   if (!res.ok) throw new Error(`Internet Archive lookup failed (${res.status})`);
   const data: ArchiveSearchResponse = await res.json();
 

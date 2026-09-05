@@ -1,6 +1,8 @@
+import { fetchWithTimeout } from "./fetchTimeout";
 import type { DiscoverLink, DiscoverQuery, DiscoverResult } from "./types";
 
 const GUTENDEX_BASE = "https://gutendex.com/books/";
+const SEARCH_TIMEOUT_MS = 7000;
 
 interface GutendexPerson {
   name: string;
@@ -61,7 +63,7 @@ export async function searchGutenberg(
   if (query.language) params.set("languages", query.language);
   if (query.genre) params.set("topic", query.genre);
 
-  const res = await fetch(`${GUTENDEX_BASE}?${params.toString()}`, { signal });
+  const res = await fetchWithTimeout(`${GUTENDEX_BASE}?${params.toString()}`, SEARCH_TIMEOUT_MS, signal);
   if (!res.ok) throw new Error(`Project Gutenberg lookup failed (${res.status})`);
   const data: GutendexResponse = await res.json();
 
