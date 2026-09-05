@@ -2,8 +2,9 @@ import { useMemo, useRef, useState } from "react";
 import type { DragEvent } from "react";
 import type { BookWithCover } from "../types";
 import BookCard from "./BookCard";
+import Discover from "./Discover";
 import EmptyState from "./EmptyState";
-import Header, { type SortMode } from "./Header";
+import Header, { type SortMode, type View } from "./Header";
 
 interface LibraryProps {
   books: BookWithCover[];
@@ -11,6 +12,9 @@ interface LibraryProps {
   onFilesSelected: (files: FileList | File[]) => void;
   onOpen: (id: string) => void;
   onDelete: (id: string) => void;
+  view: View;
+  onViewChange: (view: View) => void;
+  onImportPdfUrl: (url: string, title: string, author: string) => Promise<boolean>;
 }
 
 export default function Library({
@@ -19,6 +23,9 @@ export default function Library({
   onFilesSelected,
   onOpen,
   onDelete,
+  view,
+  onViewChange,
+  onImportPdfUrl,
 }: LibraryProps) {
   const [query, setQuery] = useState("");
   const [sortMode, setSortMode] = useState<SortMode>("recent");
@@ -95,6 +102,8 @@ export default function Library({
       onDragLeave={handleDragLeave}
     >
       <Header
+        view={view}
+        onViewChange={onViewChange}
         count={books.length}
         query={query}
         onQueryChange={setQuery}
@@ -116,26 +125,30 @@ export default function Library({
         }}
       />
 
-      <main className="mx-auto max-w-7xl px-5 sm:px-8 py-8">
-        {books.length === 0 ? (
-          <EmptyState onPick={handlePick} />
-        ) : visibleBooks.length === 0 ? (
-          <p className="text-center text-sm text-ink/50 py-16">
-            No books match "{query}".
-          </p>
-        ) : (
-          <div className="shelf-grid">
-            {visibleBooks.map((book) => (
-              <BookCard
-                key={book.id}
-                book={book}
-                onOpen={onOpen}
-                onDelete={onDelete}
-              />
-            ))}
-          </div>
-        )}
-      </main>
+      {view === "discover" ? (
+        <Discover onImportPdf={onImportPdfUrl} />
+      ) : (
+        <main className="mx-auto max-w-7xl px-5 sm:px-8 py-8">
+          {books.length === 0 ? (
+            <EmptyState onPick={handlePick} />
+          ) : visibleBooks.length === 0 ? (
+            <p className="text-center text-sm text-ink/50 py-16">
+              No books match "{query}".
+            </p>
+          ) : (
+            <div className="shelf-grid">
+              {visibleBooks.map((book) => (
+                <BookCard
+                  key={book.id}
+                  book={book}
+                  onOpen={onOpen}
+                  onDelete={onDelete}
+                />
+              ))}
+            </div>
+          )}
+        </main>
+      )}
 
       {dragActive && (
         <div className="fixed inset-0 z-50 flex items-center justify-center bg-wood-dark/70 backdrop-blur-sm pointer-events-none animate-fade-in">

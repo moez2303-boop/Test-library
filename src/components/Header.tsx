@@ -1,6 +1,9 @@
 export type SortMode = "recent" | "title" | "author" | "progress";
+export type View = "library" | "discover";
 
 interface HeaderProps {
+  view: View;
+  onViewChange: (view: View) => void;
   count: number;
   query: string;
   onQueryChange: (q: string) => void;
@@ -11,6 +14,8 @@ interface HeaderProps {
 }
 
 export default function Header({
+  view,
+  onViewChange,
   count,
   query,
   onQueryChange,
@@ -41,17 +46,38 @@ export default function Header({
             />
           </svg>
           <h1 className="font-serif text-lg font-bold tracking-tight text-ink">
-            My Library
+            Bookshelf
           </h1>
-          {count > 0 && (
+          {view === "library" && count > 0 && (
             <span className="text-xs text-ink/50 mt-0.5">
               {count} {count === 1 ? "book" : "books"}
             </span>
           )}
         </div>
 
+        <nav className="flex items-center gap-1 rounded-full bg-wood-dark/10 p-1">
+          <button
+            type="button"
+            onClick={() => onViewChange("library")}
+            className={`cursor-pointer rounded-full px-3 py-1 text-sm font-medium transition-colors ${
+              view === "library" ? "bg-white shadow-sm text-ink" : "text-ink/60 hover:text-ink"
+            }`}
+          >
+            My Library
+          </button>
+          <button
+            type="button"
+            onClick={() => onViewChange("discover")}
+            className={`cursor-pointer rounded-full px-3 py-1 text-sm font-medium transition-colors ${
+              view === "discover" ? "bg-white shadow-sm text-ink" : "text-ink/60 hover:text-ink"
+            }`}
+          >
+            Discover
+          </button>
+        </nav>
+
         <div className="flex-1 min-w-[160px] flex items-center gap-3 justify-end">
-          {count > 0 && (
+          {view === "library" && count > 0 && (
             <>
               <div className="relative flex-1 max-w-xs">
                 <svg

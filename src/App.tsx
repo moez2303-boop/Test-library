@@ -1,4 +1,5 @@
 import { useCallback, useEffect, useRef, useState } from "react";
+import type { View } from "./components/Header";
 import Library from "./components/Library";
 import Reader from "./components/Reader";
 import {
@@ -20,6 +21,7 @@ export default function App() {
   const [openBookId, setOpenBookId] = useState<string | null>(null);
   const [isImporting, setIsImporting] = useState(false);
   const [importError, setImportError] = useState<string | null>(null);
+  const [view, setView] = useState<View>("library");
 
   const progressTimers = useRef<Map<string, ReturnType<typeof setTimeout>>>(
     new Map(),
@@ -55,6 +57,31 @@ export default function App() {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
+  const importPdfFile = useCallback(
+    async (file: File, overrides?: { title?: string; author?: string }) => {
+      const { colorForId, parsePdfFile } = await import("./pdf");
+      const arrayBuffer = await file.arrayBuffer();
+      const parsed = await parsePdfFile(file, arrayBuffer);
+      const id = makeId();
+      const book: Book = {
+        id,
+        title: overrides?.title || parsed.title,
+        author: overrides?.author || parsed.author,
+        numPages: parsed.numPages,
+        currentPage: 1,
+        addedAt: Date.now(),
+        lastOpenedAt: null,
+        fileSize: file.size,
+        coverColor: colorForId(id),
+        fileName: file.name,
+      };
+      await saveBook(book, new Blob([arrayBuffer], { type: "application/pdf" }), parsed.coverBlob);
+      const coverUrl = parsed.coverBlob ? URL.createObjectURL(parsed.coverBlob) : null;
+      setBooks((prev) => [{ ...book, coverUrl }, ...prev]);
+    },
+    [],
+  );
+
   const handleFilesSelected = useCallback(
     async (fileList: FileList | File[]) => {
       const files = Array.from(fileList).filter(
@@ -66,29 +93,9 @@ export default function App() {
       }
       setIsImporting(true);
       setImportError(null);
-      const { colorForId, parsePdfFile } = await import("./pdf");
       for (const file of files) {
         try {
-          const arrayBuffer = await file.arrayBuffer();
-          const parsed = await parsePdfFile(file, arrayBuffer);
-          const id = makeId();
-          const book: Book = {
-            id,
-            title: parsed.title,
-            author: parsed.author,
-            numPages: parsed.numPages,
-            currentPage: 1,
-            addedAt: Date.now(),
-            lastOpenedAt: null,
-            fileSize: file.size,
-            coverColor: colorForId(id),
-            fileName: file.name,
-          };
-          await saveBook(book, new Blob([arrayBuffer], { type: "application/pdf" }), parsed.coverBlob);
-          const coverUrl = parsed.coverBlob
-            ? URL.createObjectURL(parsed.coverBlob)
-            : null;
-          setBooks((prev) => [{ ...book, coverUrl }, ...prev]);
+          await importPdfFile(file);
         } catch (err) {
           setImportError(
             `Couldn't add "${file.name}": ${
@@ -99,7 +106,27 @@ export default function App() {
       }
       setIsImporting(false);
     },
-    [],
+    [importPdfFile],
+  );
+
+  const handleImportPdfUrl = useCallback(
+    async (url: string, title: string, author: string): Promise<boolean> => {
+      setIsImporting(true);
+      try {
+        const res = await fetch(url);
+        if (!res.ok) throw new Error(`HTTP ${res.status}`);
+        const blob = await res.blob();
+        const fileName = `${title.slice(0, 60).replace(/[\\/:*?"<>|]+/g, "_") || "book"}.pdf`;
+        const file = new File([blob], fileName, { type: "application/pdf" });
+        await importPdfFile(file, { title, author });
+        return true;
+      } catch {
+        return false;
+      } finally {
+        setIsImporting(false);
+      }
+    },
+    [importPdfFile],
   );
 
   const handleOpen = useCallback((id: string) => {
@@ -169,6 +196,9 @@ export default function App() {
         onFilesSelected={handleFilesSelected}
         onOpen={handleOpen}
         onDelete={handleDelete}
+        view={view}
+        onViewChange={setView}
+        onImportPdfUrl={handleImportPdfUrl}
       />
 
       {openBook && (
