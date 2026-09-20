@@ -1,16 +1,36 @@
-export interface Book {
+export interface Word {
   id: string;
-  title: string;
-  author: string;
-  numPages: number;
-  currentPage: number;
-  addedAt: number;
-  lastOpenedAt: number | null;
-  fileSize: number;
-  coverColor: string;
-  fileName: string;
+  french: string;
+  english: string;
+  pronunciation: string;
+  example: string;
+  exampleTranslation: string;
 }
 
-export interface BookWithCover extends Book {
-  coverUrl: string | null;
+export interface Lesson {
+  id: string;
+  title: string;
+  emoji: string;
+  description: string;
+  words: Word[];
 }
+
+/** Leitner spaced-repetition box, 1 (new/hard) through 5 (mastered). */
+export type Box = 1 | 2 | 3 | 4 | 5;
+
+export interface WordProgress {
+  wordId: string;
+  box: Box;
+  dueAt: number;
+  seen: number;
+  correct: number;
+  lastReviewed: number | null;
+}
+
+export interface Stats {
+  streak: number;
+  lastActiveDay: string | null;
+  totalReviews: number;
+}
+
+export type Grade = "again" | "good" | "easy";

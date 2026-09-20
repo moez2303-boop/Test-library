@@ -4,7 +4,7 @@ on:
   workflow_dispatch: {}
   push:
     branches:
-      - claude/pdf-library-app-yxbgse
+      - claude/french-learning-app-j4go10
 
 permissions:
   contents: read

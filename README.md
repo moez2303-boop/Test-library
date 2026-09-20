@@ -1,22 +1,23 @@
-# My Library
+# Apprends — Learn French
 
-A Kindle-inspired personal library for PDF books. Upload PDFs and they land on
-a warm, wooden bookshelf — with real cover thumbnails generated from each
-book's first page, progress tracking, and a distraction-free reader.
+A friendly, browser-based French vocabulary trainer. Practice with flashcards,
+test yourself with quizzes, and let spaced repetition bring back the words
+you're about to forget — right before you forget them.
 
-Everything runs entirely in the browser: PDFs are parsed with
-[pdf.js](https://mozilla.github.io/pdf.js/) and stored locally in
-IndexedDB. Nothing is uploaded to a server.
+Everything runs entirely in the browser. Your progress is stored locally in
+IndexedDB — nothing is uploaded to a server.
 
 ## Features
 
-- Drag-and-drop or click to upload one or more PDFs
-- Automatic cover thumbnail, title, and author extraction from each PDF
-- Kindle-style shelf grid with search and sort (recent / title / author / progress)
-- Full-screen reader with page navigation, keyboard shortcuts, and a
-  scrubbable progress bar
-- Reading progress is remembered per book and persists across reloads
-- All data stays on-device (IndexedDB) — no backend required
+- 10 themed lessons (greetings, numbers, colors, family, food, animals, time,
+  verbs, adjectives, and travel) with ~100 words total
+- Flip-card flashcards with example sentences and spoken pronunciation
+  (via the browser's speech synthesis)
+- A Leitner-style spaced repetition system: grade yourself "Again / Good /
+  Easy" and words you know well show up less often
+- A daily review queue that surfaces exactly the words that are due
+- Multiple-choice quizzes per lesson to test recall
+- Daily streak and mastery tracking, saved locally across sessions
 
 ## Getting started
 
@@ -25,7 +26,7 @@ npm install
 npm run dev
 ```
 
-Then open the printed local URL and upload a PDF to get started.
+Then open the printed local URL and start learning.
 
 ## Build
 
@@ -37,5 +38,5 @@ npm run build
 
 - React + TypeScript + Vite
 - Tailwind CSS v4
-- pdf.js (`pdfjs-dist`) for parsing and rendering
 - `idb` for IndexedDB storage
+- Web Speech API for pronunciation

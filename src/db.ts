@@ -1,82 +1,74 @@
 import { openDB, type DBSchema, type IDBPDatabase } from "idb";
-import type { Book } from "./types";
+import type { Stats, WordProgress } from "./types";
 
-interface LibraryDB extends DBSchema {
-  books: {
+interface AppDB extends DBSchema {
+  progress: {
     key: string;
-    value: Book;
-    indexes: { addedAt: number };
+    value: WordProgress;
   };
-  pdfs: {
+  meta: {
     key: string;
-    value: Blob;
-  };
-  covers: {
-    key: string;
-    value: Blob;
+    value: Stats;
   };
 }
 
-let dbPromise: Promise<IDBPDatabase<LibraryDB>> | null = null;
+const DB_NAME = "french-learning";
+const DB_VERSION = 1;
+const STATS_KEY = "stats";
 
-function getDB() {
-  if (!dbPromise) {
-    dbPromise = openDB<LibraryDB>("pdf-library", 1, {
-      upgrade(db) {
-        const books = db.createObjectStore("books", { keyPath: "id" });
-        books.createIndex("addedAt", "addedAt");
-        db.createObjectStore("pdfs");
-        db.createObjectStore("covers");
-      },
-    });
-  }
+let dbPromise: Promise<IDBPDatabase<AppDB>> | null = null;
+
+function getDb() {
+  dbPromise ??= openDB<AppDB>(DB_NAME, DB_VERSION, {
+    upgrade(db) {
+      if (!db.objectStoreNames.contains("progress")) {
+        db.createObjectStore("progress", { keyPath: "wordId" });
+      }
+      if (!db.objectStoreNames.contains("meta")) {
+        db.createObjectStore("meta");
+      }
+    },
+  });
   return dbPromise;
 }
 
-export async function getAllBooks(): Promise<Book[]> {
-  const db = await getDB();
-  return db.getAll("books");
+export async function getAllProgress(): Promise<WordProgress[]> {
+  const db = await getDb();
+  return db.getAll("progress");
 }
 
-export async function saveBook(
-  book: Book,
-  pdfBlob: Blob,
-  coverBlob: Blob | null,
-): Promise<void> {
-  const db = await getDB();
-  const tx = db.transaction(["books", "pdfs", "covers"], "readwrite");
-  await Promise.all([
-    tx.objectStore("books").put(book),
-    tx.objectStore("pdfs").put(pdfBlob, book.id),
-    coverBlob
-      ? tx.objectStore("covers").put(coverBlob, book.id)
-      : Promise.resolve(),
-    tx.done,
-  ]);
+export async function saveProgress(progress: WordProgress): Promise<void> {
+  const db = await getDb();
+  await db.put("progress", progress);
 }
 
-export async function updateBook(book: Book): Promise<void> {
-  const db = await getDB();
-  await db.put("books", book);
+export async function getStats(): Promise<Stats> {
+  const db = await getDb();
+  const stats = await db.get("meta", STATS_KEY);
+  return stats ?? { streak: 0, lastActiveDay: null, totalReviews: 0 };
 }
 
-export async function getPdfBlob(id: string): Promise<Blob | undefined> {
-  const db = await getDB();
-  return db.get("pdfs", id);
+export async function saveStats(stats: Stats): Promise<void> {
+  const db = await getDb();
+  await db.put("meta", stats, STATS_KEY);
 }
 
-export async function getCoverBlob(id: string): Promise<Blob | undefined> {
-  const db = await getDB();
-  return db.get("covers", id);
+function todayKey(date = new Date()): string {
+  return date.toISOString().slice(0, 10);
 }
 
-export async function deleteBook(id: string): Promise<void> {
-  const db = await getDB();
-  const tx = db.transaction(["books", "pdfs", "covers"], "readwrite");
-  await Promise.all([
-    tx.objectStore("books").delete(id),
-    tx.objectStore("pdfs").delete(id),
-    tx.objectStore("covers").delete(id),
-    tx.done,
-  ]);
+export async function recordActivity(): Promise<Stats> {
+  const stats = await getStats();
+  const today = todayKey();
+  if (stats.lastActiveDay === today) {
+    const updated = { ...stats, totalReviews: stats.totalReviews + 1 };
+    await saveStats(updated);
+    return updated;
+  }
+
+  const yesterday = todayKey(new Date(Date.now() - 24 * 60 * 60 * 1000));
+  const streak = stats.lastActiveDay === yesterday ? stats.streak + 1 : 1;
+  const updated: Stats = { streak, lastActiveDay: today, totalReviews: stats.totalReviews + 1 };
+  await saveStats(updated);
+  return updated;
 }
