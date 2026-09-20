@@ -14,6 +14,7 @@ interface HomeProps {
   onPractice: (lessonId: string) => void;
   onQuiz: (lessonId: string) => void;
   onReview: () => void;
+  onListening: () => void;
 }
 
 export function Home({
@@ -24,6 +25,7 @@ export function Home({
   onPractice,
   onQuiz,
   onReview,
+  onListening,
 }: HomeProps) {
   const [levelFilter, setLevelFilter] = useState<Level | "All">("All");
   const visibleLessons = levelFilter === "All" ? lessons : lessons.filter((l) => l.level === levelFilter);
@@ -45,6 +47,22 @@ export function Home({
           {dueCount > 0 ? `Review ${dueCount} due word${dueCount === 1 ? "" : "s"}` : "All caught up 🎉"}
         </button>
       </div>
+
+      <button
+        onClick={onListening}
+        className="animate-fade-in mb-8 flex w-full flex-col gap-3 rounded-2xl border border-navy/10 bg-white/70 p-5 text-left shadow-sm transition-shadow hover:shadow-md sm:flex-row sm:items-center sm:justify-between"
+      >
+        <div className="flex items-center gap-3">
+          <span className="text-3xl">🎧</span>
+          <div>
+            <h2 className="font-serif text-lg font-semibold text-navy-dark">Oral Comprehension</h2>
+            <p className="text-sm text-ink/60">
+              Watch short real French clips (≤ 60s) and answer questions about them.
+            </p>
+          </div>
+        </div>
+        <span className="rounded-lg bg-navy px-4 py-2 text-sm font-semibold text-cream">Start listening</span>
+      </button>
 
       <div className="mb-4 flex items-center justify-between gap-2">
         <h2 className="font-serif text-lg font-semibold text-navy-dark">Lessons</h2>

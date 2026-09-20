@@ -37,3 +37,31 @@ export interface Stats {
 }
 
 export type Grade = "again" | "good" | "easy";
+
+export interface ListeningQuestion {
+  id: string;
+  prompt: string;
+  options: string[];
+  correctIndex: number;
+}
+
+export interface ListeningClip {
+  id: string;
+  title: string;
+  level: Level;
+  youtubeId: string;
+  start: number;
+  end: number;
+  topic: string;
+  source: string;
+  sourceUrl: string;
+  questions: ListeningQuestion[];
+}
+
+export interface ListeningProgress {
+  clipId: string;
+  bestScore: number;
+  totalQuestions: number;
+  attempts: number;
+  lastAttempted: number;
+}

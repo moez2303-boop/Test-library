@@ -1,5 +1,5 @@
 import { openDB, type DBSchema, type IDBPDatabase } from "idb";
-import type { Stats, WordProgress } from "./types";
+import type { ListeningProgress, Stats, WordProgress } from "./types";
 
 interface AppDB extends DBSchema {
   progress: {
@@ -10,10 +10,14 @@ interface AppDB extends DBSchema {
     key: string;
     value: Stats;
   };
+  listening: {
+    key: string;
+    value: ListeningProgress;
+  };
 }
 
 const DB_NAME = "french-learning";
-const DB_VERSION = 1;
+const DB_VERSION = 2;
 const STATS_KEY = "stats";
 
 let dbPromise: Promise<IDBPDatabase<AppDB>> | null = null;
@@ -26,6 +30,9 @@ function getDb() {
       }
       if (!db.objectStoreNames.contains("meta")) {
         db.createObjectStore("meta");
+      }
+      if (!db.objectStoreNames.contains("listening")) {
+        db.createObjectStore("listening", { keyPath: "clipId" });
       }
     },
   });
@@ -51,6 +58,16 @@ export async function getStats(): Promise<Stats> {
 export async function saveStats(stats: Stats): Promise<void> {
   const db = await getDb();
   await db.put("meta", stats, STATS_KEY);
+}
+
+export async function getAllListeningProgress(): Promise<ListeningProgress[]> {
+  const db = await getDb();
+  return db.getAll("listening");
+}
+
+export async function saveListeningProgress(progress: ListeningProgress): Promise<void> {
+  const db = await getDb();
+  await db.put("listening", progress);
 }
 
 function todayKey(date = new Date()): string {
