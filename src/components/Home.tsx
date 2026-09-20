@@ -1,7 +1,10 @@
+import { useState } from "react";
 import { lessons } from "../data/lessons";
-import type { WordProgress } from "../types";
+import type { Level, WordProgress } from "../types";
 import { isMastered } from "../srs";
 import { LessonCard } from "./LessonCard";
+
+const LEVELS: (Level | "All")[] = ["All", "A1", "A2", "B1", "B2"];
 
 interface HomeProps {
   progress: Record<string, WordProgress>;
@@ -22,6 +25,9 @@ export function Home({
   onQuiz,
   onReview,
 }: HomeProps) {
+  const [levelFilter, setLevelFilter] = useState<Level | "All">("All");
+  const visibleLessons = levelFilter === "All" ? lessons : lessons.filter((l) => l.level === levelFilter);
+
   return (
     <div className="mx-auto max-w-5xl px-4 py-8 sm:px-6">
       <div className="animate-fade-in mb-8 flex flex-col gap-4 rounded-2xl bg-navy px-6 py-6 text-cream sm:flex-row sm:items-center sm:justify-between">
@@ -40,9 +46,24 @@ export function Home({
         </button>
       </div>
 
-      <h2 className="mb-4 font-serif text-lg font-semibold text-navy-dark">Lessons</h2>
+      <div className="mb-4 flex items-center justify-between gap-2">
+        <h2 className="font-serif text-lg font-semibold text-navy-dark">Lessons</h2>
+        <div className="flex gap-1.5">
+          {LEVELS.map((level) => (
+            <button
+              key={level}
+              onClick={() => setLevelFilter(level)}
+              className={`rounded-full px-3 py-1 text-xs font-semibold transition-colors ${
+                levelFilter === level ? "bg-navy text-cream" : "bg-navy/10 text-navy hover:bg-navy/20"
+              }`}
+            >
+              {level}
+            </button>
+          ))}
+        </div>
+      </div>
       <div className="grid animate-fade-in grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3">
-        {lessons.map((lesson) => {
+        {visibleLessons.map((lesson) => {
           const masteredCount = lesson.words.filter((word) => isMastered(progress[word.id])).length;
           return (
             <LessonCard

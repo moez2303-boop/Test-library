@@ -7,11 +7,14 @@ export interface Word {
   exampleTranslation: string;
 }
 
+export type Level = "A1" | "A2" | "B1" | "B2";
+
 export interface Lesson {
   id: string;
   title: string;
   emoji: string;
   description: string;
+  level: Level;
   words: Word[];
 }
 

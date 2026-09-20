@@ -1,6 +1,13 @@
 import type { Lesson } from "../types";
 import { ProgressBar } from "./ProgressBar";
 
+const LEVEL_STYLES: Record<Lesson["level"], string> = {
+  A1: "bg-navy/10 text-navy",
+  A2: "bg-navy/10 text-navy",
+  B1: "bg-gold/25 text-navy-dark",
+  B2: "bg-red/10 text-red-dark",
+};
+
 interface LessonCardProps {
   lesson: Lesson;
   masteredCount: number;
@@ -16,7 +23,12 @@ export function LessonCard({ lesson, masteredCount, onPractice, onQuiz }: Lesson
     <div className="flex flex-col gap-3 rounded-2xl border border-navy/10 bg-white/70 p-5 shadow-sm transition-shadow hover:shadow-md">
       <div className="flex items-start justify-between gap-2">
         <div>
-          <div className="text-3xl">{lesson.emoji}</div>
+          <div className="flex items-center gap-2">
+            <span className="text-3xl">{lesson.emoji}</span>
+            <span className={`rounded-full px-2 py-0.5 text-xs font-semibold ${LEVEL_STYLES[lesson.level]}`}>
+              {lesson.level}
+            </span>
+          </div>
           <h3 className="mt-1 font-serif text-lg font-semibold text-navy-dark">{lesson.title}</h3>
           <p className="mt-0.5 text-sm text-ink/60">{lesson.description}</p>
         </div>
