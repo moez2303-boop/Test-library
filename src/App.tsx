@@ -5,18 +5,23 @@ import { Flashcards } from "./components/Flashcards";
 import { Quiz } from "./components/Quiz";
 import { Listening } from "./components/Listening";
 import { ListeningPlayer } from "./components/ListeningPlayer";
+import { Writing } from "./components/Writing";
+import { WritingExercise } from "./components/WritingExercise";
 import { lessons, allWords } from "./data/lessons";
 import { listeningClips } from "./data/listening";
+import { writingPrompts } from "./data/writing";
 import {
   getAllListeningProgress,
   getAllProgress,
+  getAllWritingResponses,
   getStats,
   recordActivity,
   saveListeningProgress,
   saveProgress,
+  saveWritingResponse,
 } from "./db";
 import { applyGrade, freshProgress, isDue } from "./srs";
-import type { Grade, ListeningProgress, Stats, WordProgress } from "./types";
+import type { Grade, ListeningProgress, Stats, WordProgress, WritingResponse } from "./types";
 
 type View =
   | { type: "home" }
@@ -24,24 +29,30 @@ type View =
   | { type: "quiz"; lessonId: string }
   | { type: "review" }
   | { type: "listening" }
-  | { type: "listening-clip"; clipId: string };
+  | { type: "listening-clip"; clipId: string }
+  | { type: "writing" }
+  | { type: "writing-prompt"; promptId: string };
 
 export default function App() {
   const [progress, setProgress] = useState<Record<string, WordProgress>>({});
   const [listeningProgress, setListeningProgress] = useState<Record<string, ListeningProgress>>({});
+  const [writingResponses, setWritingResponses] = useState<Record<string, WritingResponse>>({});
   const [stats, setStats] = useState<Stats>({ streak: 0, lastActiveDay: null, totalReviews: 0 });
   const [view, setView] = useState<View>({ type: "home" });
   const [loaded, setLoaded] = useState(false);
 
   useEffect(() => {
-    Promise.all([getAllProgress(), getStats(), getAllListeningProgress()]).then(
-      ([entries, savedStats, listeningEntries]) => {
+    Promise.all([getAllProgress(), getStats(), getAllListeningProgress(), getAllWritingResponses()]).then(
+      ([entries, savedStats, listeningEntries, writingEntries]) => {
         const map: Record<string, WordProgress> = {};
         for (const entry of entries) map[entry.wordId] = entry;
         const listeningMap: Record<string, ListeningProgress> = {};
         for (const entry of listeningEntries) listeningMap[entry.clipId] = entry;
+        const writingMap: Record<string, WritingResponse> = {};
+        for (const entry of writingEntries) writingMap[entry.promptId] = entry;
         setProgress(map);
         setListeningProgress(listeningMap);
+        setWritingResponses(writingMap);
         setStats(savedStats);
         setLoaded(true);
       },
@@ -92,6 +103,14 @@ export default function App() {
     recordActivity().then(setStats);
   }
 
+  function handleWritingComplete(promptId: string, text: string, checkedPoints: number, totalPoints: number) {
+    const response: WritingResponse = { promptId, text, checkedPoints, totalPoints, completedAt: Date.now() };
+    setWritingResponses((prev) => ({ ...prev, [promptId]: response }));
+    saveWritingResponse(response);
+    recordActivity().then(setStats);
+    setView({ type: "writing" });
+  }
+
   if (!loaded) {
     return (
       <div className="flex h-full items-center justify-center text-ink/50">
@@ -114,8 +133,30 @@ export default function App() {
           onQuiz={(lessonId) => setView({ type: "quiz", lessonId })}
           onReview={() => setView({ type: "review" })}
           onListening={() => setView({ type: "listening" })}
+          onWriting={() => setView({ type: "writing" })}
         />
       )}
+
+      {view.type === "writing" && (
+        <Writing responses={writingResponses} onOpen={(promptId) => setView({ type: "writing-prompt", promptId })} />
+      )}
+
+      {view.type === "writing-prompt" &&
+        (() => {
+          const prompt = writingPrompts.find((p) => p.id === view.promptId);
+          if (!prompt) return null;
+          return (
+            <WritingExercise
+              key={prompt.id}
+              prompt={prompt}
+              previousResponse={writingResponses[prompt.id]?.text}
+              onComplete={(text, checkedPoints, totalPoints) =>
+                handleWritingComplete(prompt.id, text, checkedPoints, totalPoints)
+              }
+              onExit={() => setView({ type: "writing" })}
+            />
+          );
+        })()}
 
       {view.type === "listening" && (
         <Listening progress={listeningProgress} onOpen={(clipId) => setView({ type: "listening-clip", clipId })} />

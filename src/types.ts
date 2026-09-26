@@ -65,3 +65,31 @@ export interface ListeningProgress {
   attempts: number;
   lastAttempted: number;
 }
+
+export interface DialogueLine {
+  speaker: string;
+  french: string;
+  english: string;
+}
+
+export interface WritingPrompt {
+  id: string;
+  title: string;
+  level: Level;
+  characters: [string, string];
+  dialogue: DialogueLine[];
+  question: string;
+  questionTranslation: string;
+  minSentences: number;
+  keyPoints: string[];
+  modelAnswer: string;
+  modelAnswerTranslation: string;
+}
+
+export interface WritingResponse {
+  promptId: string;
+  text: string;
+  checkedPoints: number;
+  totalPoints: number;
+  completedAt: number;
+}

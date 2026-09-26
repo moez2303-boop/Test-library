@@ -15,6 +15,7 @@ interface HomeProps {
   onQuiz: (lessonId: string) => void;
   onReview: () => void;
   onListening: () => void;
+  onWriting: () => void;
 }
 
 export function Home({
@@ -26,6 +27,7 @@ export function Home({
   onQuiz,
   onReview,
   onListening,
+  onWriting,
 }: HomeProps) {
   const [levelFilter, setLevelFilter] = useState<Level | "All">("All");
   const visibleLessons = levelFilter === "All" ? lessons : lessons.filter((l) => l.level === levelFilter);
@@ -48,21 +50,39 @@ export function Home({
         </button>
       </div>
 
-      <button
-        onClick={onListening}
-        className="animate-fade-in mb-8 flex w-full flex-col gap-3 rounded-2xl border border-navy/10 bg-white/70 p-5 text-left shadow-sm transition-shadow hover:shadow-md sm:flex-row sm:items-center sm:justify-between"
-      >
-        <div className="flex items-center gap-3">
-          <span className="text-3xl">🎧</span>
-          <div>
-            <h2 className="font-serif text-lg font-semibold text-navy-dark">Oral Comprehension</h2>
-            <p className="text-sm text-ink/60">
-              Watch short real French clips (≤ 60s) and answer questions about them.
-            </p>
+      <div className="mb-8 grid grid-cols-1 gap-4 sm:grid-cols-2">
+        <button
+          onClick={onListening}
+          className="animate-fade-in flex flex-col gap-3 rounded-2xl border border-navy/10 bg-white/70 p-5 text-left shadow-sm transition-shadow hover:shadow-md"
+        >
+          <div className="flex items-center gap-3">
+            <span className="text-3xl">🎧</span>
+            <div>
+              <h2 className="font-serif text-lg font-semibold text-navy-dark">Oral Comprehension</h2>
+              <p className="text-sm text-ink/60">Watch short real French clips (≤ 60s) and answer questions.</p>
+            </div>
           </div>
-        </div>
-        <span className="rounded-lg bg-navy px-4 py-2 text-sm font-semibold text-cream">Start listening</span>
-      </button>
+          <span className="mt-1 self-start rounded-lg bg-navy px-4 py-2 text-sm font-semibold text-cream">
+            Start listening
+          </span>
+        </button>
+
+        <button
+          onClick={onWriting}
+          className="animate-fade-in flex flex-col gap-3 rounded-2xl border border-navy/10 bg-white/70 p-5 text-left shadow-sm transition-shadow hover:shadow-md"
+        >
+          <div className="flex items-center gap-3">
+            <span className="text-3xl">💬</span>
+            <div>
+              <h2 className="font-serif text-lg font-semibold text-navy-dark">Conversation & Response</h2>
+              <p className="text-sm text-ink/60">Read a dialogue, then answer a question in your own words.</p>
+            </div>
+          </div>
+          <span className="mt-1 self-start rounded-lg bg-navy px-4 py-2 text-sm font-semibold text-cream">
+            Start writing
+          </span>
+        </button>
+      </div>
 
       <div className="mb-4 flex items-center justify-between gap-2">
         <h2 className="font-serif text-lg font-semibold text-navy-dark">Lessons</h2>
