@@ -2,6 +2,10 @@ import { useState } from "react";
 import type { WritingPrompt } from "../types";
 import { useSpeechRecognition } from "../speechRecognition";
 import { estimateCoverage, type CoverageResult } from "../scoring";
+import { checkGrammar, type GrammarMatch } from "../grammarCheck";
+import { GrammarFeedback } from "./GrammarFeedback";
+
+type GrammarStatus = "idle" | "loading" | "done" | "error";
 
 interface WritingExerciseProps {
   prompt: WritingPrompt;
@@ -25,6 +29,9 @@ export function WritingExercise({ prompt, previousResponse, onComplete, onExit }
   const [text, setText] = useState(previousResponse ?? "");
   const [checked, setChecked] = useState<boolean[]>(() => prompt.keyPoints.map(() => false));
   const [coverage, setCoverage] = useState<CoverageResult | null>(null);
+  const [grammarStatus, setGrammarStatus] = useState<GrammarStatus>("idle");
+  const [grammarMatches, setGrammarMatches] = useState<GrammarMatch[]>([]);
+  const [grammarError, setGrammarError] = useState<string | null>(null);
 
   const {
     listening,
@@ -43,12 +50,26 @@ export function WritingExercise({ prompt, previousResponse, onComplete, onExit }
     setChecked((prev) => prev.map((v, i) => (i === index ? !v : v)));
   }
 
+  async function runGrammarCheck(answer: string) {
+    setGrammarStatus("loading");
+    setGrammarError(null);
+    try {
+      const matches = await checkGrammar(answer);
+      setGrammarMatches(matches);
+      setGrammarStatus("done");
+    } catch (err) {
+      setGrammarError(err instanceof Error ? err.message : "The grammar checker is unavailable right now.");
+      setGrammarStatus("error");
+    }
+  }
+
   function submit() {
     stopListening();
     const result = estimateCoverage(text, prompt.keyPoints);
     setCoverage(result);
     setChecked(result.covered.map((c) => c.matched));
     setPhase("review");
+    runGrammarCheck(text.trim());
   }
 
   function finish() {
@@ -175,8 +196,34 @@ export function WritingExercise({ prompt, previousResponse, onComplete, onExit }
           )}
 
           <div className="rounded-2xl border border-navy/10 bg-white p-5 shadow-sm">
-            <p className="text-xs font-semibold uppercase tracking-wide text-ink/40">Your answer</p>
-            <p className="mt-2 whitespace-pre-wrap text-sm text-ink/80">{text}</p>
+            <div className="flex flex-wrap items-center justify-between gap-2">
+              <p className="text-xs font-semibold uppercase tracking-wide text-ink/40">Your answer</p>
+              {grammarStatus === "loading" && <span className="text-xs text-ink/40">Checking your French...</span>}
+              {grammarStatus === "done" && (
+                <span className="text-xs font-medium text-ink/50">
+                  {grammarMatches.length === 0
+                    ? "No issues found 🎉"
+                    : `${grammarMatches.length} issue${grammarMatches.length === 1 ? "" : "s"} found — tap a highlight`}
+                </span>
+              )}
+              {grammarStatus === "error" && (
+                <button
+                  onClick={() => runGrammarCheck(text.trim())}
+                  className="text-xs font-semibold text-navy hover:underline"
+                >
+                  Retry grammar check
+                </button>
+              )}
+            </div>
+
+            {grammarStatus === "done" && grammarMatches.length > 0 ? (
+              <div className="mt-2">
+                <GrammarFeedback text={text} matches={grammarMatches} />
+              </div>
+            ) : (
+              <p className="mt-2 whitespace-pre-wrap text-sm text-ink/80">{text}</p>
+            )}
+            {grammarStatus === "error" && <p className="mt-1 text-xs text-red-dark">{grammarError}</p>}
           </div>
 
           <div className="rounded-2xl border border-navy/10 bg-navy/5 p-5">
