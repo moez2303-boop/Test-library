@@ -1,5 +1,7 @@
 import { useState } from "react";
 import type { WritingPrompt } from "../types";
+import { useSpeechRecognition } from "../speechRecognition";
+import { estimateCoverage, type CoverageResult } from "../scoring";
 
 interface WritingExerciseProps {
   prompt: WritingPrompt;
@@ -22,12 +24,31 @@ export function WritingExercise({ prompt, previousResponse, onComplete, onExit }
   const [showTranslations, setShowTranslations] = useState(false);
   const [text, setText] = useState(previousResponse ?? "");
   const [checked, setChecked] = useState<boolean[]>(() => prompt.keyPoints.map(() => false));
+  const [coverage, setCoverage] = useState<CoverageResult | null>(null);
+
+  const {
+    listening,
+    error: speechError,
+    start: startListening,
+    stop: stopListening,
+    supported: speechSupported,
+  } = useSpeechRecognition((chunk) => {
+    setText((prev) => (prev ? `${prev} ${chunk}` : chunk));
+  });
 
   const sentenceCount = countSentences(text);
   const canSubmit = text.trim().length >= 10;
 
   function toggleCheck(index: number) {
     setChecked((prev) => prev.map((v, i) => (i === index ? !v : v)));
+  }
+
+  function submit() {
+    stopListening();
+    const result = estimateCoverage(text, prompt.keyPoints);
+    setCoverage(result);
+    setChecked(result.covered.map((c) => c.matched));
+    setPhase("review");
   }
 
   function finish() {
@@ -102,6 +123,26 @@ export function WritingExercise({ prompt, previousResponse, onComplete, onExit }
             <span>{sentenceCount} sentence{sentenceCount === 1 ? "" : "s"}</span>
           </div>
 
+          <div className="mt-3 flex items-center gap-2">
+            {speechSupported ? (
+              <button
+                type="button"
+                onClick={listening ? stopListening : startListening}
+                className={`flex items-center gap-2 rounded-lg px-4 py-2 text-sm font-semibold transition-colors ${
+                  listening ? "bg-red text-cream" : "bg-navy/10 text-navy hover:bg-navy/20"
+                }`}
+              >
+                {listening ? "⏹ Stop listening" : "🎤 Speak your answer"}
+              </button>
+            ) : (
+              <p className="text-xs text-ink/40">
+                Voice input isn't supported in this browser — try Chrome on desktop or Android.
+              </p>
+            )}
+            {listening && <span className="text-xs font-medium text-red-dark">🔴 Listening... speak in French</span>}
+          </div>
+          {speechError && <p className="mt-1 text-xs text-red-dark">{speechError}</p>}
+
           <div className="mt-3 flex gap-2">
             <button
               onClick={() => setPhase("read")}
@@ -110,7 +151,7 @@ export function WritingExercise({ prompt, previousResponse, onComplete, onExit }
               Back to conversation
             </button>
             <button
-              onClick={() => setPhase("review")}
+              onClick={submit}
               disabled={!canSubmit}
               className="flex-1 rounded-lg bg-navy px-4 py-2.5 text-sm font-semibold text-cream hover:bg-navy-dark disabled:cursor-not-allowed disabled:bg-navy/30"
             >
@@ -122,6 +163,17 @@ export function WritingExercise({ prompt, previousResponse, onComplete, onExit }
 
       {phase === "review" && (
         <div className="mt-4 animate-fade-in flex flex-col gap-4">
+          {coverage && (
+            <div className="rounded-2xl bg-navy px-5 py-4 text-cream">
+              <p className="text-xs font-semibold uppercase tracking-wide text-cream/60">Estimated accuracy</p>
+              <p className="mt-1 font-serif text-3xl font-semibold">{coverage.percentage}%</p>
+              <p className="mt-1 text-xs text-cream/60">
+                Automatic estimate of how many key ideas your answer mentions, based on keyword matching — not a
+                grammar or pronunciation grade. Use the self-check below to look closer.
+              </p>
+            </div>
+          )}
+
           <div className="rounded-2xl border border-navy/10 bg-white p-5 shadow-sm">
             <p className="text-xs font-semibold uppercase tracking-wide text-ink/40">Your answer</p>
             <p className="mt-2 whitespace-pre-wrap text-sm text-ink/80">{text}</p>
