@@ -14,7 +14,7 @@ interface WritingExerciseProps {
   onExit: () => void;
 }
 
-type Phase = "read" | "write" | "review";
+type Phase = "answer" | "review";
 
 function countSentences(text: string): number {
   const trimmed = text.trim();
@@ -24,7 +24,7 @@ function countSentences(text: string): number {
 }
 
 export function WritingExercise({ prompt, previousResponse, onComplete, onExit }: WritingExerciseProps) {
-  const [phase, setPhase] = useState<Phase>("read");
+  const [phase, setPhase] = useState<Phase>("answer");
   const [showTranslations, setShowTranslations] = useState(false);
   const [text, setText] = useState(previousResponse ?? "");
   const [checked, setChecked] = useState<boolean[]>(() => prompt.keyPoints.map(() => false));
@@ -88,7 +88,7 @@ export function WritingExercise({ prompt, previousResponse, onComplete, onExit }
 
       <h2 className="font-serif text-2xl font-semibold text-navy-dark">{prompt.title}</h2>
 
-      {phase === "read" && (
+      {phase === "answer" && (
         <div className="mt-4 animate-fade-in">
           <div className="flex flex-col gap-3 rounded-2xl border border-navy/10 bg-white p-5 shadow-sm">
             {prompt.dialogue.map((line, i) => {
@@ -116,18 +116,7 @@ export function WritingExercise({ prompt, previousResponse, onComplete, onExit }
             {showTranslations ? "Hide translations" : "Show translations"}
           </button>
 
-          <button
-            onClick={() => setPhase("write")}
-            className="mt-5 w-full rounded-lg bg-navy px-4 py-3 text-sm font-semibold text-cream hover:bg-navy-dark"
-          >
-            Continue to the question
-          </button>
-        </div>
-      )}
-
-      {phase === "write" && (
-        <div className="mt-4 animate-fade-in">
-          <div className="rounded-2xl border border-navy/10 bg-white p-5 shadow-sm">
+          <div className="mt-5 rounded-2xl border border-navy/10 bg-white p-5 shadow-sm">
             <p className="font-serif text-lg font-semibold text-navy-dark">{prompt.question}</p>
             <p className="mt-1 text-sm text-ink/50 italic">{prompt.questionTranslation}</p>
           </div>
@@ -164,21 +153,13 @@ export function WritingExercise({ prompt, previousResponse, onComplete, onExit }
           </div>
           {speechError && <p className="mt-1 text-xs text-red-dark">{speechError}</p>}
 
-          <div className="mt-3 flex gap-2">
-            <button
-              onClick={() => setPhase("read")}
-              className="rounded-lg border border-navy/20 px-4 py-2.5 text-sm font-semibold text-navy hover:bg-navy/5"
-            >
-              Back to conversation
-            </button>
-            <button
-              onClick={submit}
-              disabled={!canSubmit}
-              className="flex-1 rounded-lg bg-navy px-4 py-2.5 text-sm font-semibold text-cream hover:bg-navy-dark disabled:cursor-not-allowed disabled:bg-navy/30"
-            >
-              Submit answer
-            </button>
-          </div>
+          <button
+            onClick={submit}
+            disabled={!canSubmit}
+            className="mt-3 w-full rounded-lg bg-navy px-4 py-2.5 text-sm font-semibold text-cream hover:bg-navy-dark disabled:cursor-not-allowed disabled:bg-navy/30"
+          >
+            Submit answer
+          </button>
         </div>
       )}
 
