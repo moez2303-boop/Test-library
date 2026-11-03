@@ -1,6 +1,8 @@
-import Anthropic from "@anthropic-ai/sdk";
 import { z } from "zod";
 import type { Clip, Feedback, Question, Settings } from "./types";
+import { GraderError } from "./errors";
+import { callViaClaudeAccount } from "./claudeAccount";
+
 
 export const MODELS = [
   { id: "claude-opus-5-5", label: "Claude Opus 5.5 — most detailed feedback" },
@@ -13,7 +15,7 @@ export const DEFAULT_MODEL = MODELS[0].id;
 /** Weights used to turn the four 0–10 scores into one 0–100 score. */
 export const WEIGHTS = { relevance: 0.35, grammar: 0.3, vocabulary: 0.2, naturalness: 0.15 };
 
-export class GraderError extends Error {}
+export { GraderError };
 
 // ---------------------------------------------------------------------------
 // Shared call helper: one request, JSON-schema-constrained output, validated.
@@ -26,54 +28,11 @@ async function callJson<T>(
   schema: Record<string, unknown>,
   validator: z.ZodType<T>,
 ): Promise<T> {
-  if (!settings.apiKey) throw new GraderError("Add your Anthropic API key in Settings first.");
-
-  // The key stays in this browser and requests go straight to api.anthropic.com.
-  const client = new Anthropic({ apiKey: settings.apiKey, dangerouslyAllowBrowser: true });
-  // Server-side refusal fallback is available for Opus/Sonnet, not Haiku.
-  const fallback =
-    settings.model === "claude-haiku-5-5"
-      ? {}
-      : { betas: ["server-side-fallback-2026-07-01"], fallbacks: "default" as const };
-
-  let response: Anthropic.Beta.BetaMessage;
-  try {
-    response = await client.beta.messages.create({
-      model: settings.model,
-      max_tokens: 16000,
-      system,
-      messages: [{ role: "user", content: userText }],
-      output_config: { effort: "medium", format: { type: "json_schema", schema } },
-      ...fallback,
-    });
-  } catch (err) {
-    if (err instanceof Anthropic.AuthenticationError)
-      throw new GraderError("Your API key was rejected. Check it in Settings.");
-    if (err instanceof Anthropic.PermissionDeniedError)
-      throw new GraderError("This API key doesn't have access to that model.");
-    if (err instanceof Anthropic.RateLimitError)
-      throw new GraderError("Rate limited — wait a moment and try again.");
-    if (err instanceof Anthropic.APIConnectionError)
-      throw new GraderError("Couldn't reach the Claude API. Check your connection.");
-    if (err instanceof Anthropic.APIError)
-      throw new GraderError(`Claude API error ${err.status ?? ""}: ${err.message}`);
-    throw err;
-  }
-
-  if (response.stop_reason === "refusal")
-    throw new GraderError("The model declined to grade this answer. Try rephrasing it.");
-  if (response.stop_reason === "max_tokens")
-    throw new GraderError("The response was cut off. Please try again.");
-
-  const text = response.content
-    .map((block) => (block.type === "text" ? block.text : ""))
-    .join("");
-  let data: unknown;
-  try {
-    data = JSON.parse(text);
-  } catch {
-    throw new GraderError("Got an unreadable response from the model. Please try again.");
-  }
+  // The claude.ai build uses the viewer's Claude account; the web build uses an API key.
+  // The API module (and the SDK) is loaded only when needed, and left out of the claude.ai build.
+  const data = __ARTIFACT__
+    ? await callViaClaudeAccount(system, userText, schema)
+    : await (await import("./api")).callViaApi(settings, system, userText, schema);
   const parsed = validator.safeParse(data);
   if (!parsed.success) throw new GraderError("Got an unexpected response shape. Please try again.");
   return parsed.data;

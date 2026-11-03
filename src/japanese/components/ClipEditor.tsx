@@ -2,6 +2,7 @@ import { useState } from "react";
 import { saveClip } from "../db";
 import { GraderError, generateQuestions } from "../grader";
 import { LEVELS, type Clip, type JlptLevel, type Question, type Settings } from "../types";
+import { IS_ARTIFACT } from "../env";
 import { fetchTikTokInfo } from "../tiktok";
 import {
   extractUrl,
@@ -16,7 +17,7 @@ import {
 type SourceTab = "tiktok" | "youtube" | "file" | "none";
 
 const input =
-  "mt-1 w-full rounded-lg border border-sumi/20 bg-white px-3 py-2 text-sm focus:border-shu focus:outline-none";
+  "mt-1 w-full rounded-lg border border-sumi/20 bg-card px-3 py-2 text-sm focus:border-shu focus:outline-none";
 
 export function ClipEditor({
   clip,
@@ -72,16 +73,17 @@ export function ClipEditor({
       let videoId = prev?.videoId ?? parseTikTokId(url);
       let author = prev?.author ?? url.match(/@([\w.-]+)/)?.[1];
       let thumbnail = prev?.thumbnail;
-      if (!prev) {
+      if (!prev && !IS_ARTIFACT) {
         const info = await fetchTikTokInfo(url);
         videoId = info?.videoId ?? videoId;
         author = info?.author || author;
         thumbnail = info?.thumbnail || undefined;
         if (info?.caption && !caption) setCaption(info.caption);
       }
-      if (!videoId)
+      if (!/tiktok\.com\//.test(url)) return "That doesn't look like a TikTok link.";
+      if (!videoId && !IS_ARTIFACT)
         return "Couldn't read that TikTok link. Use the full address that contains /video/….";
-      source = { kind: "tiktok", videoId, url, author, thumbnail };
+      source = { kind: "tiktok", videoId: videoId ?? "", url, author, thumbnail };
     } else if (tab === "youtube") {
       const id = parseYouTubeId(youtubeUrl);
       if (!id) return "That doesn't look like a YouTube link.";
@@ -130,7 +132,7 @@ export function ClipEditor({
   };
 
   const generate = async () => {
-    if (!settings.apiKey) return onNeedSettings();
+    if (!IS_ARTIFACT && !settings.apiKey) return onNeedSettings();
     setGenerating(true);
     setError(null);
     try {
@@ -169,7 +171,7 @@ export function ClipEditor({
       </button>
       <h1 className="font-display text-2xl font-bold">{clip ? "Edit clip" : "Add a clip"}</h1>
 
-      <section className="mt-6 rounded-2xl bg-white p-5 ring-1 ring-sumi/5">
+      <section className="mt-6 rounded-2xl bg-card p-5 ring-1 ring-sumi/5">
         <h2 className="font-semibold">1. Clip details</h2>
         <div className="mt-3 grid gap-4 sm:grid-cols-[1fr_1fr_auto]">
           <label className="block text-sm font-medium">
@@ -191,7 +193,7 @@ export function ClipEditor({
         </div>
       </section>
 
-      <section className="mt-4 rounded-2xl bg-white p-5 ring-1 ring-sumi/5">
+      <section className="mt-4 rounded-2xl bg-card p-5 ring-1 ring-sumi/5">
         <h2 className="font-semibold">2. Video</h2>
         <div className="mt-3 inline-flex overflow-hidden rounded-full border border-sumi/15 text-sm">
           {(
@@ -205,7 +207,7 @@ export function ClipEditor({
             <button
               key={value}
               onClick={() => setTab(value)}
-              className={`px-4 py-1.5 ${tab === value ? "bg-sumi text-white" : "hover:bg-washi"}`}
+              className={`px-4 py-1.5 ${tab === value ? "bg-sumi text-washi" : "hover:bg-washi"}`}
             >
               {label}
             </button>
@@ -246,7 +248,7 @@ export function ClipEditor({
               type="file"
               accept="video/*"
               onChange={(e) => setFile(e.target.files?.[0] ?? null)}
-              className="mt-1 block w-full text-sm file:mr-3 file:rounded-full file:border-0 file:bg-sumi file:px-4 file:py-1.5 file:text-white"
+              className="mt-1 block w-full text-sm file:mr-3 file:rounded-full file:border-0 file:bg-sumi file:px-4 file:py-1.5 file:text-washi"
             />
             {!file && existingFileName && (
               <span className="mt-1 block text-xs text-sumi-soft">Current: {existingFileName}</span>
@@ -276,7 +278,7 @@ export function ClipEditor({
         )}
       </section>
 
-      <section className="mt-4 rounded-2xl bg-white p-5 ring-1 ring-sumi/5">
+      <section className="mt-4 rounded-2xl bg-card p-5 ring-1 ring-sumi/5">
         <h2 className="font-semibold">
           3. Script <span className="font-normal text-sumi-soft">(optional)</span>
         </h2>
@@ -316,7 +318,7 @@ export function ClipEditor({
         </label>
       </section>
 
-      <section className="mt-4 rounded-2xl bg-white p-5 ring-1 ring-sumi/5">
+      <section className="mt-4 rounded-2xl bg-card p-5 ring-1 ring-sumi/5">
         <div className="flex flex-wrap items-center gap-2">
           <h2 className="flex-1 font-semibold">4. Questions</h2>
           <button

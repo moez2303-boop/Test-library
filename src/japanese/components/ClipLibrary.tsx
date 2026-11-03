@@ -1,3 +1,4 @@
+import { useState } from "react";
 import type { Attempt, Clip } from "../types";
 import { bestByQuestion, scoreColor } from "../util";
 
@@ -18,6 +19,7 @@ export function ClipLibrary({
   onAddTikTok: () => void;
   onDelete: (id: string) => void;
 }) {
+  const [confirmingId, setConfirmingId] = useState<string | null>(null);
   return (
     <div>
       <div className="mb-6 flex flex-wrap items-end gap-4">
@@ -63,17 +65,21 @@ export function ClipLibrary({
             return (
               <article
                 key={clip.id}
-                className="group flex flex-col overflow-hidden rounded-2xl bg-white shadow-sm ring-1 ring-sumi/5"
+                className="group flex flex-col overflow-hidden rounded-2xl bg-card shadow-sm ring-1 ring-sumi/5"
               >
-                <button onClick={() => onPractice(clip.id)} className="relative block aspect-video bg-sumi">
+                <button onClick={() => onPractice(clip.id)} className="relative block aspect-video bg-night">
                   {clip.source.kind === "youtube" ? (
-                    <img
-                      src={`https://img.youtube.com/vi/${clip.source.videoId}/hqdefault.jpg`}
-                      alt=""
-                      className="h-full w-full object-cover opacity-90 transition group-hover:opacity-100"
-                    />
+                    <div className="grid h-full place-items-center bg-gradient-to-br from-night to-ai">
+                      <span className="text-sm font-semibold tracking-wide text-white/80">YouTube</span>
+                      <img
+                        src={`https://img.youtube.com/vi/${clip.source.videoId}/hqdefault.jpg`}
+                        alt=""
+                        className="absolute inset-0 h-full w-full object-cover opacity-90 transition group-hover:opacity-100"
+                        onError={(e) => e.currentTarget.remove()}
+                      />
+                    </div>
                   ) : clip.source.kind === "tiktok" ? (
-                    <div className="relative grid h-full place-items-center bg-gradient-to-br from-sumi to-ai">
+                    <div className="relative grid h-full place-items-center bg-gradient-to-br from-night to-ai">
                       <span className="text-sm font-semibold tracking-wide text-white/80">TikTok</span>
                       {clip.source.thumbnail && (
                         <img
@@ -85,13 +91,13 @@ export function ClipLibrary({
                       )}
                     </div>
                   ) : (
-                    <div className="grid h-full place-items-center bg-gradient-to-br from-ai to-sumi">
+                    <div className="grid h-full place-items-center bg-gradient-to-br from-ai to-night">
                       <span className="jp text-4xl text-white/80">
                         {clip.source.kind === "file" ? "▶" : "台本"}
                       </span>
                     </div>
                   )}
-                  <span className="absolute top-2 left-2 rounded-full bg-white/90 px-2 py-0.5 text-xs font-bold">
+                  <span className="absolute top-2 left-2 rounded-full bg-card/90 px-2 py-0.5 text-xs font-bold">
                     {clip.level}
                   </span>
                   {clip.source.kind === "none" && (
@@ -111,10 +117,30 @@ export function ClipLibrary({
                       <span className={`font-semibold ${scoreColor(avg)}`}>avg {avg}</span>
                     )}
                   </div>
+                  {confirmingId === clip.id ? (
+                    <div className="mt-4 flex flex-wrap items-center gap-2 rounded-xl bg-shu/10 p-2 text-sm">
+                      <span className="flex-1 px-1">Delete this clip and its answers?</span>
+                      <button
+                        onClick={() => setConfirmingId(null)}
+                        className="rounded-full px-3 py-1.5 hover:bg-card"
+                      >
+                        Keep
+                      </button>
+                      <button
+                        onClick={() => {
+                          setConfirmingId(null);
+                          onDelete(clip.id);
+                        }}
+                        className="rounded-full bg-shu px-3 py-1.5 font-semibold text-white"
+                      >
+                        Delete
+                      </button>
+                    </div>
+                  ) : (
                   <div className="mt-4 flex gap-2">
                     <button
                       onClick={() => onPractice(clip.id)}
-                      className="flex-1 rounded-full bg-sumi px-3 py-2 text-sm font-semibold text-white hover:bg-sumi/85"
+                      className="flex-1 rounded-full bg-sumi px-3 py-2 text-sm font-semibold text-washi hover:bg-sumi/85"
                     >
                       Practice
                     </button>
@@ -125,15 +151,14 @@ export function ClipLibrary({
                       Edit
                     </button>
                     <button
-                      onClick={() => {
-                        if (confirm(`Delete "${clip.title}" and its answer history?`)) onDelete(clip.id);
-                      }}
+                      onClick={() => setConfirmingId(clip.id)}
                       className="rounded-full border border-sumi/15 px-3 py-2 text-sm text-shu hover:bg-shu/5"
                       aria-label={`Delete ${clip.title}`}
                     >
                       ✕
                     </button>
                   </div>
+                  )}
                 </div>
               </article>
             );

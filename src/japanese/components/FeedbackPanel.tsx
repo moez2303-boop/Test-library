@@ -25,7 +25,7 @@ function barColor(score10: number) {
 export function FeedbackPanel({ feedback, answer }: { feedback: Feedback; answer: string }) {
   const unchanged = feedback.correctedAnswer.trim() === answer.trim();
   return (
-    <section className="rounded-2xl bg-white p-5 shadow-sm ring-1 ring-sumi/5">
+    <section className="rounded-2xl bg-card p-5 shadow-sm ring-1 ring-sumi/5">
       <div className="flex items-center gap-5">
         <div className="text-center">
           <div className={`font-display text-5xl font-bold ${scoreColor(feedback.overall)}`}>

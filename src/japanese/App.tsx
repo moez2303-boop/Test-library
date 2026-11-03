@@ -1,5 +1,6 @@
 import { useCallback, useEffect, useState } from "react";
 import { deleteClip, getAllAttempts, getAllClips } from "./db";
+import { IS_ARTIFACT } from "./env";
 import { useSettings } from "./settings";
 import type { Attempt, Clip } from "./types";
 import { ClipLibrary } from "./components/ClipLibrary";
@@ -36,7 +37,7 @@ export default function App() {
 
   return (
     <div className="min-h-screen">
-      <header className="sticky top-0 z-20 border-b border-washi-dark bg-washi/90 backdrop-blur">
+      <header className="sticky top-[env(safe-area-inset-top,0px)] z-20 border-b border-washi-dark bg-washi/90 backdrop-blur">
         <div className="mx-auto flex max-w-6xl items-center gap-3 px-4 py-3">
           <button
             onClick={() => {
@@ -54,14 +55,16 @@ export default function App() {
             </span>
           </button>
           <div className="flex-1" />
-          <button
-            onClick={() => setSettingsOpen(true)}
-            className="rounded-full border border-sumi/15 px-4 py-2 text-sm font-medium hover:bg-washi-dark"
-          >
-            Settings
-          </button>
+          {!IS_ARTIFACT && (
+            <button
+              onClick={() => setSettingsOpen(true)}
+              className="rounded-full border border-sumi/15 px-4 py-2 text-sm font-medium hover:bg-washi-dark"
+            >
+              Settings
+            </button>
+          )}
         </div>
-        {!settings.apiKey && (
+        {!IS_ARTIFACT && !settings.apiKey && (
           <div className="bg-kin/15 px-4 py-2 text-center text-sm">
             Grading uses Claude.{" "}
             <button className="font-semibold underline" onClick={() => setSettingsOpen(true)}>

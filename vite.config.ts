@@ -7,6 +7,7 @@ import { defineConfig } from 'vite'
 export default defineConfig({
   base: process.env.GITHUB_PAGES ? '/Test-library/' : '/',
   plugins: [react(), tailwindcss()],
+  define: { __ARTIFACT__: 'false' },
   build: {
     rollupOptions: {
       input: {

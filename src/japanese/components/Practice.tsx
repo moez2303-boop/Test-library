@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import { addAttempt, getAttemptsForClip } from "../db";
+import { IS_ARTIFACT } from "../env";
 import { GraderError, gradeAnswer } from "../grader";
 import type { Attempt, Clip, Settings } from "../types";
 import { bestByQuestion, uid } from "../util";
@@ -47,7 +48,7 @@ export function Practice({
 
   const submit = async () => {
     if (!question || !answer.trim() || grading) return;
-    if (!settings.apiKey) return onNeedSettings();
+    if (!IS_ARTIFACT && !settings.apiKey) return onNeedSettings();
     setGrading(true);
     setError(null);
     try {
@@ -92,12 +93,12 @@ export function Practice({
           <ClipPlayer clip={clip} onAttachVideo={onEdit} />
 
           {clip.caption && !clip.transcript.trim() && (
-            <p className="jp mt-3 rounded-xl bg-white px-4 py-3 text-sm text-sumi-soft ring-1 ring-sumi/5">
+            <p className="jp mt-3 rounded-xl bg-card px-4 py-3 text-sm text-sumi-soft ring-1 ring-sumi/5">
               {clip.caption}
             </p>
           )}
           {clip.transcript.trim() && (
-          <div className="mt-4 rounded-2xl bg-white p-4 ring-1 ring-sumi/5">
+          <div className="mt-4 rounded-2xl bg-card p-4 ring-1 ring-sumi/5">
             <div className="flex flex-wrap items-center gap-2">
               <h2 className="text-sm font-semibold">Script</h2>
               <div className="flex-1" />
@@ -136,7 +137,7 @@ export function Practice({
         {/* Right: questions */}
         <div className="min-w-0">
           {clip.questions.length === 0 ? (
-            <div className="rounded-2xl bg-white p-6 text-center ring-1 ring-sumi/5">
+            <div className="rounded-2xl bg-card p-6 text-center ring-1 ring-sumi/5">
               <p className="text-sumi-soft">This clip has no questions yet.</p>
               <button onClick={onEdit} className="mt-3 rounded-full bg-shu px-4 py-2 text-sm font-semibold text-white">
                 Add questions
@@ -154,7 +155,7 @@ export function Practice({
                       key={q.id}
                       onClick={() => goTo(i)}
                       className={`h-9 w-9 rounded-full text-sm font-semibold ring-2 ring-offset-2 ring-offset-washi ${
-                        i === index ? "bg-sumi text-white" : "bg-white"
+                        i === index ? "bg-sumi text-washi" : "bg-card"
                       } ${ring || "ring-transparent"}`}
                       title={b === undefined ? "Not answered yet" : `Best score: ${b}`}
                     >
@@ -165,7 +166,7 @@ export function Practice({
               </div>
 
               {question && (
-                <div className="rounded-2xl bg-white p-5 shadow-sm ring-1 ring-sumi/5">
+                <div className="rounded-2xl bg-card p-5 shadow-sm ring-1 ring-sumi/5">
                   <div className="text-xs font-semibold tracking-wide text-sumi-soft uppercase">
                     Question {index + 1} of {clip.questions.length}
                   </div>
@@ -215,7 +216,7 @@ export function Practice({
               )}
 
               {grading && (
-                <div className="mt-4 animate-pulse rounded-2xl bg-white p-5 text-sm text-sumi-soft ring-1 ring-sumi/5">
+                <div className="mt-4 animate-pulse rounded-2xl bg-card p-5 text-sm text-sumi-soft ring-1 ring-sumi/5">
                   先生が確認しています… reading your answer.
                 </div>
               )}
@@ -229,14 +230,14 @@ export function Practice({
                         setAnswer(result.answer);
                         setResult(null);
                       }}
-                      className="rounded-full border border-sumi/15 px-4 py-2 text-sm hover:bg-white"
+                      className="rounded-full border border-sumi/15 px-4 py-2 text-sm hover:bg-card"
                     >
                       Try again
                     </button>
                     {index < clip.questions.length - 1 && (
                       <button
                         onClick={() => goTo(index + 1)}
-                        className="rounded-full bg-sumi px-4 py-2 text-sm font-semibold text-white"
+                        className="rounded-full bg-sumi px-4 py-2 text-sm font-semibold text-washi"
                       >
                         Next question →
                       </button>
@@ -246,7 +247,7 @@ export function Practice({
               )}
 
               {history.length > 0 && !result && (
-                <details className="mt-4 rounded-2xl bg-white p-4 text-sm ring-1 ring-sumi/5">
+                <details className="mt-4 rounded-2xl bg-card p-4 text-sm ring-1 ring-sumi/5">
                   <summary className="cursor-pointer font-semibold">
                     Previous answers ({history.length})
                   </summary>

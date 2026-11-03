@@ -1,16 +1,31 @@
 import { useEffect, useRef, useState } from "react";
 import { getVideo } from "../db";
+import { IS_ARTIFACT } from "../env";
 import type { Clip } from "../types";
 import { formatTime } from "../util";
 
 export function ClipPlayer({ clip, onAttachVideo }: { clip: Clip; onAttachVideo?: () => void }) {
-  if (clip.source.kind === "youtube")
+  if (clip.source.kind === "youtube") {
+    if (IS_ARTIFACT) {
+      const t = clip.start ? `&t=${Math.floor(clip.start)}s` : "";
+      return (
+        <WatchOutside
+          site="YouTube"
+          href={`https://www.youtube.com/watch?v=${clip.source.videoId}${t}`}
+          range={rangeLabel(clip.start, clip.end)}
+        />
+      );
+    }
     return <YouTubeClip videoId={clip.source.videoId} start={clip.start} end={clip.end} />;
-  if (clip.source.kind === "tiktok")
+  }
+  if (clip.source.kind === "tiktok") {
+    if (IS_ARTIFACT || !clip.source.videoId)
+      return <WatchOutside site="TikTok" href={clip.source.url} author={clip.source.author} />;
     return <TikTokClip videoId={clip.source.videoId} url={clip.source.url} />;
+  }
   if (clip.source.kind === "file") return <FileClip clip={clip} />;
   return (
-    <div className="grid aspect-video place-items-center rounded-2xl bg-gradient-to-br from-ai to-sumi p-6 text-center text-white">
+    <div className="grid aspect-video place-items-center rounded-2xl bg-gradient-to-br from-ai to-night p-6 text-center text-white">
       <div>
         <p className="jp text-2xl">映像なし</p>
         <p className="mt-2 text-sm text-white/75">
@@ -19,11 +34,47 @@ export function ClipPlayer({ clip, onAttachVideo }: { clip: Clip; onAttachVideo?
         {onAttachVideo && (
           <button
             onClick={onAttachVideo}
-            className="mt-4 rounded-full bg-white px-4 py-2 text-sm font-semibold text-sumi"
+            className="mt-4 rounded-full bg-card px-4 py-2 text-sm font-semibold text-sumi"
           >
             Attach a video
           </button>
         )}
+      </div>
+    </div>
+  );
+}
+
+/** For pages that can't embed other sites' players: watch there, answer here. */
+function WatchOutside({
+  site,
+  href,
+  author,
+  range,
+}: {
+  site: string;
+  href: string;
+  author?: string;
+  range?: string;
+}) {
+  return (
+    <div className="grid aspect-video place-items-center rounded-2xl bg-gradient-to-br from-night to-ai p-6 text-center text-white">
+      <div className="grid justify-items-center gap-3">
+        <span className="text-xs font-semibold tracking-widest text-white/70 uppercase">
+          {site}
+          {author ? ` · @${author}` : ""}
+        </span>
+        <a
+          href={href}
+          target="_blank"
+          rel="noreferrer"
+          className="rounded-full bg-white px-6 py-3 text-base font-semibold text-[#1d232c] shadow-lg hover:bg-white/90"
+        >
+          ▶ Watch on {site} ↗
+        </a>
+        <p className="max-w-xs text-sm text-white/75">
+          {range && range !== "Full video" ? `Watch ${range}, ` : "Watch the clip, "}then come back here
+          to answer.
+        </p>
       </div>
     </div>
   );
@@ -47,7 +98,7 @@ function TikTokClip({ videoId, url }: { videoId: string; url: string }) {
 
   return (
     <div>
-      <div className="mx-auto aspect-[9/16] max-h-[60vh] overflow-hidden rounded-2xl bg-sumi">
+      <div className="mx-auto aspect-[9/16] max-h-[60vh] overflow-hidden rounded-2xl bg-night">
         <iframe
           key={plays}
           className="h-full w-full"
@@ -60,7 +111,7 @@ function TikTokClip({ videoId, url }: { videoId: string; url: string }) {
       <div className="mt-2 flex flex-wrap items-center gap-2 text-sm">
         <button
           onClick={() => setPlays((n) => n + 1)}
-          className="rounded-full bg-sumi px-4 py-1.5 font-medium text-white hover:bg-sumi/85"
+          className="rounded-full bg-sumi px-4 py-1.5 font-medium text-washi hover:bg-sumi/85"
         >
           ↺ Replay clip
         </button>
@@ -86,7 +137,7 @@ function YouTubeClip({ videoId, start, end }: { videoId: string; start: number; 
 
   return (
     <div>
-      <div className="aspect-video overflow-hidden rounded-2xl bg-sumi">
+      <div className="aspect-video overflow-hidden rounded-2xl bg-night">
         <iframe
           key={plays}
           className="h-full w-full"
@@ -99,7 +150,7 @@ function YouTubeClip({ videoId, start, end }: { videoId: string; start: number; 
       <div className="mt-2 flex items-center gap-2 text-sm">
         <button
           onClick={() => setPlays((n) => n + 1)}
-          className="rounded-full bg-sumi px-4 py-1.5 font-medium text-white hover:bg-sumi/85"
+          className="rounded-full bg-sumi px-4 py-1.5 font-medium text-washi hover:bg-sumi/85"
         >
           ↺ Replay clip
         </button>
@@ -143,14 +194,14 @@ function FileClip({ clip }: { clip: Clip }) {
 
   if (missing)
     return (
-      <div className="grid aspect-video place-items-center rounded-2xl bg-sumi p-6 text-center text-white/80">
+      <div className="grid aspect-video place-items-center rounded-2xl bg-night p-6 text-center text-white/80">
         The video file for this clip wasn't found in this browser. Edit the clip to attach it again.
       </div>
     );
 
   return (
     <div>
-      <div className="aspect-video overflow-hidden rounded-2xl bg-sumi">
+      <div className="aspect-video overflow-hidden rounded-2xl bg-night">
         {url && (
           <video
             ref={videoRef}
@@ -178,7 +229,7 @@ function FileClip({ clip }: { clip: Clip }) {
       <div className="mt-2 flex flex-wrap items-center gap-2 text-sm">
         <button
           onClick={replay}
-          className="rounded-full bg-sumi px-4 py-1.5 font-medium text-white hover:bg-sumi/85"
+          className="rounded-full bg-sumi px-4 py-1.5 font-medium text-washi hover:bg-sumi/85"
         >
           ↺ Replay clip
         </button>
@@ -187,7 +238,7 @@ function FileClip({ clip }: { clip: Clip }) {
             <button
               key={r}
               onClick={() => setRate(r)}
-              className={`px-3 py-1.5 ${rate === r ? "bg-sumi text-white" : "hover:bg-washi-dark"}`}
+              className={`px-3 py-1.5 ${rate === r ? "bg-sumi text-washi" : "hover:bg-washi-dark"}`}
             >
               {r}×
             </button>

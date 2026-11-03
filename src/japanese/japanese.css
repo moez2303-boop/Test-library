@@ -15,6 +15,39 @@
   --color-matcha: #5f7f3a;
   --color-kin: #b8862b;
   --color-ai: #2f4a6b;
+  --color-card: #ffffff;
+  /* Video surfaces stay dark in both themes. */
+  --color-night: #1d232c;
+}
+
+/* Dark theme: follows the system unless the viewer picked light; also when they picked dark. */
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --color-washi: #1a1815;
+    --color-washi-dark: #2c2824;
+    --color-card: #24211d;
+    --color-sumi: #eee8de;
+    --color-sumi-soft: #aaa297;
+    --color-shu: #e25a43;
+    --color-shu-dark: #c8402c;
+    --color-matcha: #93b865;
+    --color-kin: #d9a84c;
+    --color-ai: #93b2d8;
+    color-scheme: dark;
+  }
+}
+:root[data-theme="dark"] {
+  --color-washi: #1a1815;
+  --color-washi-dark: #2c2824;
+  --color-card: #24211d;
+  --color-sumi: #eee8de;
+  --color-sumi-soft: #aaa297;
+  --color-shu: #e25a43;
+  --color-shu-dark: #c8402c;
+  --color-matcha: #93b865;
+  --color-kin: #d9a84c;
+  --color-ai: #93b2d8;
+  color-scheme: dark;
 }
 
 html,

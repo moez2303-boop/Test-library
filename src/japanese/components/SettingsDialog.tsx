@@ -22,7 +22,7 @@ export function SettingsDialog({
       aria-modal="true"
     >
       <form
-        className="w-full max-w-md rounded-2xl bg-white p-6 shadow-xl"
+        className="w-full max-w-md rounded-2xl bg-card p-6 shadow-xl"
         onClick={(e) => e.stopPropagation()}
         onSubmit={(e) => {
           e.preventDefault();
@@ -49,7 +49,7 @@ export function SettingsDialog({
         <select
           value={model}
           onChange={(e) => setModel(e.target.value)}
-          className="mt-1 w-full rounded-lg border border-sumi/20 bg-white px-3 py-2 text-sm focus:border-shu focus:outline-none"
+          className="mt-1 w-full rounded-lg border border-sumi/20 bg-card px-3 py-2 text-sm focus:border-shu focus:outline-none"
         >
           {MODELS.map((m) => (
             <option key={m.id} value={m.id}>
