@@ -2,9 +2,18 @@ import { useState } from "react";
 import { saveClip } from "../db";
 import { GraderError, generateQuestions } from "../grader";
 import { LEVELS, type Clip, type JlptLevel, type Question, type Settings } from "../types";
-import { formatTime, parseTime, parseYouTubeId, parseYouTubeStart, uid } from "../util";
+import { fetchTikTokInfo } from "../tiktok";
+import {
+  extractUrl,
+  formatTime,
+  parseTikTokId,
+  parseTime,
+  parseYouTubeId,
+  parseYouTubeStart,
+  uid,
+} from "../util";
 
-type SourceTab = "youtube" | "file" | "none";
+type SourceTab = "tiktok" | "youtube" | "file" | "none";
 
 const input =
   "mt-1 w-full rounded-lg border border-sumi/20 bg-white px-3 py-2 text-sm focus:border-shu focus:outline-none";
@@ -25,7 +34,9 @@ export function ClipEditor({
   const [title, setTitle] = useState(clip?.title ?? "");
   const [anime, setAnime] = useState(clip?.anime ?? "");
   const [level, setLevel] = useState<JlptLevel>(clip?.level ?? "N5");
-  const [tab, setTab] = useState<SourceTab>(clip?.source.kind ?? "youtube");
+  const [tab, setTab] = useState<SourceTab>(clip?.source.kind ?? "tiktok");
+  const [tiktokUrl, setTiktokUrl] = useState(clip?.source.kind === "tiktok" ? clip.source.url : "");
+  const [caption, setCaption] = useState(clip?.caption ?? "");
   const [youtubeUrl, setYoutubeUrl] = useState(
     clip?.source.kind === "youtube" ? `https://youtu.be/${clip.source.videoId}` : "",
   );
@@ -51,11 +62,27 @@ export function ClipEditor({
   const lengthNote =
     !timeError && endSec ? `${Math.round(endSec - startSec)} s clip` : "Plays to the end of the video";
 
-  const buildClip = (): Clip | string => {
+  const buildClip = async (): Promise<Clip | string> => {
     if (!title.trim()) return "Give the clip a title.";
     if (timeError) return timeError;
     let source: Clip["source"];
-    if (tab === "youtube") {
+    if (tab === "tiktok") {
+      const url = extractUrl(tiktokUrl);
+      const prev = clip?.source.kind === "tiktok" && clip.source.url === url ? clip.source : null;
+      let videoId = prev?.videoId ?? parseTikTokId(url);
+      let author = prev?.author ?? url.match(/@([\w.-]+)/)?.[1];
+      let thumbnail = prev?.thumbnail;
+      if (!prev) {
+        const info = await fetchTikTokInfo(url);
+        videoId = info?.videoId ?? videoId;
+        author = info?.author || author;
+        thumbnail = info?.thumbnail || undefined;
+        if (info?.caption && !caption) setCaption(info.caption);
+      }
+      if (!videoId)
+        return "Couldn't read that TikTok link. Use the full address that contains /video/….";
+      source = { kind: "tiktok", videoId, url, author, thumbnail };
+    } else if (tab === "youtube") {
       const id = parseYouTubeId(youtubeUrl);
       if (!id) return "That doesn't look like a YouTube link.";
       source = { kind: "youtube", videoId: id };
@@ -76,6 +103,7 @@ export function ClipEditor({
       end: endSec,
       transcript,
       translation,
+      caption: caption.trim() || undefined,
       questions: questions
         .map((q) => ({
           ...q,
@@ -90,11 +118,12 @@ export function ClipEditor({
   };
 
   const save = async () => {
-    const built = buildClip();
-    if (typeof built === "string") return setError(built);
-    if (!transcript.trim() && built.questions.length > 0)
-      return setError("Add the transcript — the grader needs it to judge whether answers fit the scene.");
     setSaving(true);
+    const built = await buildClip();
+    if (typeof built === "string") {
+      setSaving(false);
+      return setError(built);
+    }
     await saveClip(built, tab === "file" ? file : null);
     setSaving(false);
     onSaved(built.id);
@@ -125,6 +154,7 @@ export function ClipEditor({
     end: 0,
     transcript,
     translation,
+    caption,
     questions: [],
     createdAt: 0,
   });
@@ -166,7 +196,8 @@ export function ClipEditor({
         <div className="mt-3 inline-flex overflow-hidden rounded-full border border-sumi/15 text-sm">
           {(
             [
-              ["youtube", "YouTube link"],
+              ["tiktok", "TikTok"],
+              ["youtube", "YouTube"],
               ["file", "Video file"],
               ["none", "No video"],
             ] as const
@@ -181,6 +212,18 @@ export function ClipEditor({
           ))}
         </div>
 
+        {tab === "tiktok" && (
+          <label className="mt-4 block text-sm font-medium">
+            TikTok link
+            <input
+              className={input}
+              value={tiktokUrl}
+              onChange={(e) => setTiktokUrl(e.target.value)}
+              placeholder="https://www.tiktok.com/@…/video/…"
+              inputMode="url"
+            />
+          </label>
+        )}
         {tab === "youtube" && (
           <label className="mt-4 block text-sm font-medium">
             YouTube URL
@@ -216,7 +259,7 @@ export function ClipEditor({
           </p>
         )}
 
-        {tab !== "none" && (
+        {(tab === "youtube" || tab === "file") && (
           <div className="mt-4 flex flex-wrap items-end gap-4">
             <label className="block w-28 text-sm font-medium">
               Start
@@ -234,10 +277,13 @@ export function ClipEditor({
       </section>
 
       <section className="mt-4 rounded-2xl bg-white p-5 ring-1 ring-sumi/5">
-        <h2 className="font-semibold">3. Script</h2>
+        <h2 className="font-semibold">
+          3. Script <span className="font-normal text-sumi-soft">(optional)</span>
+        </h2>
         <p className="mt-1 text-sm text-sumi-soft">
-          The grader can't watch the video, so it uses the dialogue to judge whether answers fit
-          the scene. Paste the Japanese subtitles for the clip.
+          The grader can't watch the video. With the dialogue it can also check that your answers
+          match what happens; without it, it grades your Japanese and whether you answered the
+          question.
         </p>
         <label className="mt-3 block text-sm font-medium">
           Japanese dialogue
@@ -249,6 +295,17 @@ export function ClipEditor({
             placeholder={"A：おはよう！\nB：おはよう。今日は早いね。"}
           />
         </label>
+        {tab === "tiktok" && (
+          <label className="mt-3 block text-sm font-medium">
+            TikTok caption
+            <textarea
+              className={`${input} jp min-h-16`}
+              value={caption}
+              onChange={(e) => setCaption(e.target.value)}
+              placeholder="Filled in from TikTok when available"
+            />
+          </label>
+        )}
         <label className="mt-3 block text-sm font-medium">
           English translation <span className="font-normal text-sumi-soft">(optional)</span>
           <textarea
@@ -264,9 +321,9 @@ export function ClipEditor({
           <h2 className="flex-1 font-semibold">4. Questions</h2>
           <button
             onClick={() => void generate()}
-            disabled={generating || !transcript.trim()}
+            disabled={generating || (!transcript.trim() && !caption.trim())}
             className="rounded-full border border-ai/30 px-4 py-1.5 text-sm font-medium text-ai hover:bg-ai/5 disabled:opacity-40"
-            title={transcript.trim() ? "" : "Add the script first"}
+            title={transcript.trim() || caption.trim() ? "" : "Add the script first"}
           >
             {generating ? "Writing questions…" : "✨ Suggest questions"}
           </button>

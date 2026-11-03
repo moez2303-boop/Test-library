@@ -6,6 +6,7 @@ import { ClipLibrary } from "./components/ClipLibrary";
 import { ClipEditor } from "./components/ClipEditor";
 import { Practice } from "./components/Practice";
 import { SettingsDialog } from "./components/SettingsDialog";
+import { TikTokQuickAdd } from "./components/TikTokQuickAdd";
 
 type View =
   | { name: "library" }
@@ -18,6 +19,7 @@ export default function App() {
   const [attempts, setAttempts] = useState<Attempt[]>([]);
   const [view, setView] = useState<View>({ name: "library" });
   const [settingsOpen, setSettingsOpen] = useState(false);
+  const [tiktokOpen, setTiktokOpen] = useState(false);
 
   const refresh = useCallback(async () => {
     const [c, a] = await Promise.all([getAllClips(), getAllAttempts()]);
@@ -80,6 +82,7 @@ export default function App() {
             onPractice={(id) => setView({ name: "practice", clipId: id })}
             onEdit={(id) => setView({ name: "edit", clipId: id })}
             onNew={() => setView({ name: "edit", clipId: null })}
+            onAddTikTok={() => setTiktokOpen(true)}
             onDelete={async (id) => {
               await deleteClip(id);
               await refresh();
@@ -114,6 +117,18 @@ export default function App() {
           <p className="py-20 text-center text-sumi-soft">Clip not found.</p>
         )}
       </main>
+
+      {tiktokOpen && (
+        <TikTokQuickAdd
+          settings={settings}
+          onClose={() => setTiktokOpen(false)}
+          onAdded={async (id) => {
+            setTiktokOpen(false);
+            await refresh();
+            setView({ name: "practice", clipId: id });
+          }}
+        />
+      )}
 
       {settingsOpen && (
         <SettingsDialog

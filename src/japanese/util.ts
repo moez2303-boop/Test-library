@@ -75,3 +75,26 @@ export function speakJapanese(text: string) {
   if (voice) utterance.voice = voice;
   window.speechSynthesis.speak(utterance);
 }
+
+/** Extracts the numeric video id from a full TikTok link (or a bare id). */
+export function parseTikTokId(input: string): string | null {
+  const value = input.trim();
+  if (/^\d{15,22}$/.test(value)) return value;
+  const match = value.match(/tiktok\.com\/.*?\/video\/(\d{15,22})/) ?? value.match(/tiktok\.com\/(?:embed\/v2|player\/v1)\/(\d{15,22})/);
+  return match ? match[1] : null;
+}
+
+export function isTikTokLink(input: string): boolean {
+  return /(^|\.|\/\/)tiktok\.com\//.test(input.trim());
+}
+
+/** True if the text contains Japanese characters (kana or kanji). */
+export function hasJapanese(text: string): boolean {
+  return /[぀-ヿ一-鿿]/.test(text);
+}
+
+/** Pulls the first URL out of shared text like "Check this out! https://vm.tiktok.com/abc/". */
+export function extractUrl(text: string): string {
+  const match = text.match(/https?:\/\/\S+/);
+  return match ? match[0] : text.trim();
+}

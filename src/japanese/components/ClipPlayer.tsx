@@ -6,6 +6,8 @@ import { formatTime } from "../util";
 export function ClipPlayer({ clip, onAttachVideo }: { clip: Clip; onAttachVideo?: () => void }) {
   if (clip.source.kind === "youtube")
     return <YouTubeClip videoId={clip.source.videoId} start={clip.start} end={clip.end} />;
+  if (clip.source.kind === "tiktok")
+    return <TikTokClip videoId={clip.source.videoId} url={clip.source.url} />;
   if (clip.source.kind === "file") return <FileClip clip={clip} />;
   return (
     <div className="grid aspect-video place-items-center rounded-2xl bg-gradient-to-br from-ai to-sumi p-6 text-center text-white">
@@ -30,6 +32,49 @@ export function ClipPlayer({ clip, onAttachVideo }: { clip: Clip; onAttachVideo?
 function rangeLabel(start: number, end: number) {
   if (!start && !end) return "Full video";
   return `${formatTime(start) || "0:00"} – ${end ? formatTime(end) : "end"}`;
+}
+
+function TikTokClip({ videoId, url }: { videoId: string; url: string }) {
+  const [plays, setPlays] = useState(0);
+  const params = new URLSearchParams({
+    loop: "0",
+    rel: "0",
+    music_info: "0",
+    description: "0",
+    closed_caption: "0",
+  });
+  if (plays > 0) params.set("autoplay", "1");
+
+  return (
+    <div>
+      <div className="mx-auto aspect-[9/16] max-h-[60vh] overflow-hidden rounded-2xl bg-sumi">
+        <iframe
+          key={plays}
+          className="h-full w-full"
+          src={`https://www.tiktok.com/player/v1/${videoId}?${params}`}
+          title="TikTok clip"
+          allow="autoplay; encrypted-media; fullscreen; picture-in-picture"
+          allowFullScreen
+        />
+      </div>
+      <div className="mt-2 flex flex-wrap items-center gap-2 text-sm">
+        <button
+          onClick={() => setPlays((n) => n + 1)}
+          className="rounded-full bg-sumi px-4 py-1.5 font-medium text-white hover:bg-sumi/85"
+        >
+          ↺ Replay clip
+        </button>
+        <a
+          href={url}
+          target="_blank"
+          rel="noreferrer"
+          className="rounded-full border border-sumi/15 px-4 py-1.5 hover:bg-washi-dark"
+        >
+          Open in TikTok ↗
+        </a>
+      </div>
+    </div>
+  );
 }
 
 function YouTubeClip({ videoId, start, end }: { videoId: string; start: number; end: number }) {

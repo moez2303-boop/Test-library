@@ -91,6 +91,12 @@ export function Practice({
           </p>
           <ClipPlayer clip={clip} onAttachVideo={onEdit} />
 
+          {clip.caption && !clip.transcript.trim() && (
+            <p className="jp mt-3 rounded-xl bg-white px-4 py-3 text-sm text-sumi-soft ring-1 ring-sumi/5">
+              {clip.caption}
+            </p>
+          )}
+          {clip.transcript.trim() && (
           <div className="mt-4 rounded-2xl bg-white p-4 ring-1 ring-sumi/5">
             <div className="flex flex-wrap items-center gap-2">
               <h2 className="text-sm font-semibold">Script</h2>
@@ -124,6 +130,7 @@ export function Practice({
               </p>
             )}
           </div>
+          )}
         </div>
 
         {/* Right: questions */}
@@ -195,7 +202,7 @@ export function Practice({
                     >
                       {grading ? "Grading…" : "Check my answer"}
                     </button>
-                    <span className="text-xs text-sumi-soft">Ctrl/⌘ + Enter</span>
+                    <span className="hidden text-xs text-sumi-soft sm:inline">Ctrl/⌘ + Enter</span>
                     <div className="flex-1" />
                     {index < clip.questions.length - 1 && (
                       <button onClick={() => goTo(index + 1)} className="text-sm text-sumi-soft hover:text-sumi">

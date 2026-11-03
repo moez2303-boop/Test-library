@@ -85,8 +85,11 @@ function clipContext(clip: Clip): string {
     `Title: ${clip.title}`,
     clip.anime ? `Anime: ${clip.anime}` : "",
     `Learner level: JLPT ${clip.level}`,
-    `<transcript>\n${clip.transcript.trim() || "(no transcript provided)"}\n</transcript>`,
+    clip.transcript.trim()
+      ? `<transcript>\n${clip.transcript.trim()}\n</transcript>`
+      : "<transcript>(not available)</transcript>",
     clip.translation.trim() ? `<translation>\n${clip.translation.trim()}\n</translation>` : "",
+    clip.caption?.trim() ? `<video_caption>\n${clip.caption.trim()}\n</video_caption>` : "",
     `</clip>`,
   ];
   return lines.filter(Boolean).join("\n");
@@ -96,7 +99,9 @@ function clipContext(clip: Clip): string {
 // Grading a free-text answer
 // ---------------------------------------------------------------------------
 
-const GRADE_SYSTEM = `You are an experienced, encouraging Japanese teacher. A learner watched a short anime clip (about 30 seconds) and typed a free-text answer to a question about it. You can't see the video: the clip's transcript (and translation, when given) is your source of truth for what happens in it.
+const GRADE_SYSTEM = `You are an experienced, encouraging Japanese teacher. A learner watched a short anime clip (about 30 seconds) and typed a free-text answer to a question about it. You can't see the video: the clip's transcript (and translation, when given) is your source of truth for what happens in it. Many clips come from TikTok, and the uploader's caption may be included as extra context; it can be helpful, but it is not always accurate or about the dialogue.
+
+When no transcript is available, you can't check facts about the scene. Then judge relevance by whether the answer genuinely responds to the question and is consistent with the caption, if any; don't penalize details you have no way to verify, and say in the summary that the scene itself couldn't be checked.
 
 Score the answer on four dimensions, each an integer from 0 to 10:
 - grammar: particles, conjugation, tense, word order, sentence structure. 10 means no errors. Errors that change or obscure the meaning cost more than small slips.
@@ -233,14 +238,14 @@ export async function gradeAnswer(
 // Generating questions from a transcript
 // ---------------------------------------------------------------------------
 
-const GENERATE_SYSTEM = `You write listening-comprehension questions for Japanese learners who have just watched a short anime clip (about 30 seconds). You get the clip's transcript and the learner's JLPT level.
+const GENERATE_SYSTEM = `You write listening-comprehension questions for Japanese learners who have just watched a short anime clip (about 30 seconds). You get the clip's transcript when available, sometimes the uploader's caption (often from TikTok), and the learner's JLPT level.
 
 Write the requested number of questions in Japanese, using grammar and vocabulary suited to that level, so the learner answers in a full Japanese sentence. Mix the kinds:
 - factual questions whose answer is stated in the dialogue (who, what, why, how long…);
 - inference questions about feelings, intentions or relationships the dialogue implies;
 - at most one open, personal question connected to the scene ("What would you do…?"), with an empty reference answer.
 
-Each question must be answerable from the transcript alone. Give an English translation of each question, and a short natural reference answer in Japanese (empty string for the open question).`;
+Each question must be answerable from the transcript. If there is no transcript, use only what the caption states, and favour questions about what the learner saw and heard (what happens, how characters feel, a phrase they caught) over facts you can't confirm. Give an English translation of each question, and a short natural reference answer in Japanese (empty string for the open question, and for any question whose answer the transcript or caption doesn't state).`;
 
 const GENERATE_SCHEMA = {
   type: "object",
@@ -274,7 +279,8 @@ export async function generateQuestions(
   clip: Clip,
   count: number,
 ): Promise<Omit<Question, "id">[]> {
-  if (!clip.transcript.trim()) throw new GraderError("Add the clip's transcript first.");
+  if (!clip.transcript.trim() && !clip.caption?.trim())
+    throw new GraderError("Add the clip's script first.");
   const userText = `${clipContext(clip)}\n\nWrite ${count} questions.`;
   const r = await callJson(settings, GENERATE_SYSTEM, userText, GENERATE_SCHEMA, GenerateResult);
   return r.questions.map((q) => ({

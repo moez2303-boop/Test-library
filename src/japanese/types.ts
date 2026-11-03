@@ -3,6 +3,7 @@ export const LEVELS: JlptLevel[] = ["N5", "N4", "N3", "N2", "N1"];
 
 export type VideoSource =
   | { kind: "youtube"; videoId: string }
+  | { kind: "tiktok"; videoId: string; url: string; author?: string; thumbnail?: string }
   | { kind: "file"; fileName: string }
   | { kind: "none" };
 
@@ -30,6 +31,8 @@ export interface Clip {
   transcript: string;
   /** Optional English translation of the dialogue. */
   translation: string;
+  /** The video's own caption (e.g. from TikTok), used as extra context. */
+  caption?: string;
   questions: Question[];
   createdAt: number;
   isDemo?: boolean;

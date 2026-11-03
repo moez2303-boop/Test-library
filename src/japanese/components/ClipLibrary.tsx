@@ -7,6 +7,7 @@ export function ClipLibrary({
   onPractice,
   onEdit,
   onNew,
+  onAddTikTok,
   onDelete,
 }: {
   clips: Clip[];
@@ -14,6 +15,7 @@ export function ClipLibrary({
   onPractice: (id: string) => void;
   onEdit: (id: string) => void;
   onNew: () => void;
+  onAddTikTok: () => void;
   onDelete: (id: string) => void;
 }) {
   return (
@@ -26,18 +28,26 @@ export function ClipLibrary({
             grammar, vocabulary, relevance to the scene, and naturalness.
           </p>
         </div>
-        <button
-          onClick={onNew}
-          className="rounded-full bg-shu px-5 py-2.5 text-sm font-semibold text-white shadow-sm hover:bg-shu-dark"
-        >
-          + Add a clip
-        </button>
+        <div className="flex gap-2">
+          <button
+            onClick={onAddTikTok}
+            className="rounded-full bg-shu px-5 py-2.5 text-sm font-semibold text-white shadow-sm hover:bg-shu-dark"
+          >
+            + Add from TikTok
+          </button>
+          <button
+            onClick={onNew}
+            className="rounded-full border border-sumi/15 px-4 py-2.5 text-sm hover:bg-washi-dark"
+          >
+            Add manually
+          </button>
+        </div>
       </div>
 
       {clips.length === 0 ? (
         <div className="rounded-2xl border-2 border-dashed border-sumi/15 p-12 text-center">
           <p className="jp text-3xl">はじめましょう</p>
-          <p className="mt-2 text-sumi-soft">Add your first anime clip to start practicing.</p>
+          <p className="mt-2 text-sumi-soft">Add your first anime clip from TikTok to start practicing.</p>
         </div>
       ) : (
         <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
@@ -62,6 +72,18 @@ export function ClipLibrary({
                       alt=""
                       className="h-full w-full object-cover opacity-90 transition group-hover:opacity-100"
                     />
+                  ) : clip.source.kind === "tiktok" ? (
+                    <div className="relative grid h-full place-items-center bg-gradient-to-br from-sumi to-ai">
+                      <span className="text-sm font-semibold tracking-wide text-white/80">TikTok</span>
+                      {clip.source.thumbnail && (
+                        <img
+                          src={clip.source.thumbnail}
+                          alt=""
+                          className="absolute inset-0 h-full w-full object-cover opacity-90"
+                          onError={(e) => e.currentTarget.remove()}
+                        />
+                      )}
+                    </div>
                   ) : (
                     <div className="grid h-full place-items-center bg-gradient-to-br from-ai to-sumi">
                       <span className="jp text-4xl text-white/80">
