@@ -1,0 +1,35 @@
+@import url("https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Noto+Sans+JP:wght@400;500;700&family=Noto+Serif+JP:wght@600;700&display=swap");
+@import "tailwindcss";
+
+@theme {
+  --font-sans: "Inter", "Noto Sans JP", system-ui, sans-serif;
+  --font-jp: "Noto Sans JP", "Hiragino Sans", "Yu Gothic", sans-serif;
+  --font-display: "Noto Serif JP", "Georgia", serif;
+
+  --color-washi: #f7f3ec;
+  --color-washi-dark: #ece5d8;
+  --color-sumi: #1f1d1a;
+  --color-sumi-soft: #57524a;
+  --color-shu: #c8402c;
+  --color-shu-dark: #a3301f;
+  --color-matcha: #5f7f3a;
+  --color-kin: #b8862b;
+  --color-ai: #2f4a6b;
+}
+
+html,
+body,
+#root {
+  min-height: 100%;
+}
+
+body {
+  font-family: var(--font-sans);
+  background: var(--color-washi);
+  color: var(--color-sumi);
+  -webkit-font-smoothing: antialiased;
+}
+
+.jp {
+  font-family: var(--font-jp);
+}
