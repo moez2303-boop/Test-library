@@ -82,7 +82,9 @@ export function MangaLessonView({
       <header>
         <div className="flex items-center gap-2 text-xs text-sumi-soft">
           <span className="rounded-full bg-washi-dark px-2 py-0.5 font-bold text-sumi">{lesson.level}</span>
-          <span>{lesson.source === "pages" ? "Your pages" : "Original story"}</span>
+          <span className="truncate">
+            {lesson.source === "story" ? "Original story" : lesson.fileLabel ?? (lesson.source === "text" ? "Your text" : "Your pages")}
+          </span>
           <span>· {lesson.pageCount} pages</span>
         </div>
         <h1 className="jp mt-2 font-display text-3xl leading-snug font-bold text-balance">
@@ -102,7 +104,7 @@ export function MangaLessonView({
 
       {/* Pages */}
       <div className="mt-4 grid gap-6">
-        {lesson.pages.map((page, pi) => (
+        {Array.from({ length: Math.max(lesson.pages.length, images.length) }, (_, pi) => lesson.pages[pi] ?? { panels: [] }).map((page, pi) => (
           <section key={pi} className="rounded-2xl bg-card p-4 shadow-sm ring-1 ring-sumi/5 sm:p-5">
             <div className="mb-3 flex items-baseline gap-2">
               <span className="jp font-display text-lg font-bold">{pi + 1}ページ</span>

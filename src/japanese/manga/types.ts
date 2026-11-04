@@ -87,8 +87,10 @@ export interface MangaLesson {
   titleEn: string;
   summaryEn: string;
   level: JlptLevel;
-  /** "story": written by Claude. "pages": the learner's own uploaded pages. */
-  source: "story" | "pages";
+  /** "story": written by Claude. "pages": the learner's page images (photos or a PDF). "text": a .txt file. */
+  source: "story" | "pages" | "text";
+  /** The uploaded file's name, with the part or page range used. */
+  fileLabel?: string;
   style?: StyleKey;
   pageCount: number;
   pages: MangaPage[];

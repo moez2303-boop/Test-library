@@ -17,7 +17,7 @@ import { GraderError } from "./grader";
 import { MangaHome } from "./manga/MangaHome";
 import { MangaLessonView } from "./manga/MangaLessonView";
 import { shrinkImage } from "./manga/images";
-import { generateStoryLesson, lessonFromPages, pickExerciseTypes } from "./manga/prompts";
+import { generateStoryLesson, lessonFromPages, lessonFromText, pickExerciseTypes } from "./manga/prompts";
 import type { MangaLesson, StyleKey } from "./manga/types";
 import { IS_ARTIFACT } from "./env";
 import { useSettings } from "./settings";
@@ -115,7 +115,7 @@ export default function App() {
   /** Runs one manga-lesson build (story or pages) and opens the result. */
   const buildLesson = async (
     build: (types: ReturnType<typeof pickExerciseTypes>) => Promise<Omit<MangaLesson, "id" | "level" | "source" | "style" | "pageCount" | "results" | "createdAt">>,
-    meta: Pick<MangaLesson, "source" | "style">,
+    meta: Pick<MangaLesson, "source" | "style" | "fileLabel">,
     images?: Blob[],
   ) => {
     if (!IS_ARTIFACT && !settings.apiKey) return setSettingsOpen(true);
@@ -153,14 +153,26 @@ export default function App() {
     );
   };
 
-  const fromPages = async (files: File[]) => {
+  const fromPages = async (files: Blob[], fileLabel?: string, textLayer?: string) => {
     setMangaBusy("Preparing pages…");
     const images = await Promise.all(files.map((f) => shrinkImage(f)));
     setMangaBusy("Reading your pages…");
     void buildLesson(
-      (types) => lessonFromPages(settings, level, images, types, { onProgress: writingStatus("Reading your pages") }),
-      { source: "pages" },
+      (types) =>
+        lessonFromPages(settings, level, images, types, {
+          onProgress: writingStatus("Reading your pages"),
+          textLayer: textLayer || undefined,
+        }),
+      { source: "pages", fileLabel },
       images,
+    );
+  };
+
+  const fromText = (text: string, fileLabel: string) => {
+    setMangaBusy("Reading your text…");
+    void buildLesson(
+      (types) => lessonFromText(settings, level, text, types, { onProgress: writingStatus("Reading your text") }),
+      { source: "text", fileLabel },
     );
   };
 
@@ -249,7 +261,8 @@ export default function App() {
             busy={mangaBusy}
             error={mangaError}
             onGenerate={generateStory}
-            onFromPages={(files) => void fromPages(files)}
+            onFromPages={(images, label, text) => void fromPages(images, label, text)}
+            onFromText={fromText}
             onOpen={(id) => {
               setView({ name: "manga-lesson", lessonId: id });
               window.scrollTo(0, 0);

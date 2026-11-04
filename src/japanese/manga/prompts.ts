@@ -272,15 +272,50 @@ export async function lessonFromPages(
   level: JlptLevel,
   images: Blob[],
   types: ExerciseType[],
-  opts: CallOptions = {},
+  opts: CallOptions & { textLayer?: string } = {},
 ): Promise<LessonData> {
   const userText = `Learner level: JLPT ${level}
 The ${images.length} attached images are pages 1-${images.length}, in order.
-Exercises, in this order: ${types.join(", ")}`;
+Exercises, in this order: ${types.join(", ")}${
+    opts.textLayer
+      ? `\n\nThe PDF these pages come from also has this text layer; use it to read small or unclear text, but follow the images for order and content:\n<pdf_text>\n${opts.textLayer.slice(0, 6000)}\n</pdf_text>`
+      : ""
+  }`;
   const r = await callJson(settings, PAGES_SYSTEM, userText, LESSON_SCHEMA, LessonResult, {
     ...opts,
     images,
   });
+  return toLesson(r);
+}
+
+// ---------------------------------------------------------------------------
+// 3. Manga text the learner supplies (a .txt file)
+// ---------------------------------------------------------------------------
+
+const TEXT_SYSTEM = `You help a Japanese learner study a manga excerpt they supplied as text: usually the dialogue of a chapter, possibly with character names, page or panel markers, translator notes or stray formatting.
+
+First lay the excerpt out as manga pages so it reads like the original: 3-4 pages (fewer if the excerpt is short), each with 3-5 panels in story order. Keep every line of Japanese dialogue and narration exactly as written, in order; don't add dialogue that isn't there, and drop only non-story noise (page numbers, credits, notes). Use the speaker names given in the text; where none is given, use a short description such as "少年" or "?". Narration is speaker "ナレーション", sound effects "SFX". For each panel add a short Japanese stage direction inferred from the dialogue (scene) with English (scene_en), and give every line an English translation (en).
+
+${FURIGANA_RULE}
+
+Then give a glossary of 8-12 useful words, a short Japanese title for the excerpt with English, and a one-sentence English summary. Then write the exercises, based only on this excerpt.
+
+${TYPE_GUIDE}`;
+
+export async function lessonFromText(
+  settings: Settings,
+  level: JlptLevel,
+  text: string,
+  types: ExerciseType[],
+  opts: CallOptions = {},
+): Promise<LessonData> {
+  const userText = `Learner level: JLPT ${level}
+Exercises, in this order: ${types.join(", ")}
+
+<manga_text>
+${text}
+</manga_text>`;
+  const r = await callJson(settings, TEXT_SYSTEM, userText, LESSON_SCHEMA, LessonResult, opts);
   return toLesson(r);
 }
 
