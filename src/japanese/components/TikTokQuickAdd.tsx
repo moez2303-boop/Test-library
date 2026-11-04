@@ -4,22 +4,10 @@ import { IS_ARTIFACT } from "../env";
 import { generateQuestions } from "../grader";
 import { GENERIC_QUESTIONS, TIKTOK_SEARCHES, fetchTikTokInfo, tiktokSearchUrl } from "../tiktok";
 import { LEVELS, type Clip, type JlptLevel, type Settings } from "../types";
-import { extractUrl, isTikTokLink, parseTikTokId, uid } from "../util";
-
-const LEVEL_KEY = "kotoba.lastLevel";
+import { extractUrl, isTikTokLink, loadLevel, parseTikTokId, saveLevel, uid } from "../util";
 
 function cleanCaption(caption: string) {
   return caption.replace(/#[^\s#]+/g, "").replace(/\s+/g, " ").trim();
-}
-
-function loadLevel(): JlptLevel {
-  try {
-    const v = localStorage.getItem(LEVEL_KEY);
-    if (v && (LEVELS as string[]).includes(v)) return v as JlptLevel;
-  } catch {
-    /* storage unavailable */
-  }
-  return "N5";
 }
 
 export function TikTokQuickAdd({
@@ -56,11 +44,7 @@ export function TikTokQuickAdd({
       setError("That doesn't look like a TikTok link. In TikTok, tap Share → Copy link, then paste it here.");
       return;
     }
-    try {
-      localStorage.setItem(LEVEL_KEY, level);
-    } catch {
-      /* storage unavailable */
-    }
+    saveLevel(level);
 
     // On claude.ai the page can't reach TikTok, so clips open in TikTok instead of
     // playing inline and any link (short ones too) is fine as it is.

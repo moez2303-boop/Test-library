@@ -36,6 +36,9 @@ export interface Clip {
   questions: Question[];
   createdAt: number;
   isDemo?: boolean;
+  /** Set on clips made by "Random lesson" from a built-in video pack. */
+  pack?: "atashinchi";
+  packVideoId?: string;
 }
 
 export interface Scores {

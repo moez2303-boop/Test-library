@@ -1,4 +1,4 @@
-import type { Attempt } from "./types";
+import type { Attempt, JlptLevel } from "./types";
 
 export function uid() {
   return crypto.randomUUID();
@@ -97,4 +97,25 @@ export function hasJapanese(text: string): boolean {
 export function extractUrl(text: string): string {
   const match = text.match(/https?:\/\/\S+/);
   return match ? match[0] : text.trim();
+}
+
+const LEVEL_KEY = "kotoba.lastLevel";
+const LEVEL_VALUES = ["N5", "N4", "N3", "N2", "N1"];
+
+export function loadLevel(): JlptLevel {
+  try {
+    const v = localStorage.getItem(LEVEL_KEY);
+    if (v && LEVEL_VALUES.includes(v)) return v as JlptLevel;
+  } catch {
+    /* storage unavailable */
+  }
+  return "N5";
+}
+
+export function saveLevel(level: JlptLevel) {
+  try {
+    localStorage.setItem(LEVEL_KEY, level);
+  } catch {
+    /* storage unavailable */
+  }
 }

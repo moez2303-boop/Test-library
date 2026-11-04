@@ -13,12 +13,16 @@ export function Practice({
   onBack,
   onEdit,
   onNeedSettings,
+  onAnotherRandom,
+  randomBusy,
 }: {
   clip: Clip;
   settings: Settings;
   onBack: () => void;
   onEdit: () => void;
   onNeedSettings: () => void;
+  onAnotherRandom?: () => void;
+  randomBusy?: string | null;
 }) {
   const [attempts, setAttempts] = useState<Attempt[]>([]);
   const [index, setIndex] = useState(0);
@@ -91,6 +95,18 @@ export function Practice({
             {clip.anime && <>{clip.anime} · </>}JLPT {clip.level}
           </p>
           <ClipPlayer clip={clip} onAttachVideo={onEdit} />
+          {onAnotherRandom && (
+            <div className="mt-3 flex flex-wrap items-center gap-2 text-sm">
+              <button
+                onClick={onAnotherRandom}
+                disabled={!!randomBusy}
+                className="rounded-full border border-sumi/15 px-4 py-1.5 font-medium hover:bg-washi-dark disabled:opacity-50"
+              >
+                {randomBusy ?? "🎲 Another random episode"}
+              </button>
+              <span className="text-sumi-soft">Video unavailable? Episodes rotate off the channel; pick another.</span>
+            </div>
+          )}
 
           {clip.caption && !clip.transcript.trim() && (
             <p className="jp mt-3 rounded-xl bg-card px-4 py-3 text-sm text-sumi-soft ring-1 ring-sumi/5">

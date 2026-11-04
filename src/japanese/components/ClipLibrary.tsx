@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, type ReactNode } from "react";
 import type { Attempt, Clip } from "../types";
 import { bestByQuestion, scoreColor } from "../util";
 
@@ -10,6 +10,7 @@ export function ClipLibrary({
   onNew,
   onAddTikTok,
   onDelete,
+  header,
 }: {
   clips: Clip[];
   attempts: Attempt[];
@@ -18,6 +19,7 @@ export function ClipLibrary({
   onNew: () => void;
   onAddTikTok: () => void;
   onDelete: (id: string) => void;
+  header?: ReactNode;
 }) {
   const [confirmingId, setConfirmingId] = useState<string | null>(null);
   return (
@@ -45,6 +47,8 @@ export function ClipLibrary({
           </button>
         </div>
       </div>
+
+      {header}
 
       {clips.length === 0 ? (
         <div className="rounded-2xl border-2 border-dashed border-sumi/15 p-12 text-center">
