@@ -1,7 +1,12 @@
 {
  "channel": "あたしンち 公式",
  "channelUrl": "https://www.youtube.com/@atashinchi",
- "fetchedAt": "",
+ "fetchedAt": "2026-11-04",
  "maxSeconds": 240,
- "videos": []
+ "note": "Hand-added from a suggested list; not yet checked against YouTube (links, lengths and subtitles unknown). Replace by running scripts/fetch_atashinchi.py once youtube.com is reachable.",
+ "videos": [
+  {"id": "hWDJ5Rgp5q4", "title": "怪獣ごっこをする幼少期のユズヒコ", "duration": 57, "short": false, "subtitles": null, "script": ""},
+  {"id": "Yc3qEmhKIkA", "title": "みかんゲーム", "duration": 0, "short": false, "subtitles": null, "script": ""},
+  {"id": "vUAXEic5-k0", "title": "ケーキを買って帰る 昔と今", "duration": 0, "short": false, "subtitles": null, "script": ""}
+ ]
 }

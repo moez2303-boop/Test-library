@@ -67,12 +67,14 @@ export default function App() {
       end: 0,
       transcript: video.script,
       translation: "",
+      // No subtitles: the title is the only hint of what the episode is about.
+      caption: video.script ? undefined : `Episode title: ${video.title}`,
       questions: GENERIC_QUESTIONS.map((q) => ({ ...q, id: uid() })),
       createdAt: Date.now(),
       pack: ATASHINCHI.key,
       packVideoId: video.id,
     };
-    if (video.script && (IS_ARTIFACT || settings.apiKey)) {
+    if (IS_ARTIFACT || settings.apiKey) {
       setRandomBusy("Writing questions for this episode…");
       try {
         const generated = await generateQuestions(settings, clip, 3);

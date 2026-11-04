@@ -3,7 +3,7 @@ import atashinchi from "./packs/atashinchi.json";
 export interface PackVideo {
   id: string;
   title: string;
-  /** Seconds. */
+  /** Seconds (0 = not known). */
   duration: number;
   short: boolean;
   /** Where the script came from: uploaded Japanese subtitles, auto captions, or none. */
