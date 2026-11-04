@@ -1,6 +1,7 @@
 import { openDB, type DBSchema, type IDBPDatabase } from "idb";
 import type { Attempt, Clip } from "./types";
 import type { MangaLesson } from "./manga/types";
+import { STARTER_LESSON } from "./manga/starter";
 import { DEMO_CLIP } from "./sample";
 
 interface KotobaDB extends DBSchema {
@@ -101,8 +102,25 @@ export async function getAllAttempts(): Promise<Attempt[]> {
 // Manga lessons
 // ---------------------------------------------------------------------------
 
+const MANGA_SEEDED_KEY = "kotoba.mangaSeeded";
+
 export async function getAllMangaLessons(): Promise<MangaLesson[]> {
   const db = await getDB();
+  let seeded = false;
+  try {
+    seeded = localStorage.getItem(MANGA_SEEDED_KEY) === STARTER_LESSON.id;
+  } catch {
+    /* storage unavailable */
+  }
+  // Add the ready-made chapter once, unless it's already there (or was deleted after seeding).
+  if (!seeded && !(await db.get("manga", STARTER_LESSON.id))) {
+    await db.put("manga", { ...STARTER_LESSON, createdAt: Date.now() });
+    try {
+      localStorage.setItem(MANGA_SEEDED_KEY, STARTER_LESSON.id);
+    } catch {
+      /* storage unavailable */
+    }
+  }
   return (await db.getAll("manga")).sort((a, b) => b.createdAt - a.createdAt);
 }
 
