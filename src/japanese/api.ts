@@ -1,6 +1,21 @@
 import Anthropic from "@anthropic-ai/sdk";
 import type { Settings } from "./types";
 import { GraderError } from "./errors";
+import type { CallOptions } from "./claudeAccount";
+
+async function toImageBlock(blob: Blob): Promise<Anthropic.Beta.BetaImageBlockParam> {
+  const data = await new Promise<string>((resolve, reject) => {
+    const reader = new FileReader();
+    reader.onload = () => resolve(String(reader.result).split(",")[1] ?? "");
+    reader.onerror = () => reject(reader.error);
+    reader.readAsDataURL(blob);
+  });
+  const type = ["image/png", "image/gif", "image/webp"].includes(blob.type) ? blob.type : "image/jpeg";
+  return {
+    type: "image",
+    source: { type: "base64", media_type: type as "image/jpeg", data },
+  };
+}
 
 /** Calls the Claude API with the user's own key; returns the parsed JSON reply. */
 export async function callViaApi(
@@ -8,6 +23,7 @@ export async function callViaApi(
   system: string,
   userText: string,
   schema: Record<string, unknown>,
+  opts: CallOptions = {},
 ): Promise<unknown> {
   if (!settings.apiKey) throw new GraderError("Add your Anthropic API key in Settings first.");
 
@@ -19,16 +35,28 @@ export async function callViaApi(
       ? {}
       : { betas: ["server-side-fallback-2026-07-01"], fallbacks: "default" as const };
 
+  const images = await Promise.all((opts.images ?? []).map(toImageBlock));
+  const content: Anthropic.Beta.BetaContentBlockParam[] = [...images, { type: "text", text: userText }];
+
   let response: Anthropic.Beta.BetaMessage;
   try {
-    response = await client.beta.messages.create({
+    // Streamed so long outputs (a whole story plus exercises) don't hit request timeouts.
+    const stream = client.beta.messages.stream({
       model: settings.model,
-      max_tokens: 16000,
+      max_tokens: 32000,
       system,
-      messages: [{ role: "user", content: userText }],
+      messages: [{ role: "user", content }],
       output_config: { effort: "medium", format: { type: "json_schema", schema } },
       ...fallback,
     });
+    if (opts.onProgress) {
+      let chars = 0;
+      stream.on("text", (delta) => {
+        chars += delta.length;
+        opts.onProgress!(chars);
+      });
+    }
+    response = await stream.finalMessage();
   } catch (err) {
     if (err instanceof Anthropic.AuthenticationError)
       throw new GraderError("Your API key was rejected. Check it in Settings.");

@@ -1,7 +1,7 @@
 import { z } from "zod";
 import type { Clip, Feedback, Question, Settings } from "./types";
 import { GraderError } from "./errors";
-import { callViaClaudeAccount } from "./claudeAccount";
+import { callViaClaudeAccount, type CallOptions } from "./claudeAccount";
 
 
 export const MODELS = [
@@ -21,18 +21,19 @@ export { GraderError };
 // Shared call helper: one request, JSON-schema-constrained output, validated.
 // ---------------------------------------------------------------------------
 
-async function callJson<T>(
+export async function callJson<T>(
   settings: Settings,
   system: string,
   userText: string,
   schema: Record<string, unknown>,
   validator: z.ZodType<T>,
+  opts: CallOptions = {},
 ): Promise<T> {
   // The claude.ai build uses the viewer's Claude account; the web build uses an API key.
   // The API module (and the SDK) is loaded only when needed, and left out of the claude.ai build.
   const data = __ARTIFACT__
-    ? await callViaClaudeAccount(system, userText, schema)
-    : await (await import("./api")).callViaApi(settings, system, userText, schema);
+    ? await callViaClaudeAccount(system, userText, schema, opts)
+    : await (await import("./api")).callViaApi(settings, system, userText, schema, opts);
   const parsed = validator.safeParse(data);
   if (!parsed.success) throw new GraderError("Got an unexpected response shape. Please try again.");
   return parsed.data;
@@ -81,7 +82,7 @@ Write all explanations in English, quoting Japanese where it helps. Be specific 
 - model_answer: a natural answer a native speaker might give, using grammar suited to the learner's level.
 - model_answer_en: its English translation.`;
 
-const GRADE_SCHEMA = {
+export const GRADE_SCHEMA = {
   type: "object",
   additionalProperties: false,
   required: [
@@ -134,7 +135,7 @@ const GRADE_SCHEMA = {
 
 const score = z.number().transform((n) => Math.max(0, Math.min(10, Math.round(n))));
 
-const GradeResult = z.object({
+export const GradeResult = z.object({
   scores: z.object({ grammar: score, vocabulary: score, relevance: score, naturalness: score }),
   summary: z.string(),
   strengths: z.array(z.string()),
@@ -159,6 +160,20 @@ export function overallScore(s: Feedback["scores"]): number {
     s.vocabulary * WEIGHTS.vocabulary +
     s.naturalness * WEIGHTS.naturalness;
   return Math.round(weighted * 10);
+}
+
+export function toFeedback(r: z.infer<typeof GradeResult>): Feedback {
+  return {
+    scores: r.scores,
+    overall: overallScore(r.scores),
+    summary: r.summary,
+    strengths: r.strengths,
+    issues: r.issues,
+    correctedAnswer: r.corrected_answer,
+    correctedReading: r.corrected_reading,
+    modelAnswer: r.model_answer,
+    modelAnswerEn: r.model_answer_en,
+  };
 }
 
 export async function gradeAnswer(

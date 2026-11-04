@@ -2,7 +2,36 @@ import { GraderError } from "./errors";
 
 /** The claude.ai Artifact `sample` capability (only the parts this app uses). */
 interface SampleFn {
-  json(input: string, options?: { effort?: "low" | "medium" | "high" }): Promise<unknown>;
+  json(
+    input: string,
+    options?: {
+      effort?: "low" | "medium" | "high";
+      images?: Blob[];
+      modelTier?: "quick" | "default" | "complex";
+      onText?: (u: { text: string; delta: string }) => void;
+      cache?: boolean;
+    },
+  ): Promise<unknown>;
+  limits(): Promise<{ images?: { maxCount: number; maxInputBytes: number; mediaTypes: string[] } }>;
+}
+
+export interface CallOptions {
+  images?: Blob[];
+  /** Called with how many characters Claude has written so far. */
+  onProgress?: (chars: number) => void;
+  /** Ask for a fresh answer instead of a cached one (e.g. "write me a new story"). */
+  fresh?: boolean;
+}
+
+/** How many images one call can carry in this view (0 = none). */
+export async function imageLimit(): Promise<number> {
+  const sample = await getSample();
+  if (!sample) return 0;
+  try {
+    return (await sample.limits()).images?.maxCount ?? 0;
+  } catch {
+    return 0;
+  }
 }
 
 interface SampleError {
@@ -39,7 +68,10 @@ function messageFor(code: string): string {
     case "refused":
       return "Claude declined to grade this. Try rephrasing your answer.";
     case "prompt_too_large":
-      return "The clip's script is too long. Shorten it and try again.";
+      return "That's too much text at once. Use fewer or smaller pages and try again.";
+    case "image_rejected":
+    case "images_unavailable":
+      return "Claude couldn't take those images. Try JPEG or PNG screenshots, a few at a time.";
     default:
       return "Grading didn't come back properly. Please try again.";
   }
@@ -50,6 +82,7 @@ export async function callViaClaudeAccount(
   system: string,
   userText: string,
   schema: Record<string, unknown>,
+  opts: CallOptions = {},
 ): Promise<unknown> {
   const sample = await getSample();
   if (!sample)
@@ -61,7 +94,12 @@ ${userText}
 Reply with only one JSON object that matches this JSON Schema, with no other text:
 ${JSON.stringify(schema)}`;
   try {
-    return await sample.json(prompt, { effort: "medium" });
+    return await sample.json(prompt, {
+      effort: "medium",
+      ...(opts.images?.length ? { images: opts.images } : {}),
+      ...(opts.onProgress ? { onText: ({ text }) => opts.onProgress!(text.length) } : {}),
+      ...(opts.fresh ? { cache: false } : {}),
+    });
   } catch (err) {
     const code = (err as SampleError)?.code ?? "upstream_error";
     throw new GraderError(messageFor(code));

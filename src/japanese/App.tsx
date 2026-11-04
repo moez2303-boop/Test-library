@@ -4,7 +4,21 @@ import { ATASHINCHI, pickRandomVideo } from "./packs";
 import { GENERIC_QUESTIONS } from "./tiktok";
 import { loadLevel, saveLevel, uid } from "./util";
 import { RandomLessonCard } from "./components/RandomLessonCard";
-import { deleteClip, getAllAttempts, getAllClips, saveClip } from "./db";
+import {
+  deleteClip,
+  deleteMangaLesson,
+  getAllAttempts,
+  getAllClips,
+  getAllMangaLessons,
+  saveClip,
+  saveMangaLesson,
+} from "./db";
+import { GraderError } from "./grader";
+import { MangaHome } from "./manga/MangaHome";
+import { MangaLessonView } from "./manga/MangaLessonView";
+import { shrinkImage } from "./manga/images";
+import { generateStoryLesson, lessonFromPages, pickExerciseTypes } from "./manga/prompts";
+import type { MangaLesson, StyleKey } from "./manga/types";
 import { IS_ARTIFACT } from "./env";
 import { useSettings } from "./settings";
 import type { Attempt, Clip, JlptLevel } from "./types";
@@ -15,6 +29,8 @@ import { SettingsDialog } from "./components/SettingsDialog";
 import { TikTokQuickAdd } from "./components/TikTokQuickAdd";
 
 type View =
+  | { name: "manga" }
+  | { name: "manga-lesson"; lessonId: string }
   | { name: "library" }
   | { name: "practice"; clipId: string }
   | { name: "edit"; clipId: string | null };
@@ -23,16 +39,20 @@ export default function App() {
   const [settings, setSettings] = useSettings();
   const [clips, setClips] = useState<Clip[] | null>(null);
   const [attempts, setAttempts] = useState<Attempt[]>([]);
-  const [view, setView] = useState<View>({ name: "library" });
+  const [view, setView] = useState<View>({ name: "manga" });
+  const [lessons, setLessons] = useState<MangaLesson[] | null>(null);
+  const [mangaBusy, setMangaBusy] = useState<string | null>(null);
+  const [mangaError, setMangaError] = useState<string | null>(null);
   const [settingsOpen, setSettingsOpen] = useState(false);
   const [tiktokOpen, setTiktokOpen] = useState(false);
   const [level, setLevel] = useState<JlptLevel>(loadLevel);
   const [randomBusy, setRandomBusy] = useState<string | null>(null);
 
   const refresh = useCallback(async () => {
-    const [c, a] = await Promise.all([getAllClips(), getAllAttempts()]);
+    const [c, a, m] = await Promise.all([getAllClips(), getAllAttempts(), getAllMangaLessons()]);
     setClips(c);
     setAttempts(a);
+    setLessons(m);
   }, []);
 
   useEffect(() => {
@@ -89,8 +109,68 @@ export default function App() {
     setView({ name: "practice", clipId: clip.id });
   };
 
+  const writingStatus = (verb: string) => (chars: number) =>
+    setMangaBusy(chars ? `${verb}… ${chars.toLocaleString()} characters` : `${verb}…`);
+
+  /** Runs one manga-lesson build (story or pages) and opens the result. */
+  const buildLesson = async (
+    build: (types: ReturnType<typeof pickExerciseTypes>) => Promise<Omit<MangaLesson, "id" | "level" | "source" | "style" | "pageCount" | "results" | "createdAt">>,
+    meta: Pick<MangaLesson, "source" | "style">,
+    images?: Blob[],
+  ) => {
+    if (!IS_ARTIFACT && !settings.apiKey) return setSettingsOpen(true);
+    setMangaError(null);
+    try {
+      const data = await build(pickExerciseTypes());
+      if (data.pages.length === 0 || data.exercises.length === 0)
+        throw new GraderError("Claude didn't return a usable lesson. Please try again.");
+      const lesson: MangaLesson = {
+        ...data,
+        ...meta,
+        id: uid(),
+        level,
+        pageCount: images?.length ?? data.pages.length,
+        results: {},
+        createdAt: Date.now(),
+      };
+      await saveMangaLesson(lesson, images);
+      await refresh();
+      setView({ name: "manga-lesson", lessonId: lesson.id });
+      window.scrollTo(0, 0);
+    } catch (err) {
+      setMangaError(err instanceof GraderError ? err.message : "Something went wrong. Please try again.");
+    } finally {
+      setMangaBusy(null);
+    }
+  };
+
+  const generateStory = (style: StyleKey, pages: number) => {
+    setMangaBusy("Writing your manga…");
+    void buildLesson(
+      (types) =>
+        generateStoryLesson(settings, level, style, pages, types, { onProgress: writingStatus("Writing your manga") }),
+      { source: "story", style },
+    );
+  };
+
+  const fromPages = async (files: File[]) => {
+    setMangaBusy("Preparing pages…");
+    const images = await Promise.all(files.map((f) => shrinkImage(f)));
+    setMangaBusy("Reading your pages…");
+    void buildLesson(
+      (types) => lessonFromPages(settings, level, images, types, { onProgress: writingStatus("Reading your pages") }),
+      { source: "pages" },
+      images,
+    );
+  };
+
+  const currentLesson =
+    view.name === "manga-lesson" ? lessons?.find((l) => l.id === view.lessonId) : undefined;
+
   const current =
-    view.name !== "library" && view.clipId ? clips?.find((c) => c.id === view.clipId) : undefined;
+    (view.name === "practice" || view.name === "edit") && view.clipId
+      ? clips?.find((c) => c.id === view.clipId)
+      : undefined;
 
   return (
     <div className="min-h-screen">
@@ -98,7 +178,7 @@ export default function App() {
         <div className="mx-auto flex max-w-6xl items-center gap-3 px-4 py-3">
           <button
             onClick={() => {
-              setView({ name: "library" });
+              setView({ name: "manga" });
               void refresh();
             }}
             className="flex items-center gap-2"
@@ -108,10 +188,33 @@ export default function App() {
             </span>
             <span className="text-left leading-tight">
               <span className="block font-display text-lg font-bold">Kotoba Clips</span>
-              <span className="block text-xs text-sumi-soft">Learn Japanese from anime scenes</span>
+              <span className="block text-xs text-sumi-soft">Read manga, learn Japanese</span>
             </span>
           </button>
           <div className="flex-1" />
+          <nav className="flex overflow-hidden rounded-full border border-sumi/15 text-sm">
+            {(
+              [
+                ["manga", "マンガ", "Manga"],
+                ["library", "動画", "Clips"],
+              ] as const
+            ).map(([name, jp, en]) => {
+              const active = name === "manga" ? view.name.startsWith("manga") : !view.name.startsWith("manga");
+              return (
+                <button
+                  key={name}
+                  onClick={() => {
+                    setView(name === "manga" ? { name: "manga" } : { name: "library" });
+                    void refresh();
+                  }}
+                  className={`px-3 py-1.5 sm:px-4 ${active ? "bg-sumi text-washi" : "hover:bg-washi-dark"}`}
+                >
+                  <span className="jp">{jp}</span>
+                  <span className="ml-1 hidden sm:inline">{en}</span>
+                </button>
+              );
+            })}
+          </nav>
           {!IS_ARTIFACT && (
             <button
               onClick={() => setSettingsOpen(true)}
@@ -133,8 +236,38 @@ export default function App() {
       </header>
 
       <main className="mx-auto max-w-6xl px-4 py-6">
-        {clips === null ? (
+        {clips === null || lessons === null ? (
           <p className="py-20 text-center text-sumi-soft">Loading…</p>
+        ) : view.name === "manga" ? (
+          <MangaHome
+            lessons={lessons}
+            level={level}
+            onLevel={(l) => {
+              setLevel(l);
+              saveLevel(l);
+            }}
+            busy={mangaBusy}
+            error={mangaError}
+            onGenerate={generateStory}
+            onFromPages={(files) => void fromPages(files)}
+            onOpen={(id) => {
+              setView({ name: "manga-lesson", lessonId: id });
+              window.scrollTo(0, 0);
+            }}
+            onDelete={async (lesson) => {
+              await deleteMangaLesson(lesson);
+              await refresh();
+            }}
+          />
+        ) : view.name === "manga-lesson" && currentLesson ? (
+          <MangaLessonView
+            key={currentLesson.id}
+            lesson={currentLesson}
+            settings={settings}
+            onBack={() => setView({ name: "manga" })}
+            onNeedSettings={() => setSettingsOpen(true)}
+            onChanged={(next) => setLessons((ls) => ls?.map((l) => (l.id === next.id ? next : l)) ?? ls)}
+          />
         ) : view.name === "library" ? (
           <ClipLibrary
             clips={clips}

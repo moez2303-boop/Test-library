@@ -1,23 +1,33 @@
 import { openDB, type DBSchema, type IDBPDatabase } from "idb";
 import type { Attempt, Clip } from "./types";
+import type { MangaLesson } from "./manga/types";
 import { DEMO_CLIP } from "./sample";
 
 interface KotobaDB extends DBSchema {
   clips: { key: string; value: Clip };
   videos: { key: string; value: Blob };
   attempts: { key: string; value: Attempt; indexes: { byClip: string } };
+  manga: { key: string; value: MangaLesson };
+  /** Uploaded page images, keyed "<lessonId>:<pageIndex>". */
+  mangaPages: { key: string; value: Blob };
 }
 
 let dbPromise: Promise<IDBPDatabase<KotobaDB>> | null = null;
 
 function getDB() {
   if (!dbPromise) {
-    dbPromise = openDB<KotobaDB>("kotoba-clips", 1, {
-      upgrade(db) {
-        db.createObjectStore("clips", { keyPath: "id" });
-        db.createObjectStore("videos");
-        const attempts = db.createObjectStore("attempts", { keyPath: "id" });
-        attempts.createIndex("byClip", "clipId");
+    dbPromise = openDB<KotobaDB>("kotoba-clips", 2, {
+      upgrade(db, oldVersion) {
+        if (oldVersion < 1) {
+          db.createObjectStore("clips", { keyPath: "id" });
+          db.createObjectStore("videos");
+          const attempts = db.createObjectStore("attempts", { keyPath: "id" });
+          attempts.createIndex("byClip", "clipId");
+        }
+        if (oldVersion < 2) {
+          db.createObjectStore("manga", { keyPath: "id" });
+          db.createObjectStore("mangaPages");
+        }
       },
     });
   }
@@ -85,4 +95,36 @@ export async function getAttemptsForClip(clipId: string): Promise<Attempt[]> {
 export async function getAllAttempts(): Promise<Attempt[]> {
   const db = await getDB();
   return db.getAll("attempts");
+}
+
+// ---------------------------------------------------------------------------
+// Manga lessons
+// ---------------------------------------------------------------------------
+
+export async function getAllMangaLessons(): Promise<MangaLesson[]> {
+  const db = await getDB();
+  return (await db.getAll("manga")).sort((a, b) => b.createdAt - a.createdAt);
+}
+
+export async function saveMangaLesson(lesson: MangaLesson, images?: Blob[]) {
+  const db = await getDB();
+  const tx = db.transaction(["manga", "mangaPages"], "readwrite");
+  await tx.objectStore("manga").put(lesson);
+  if (images) {
+    for (const [i, blob] of images.entries()) await tx.objectStore("mangaPages").put(blob, `${lesson.id}:${i}`);
+  }
+  await tx.done;
+}
+
+export async function getMangaPageImages(lesson: MangaLesson): Promise<(Blob | undefined)[]> {
+  const db = await getDB();
+  return Promise.all(Array.from({ length: lesson.pageCount }, (_, i) => db.get("mangaPages", `${lesson.id}:${i}`)));
+}
+
+export async function deleteMangaLesson(lesson: MangaLesson) {
+  const db = await getDB();
+  const tx = db.transaction(["manga", "mangaPages"], "readwrite");
+  await tx.objectStore("manga").delete(lesson.id);
+  for (let i = 0; i < lesson.pageCount; i++) await tx.objectStore("mangaPages").delete(`${lesson.id}:${i}`);
+  await tx.done;
 }
