@@ -274,7 +274,7 @@ export function MangaHome({
               <article key={lesson.id} className="flex flex-col rounded-2xl bg-card p-4 shadow-sm ring-1 ring-sumi/5">
                 <div className="flex items-center gap-2 text-xs text-sumi-soft">
                   <span className="rounded-full bg-washi-dark px-2 py-0.5 font-bold text-sumi">{lesson.level}</span>
-                  <span className="jp">{lesson.source === "pages" ? "📷 Your pages" : lesson.source === "text" ? "📄 Your text" : styleLabel?.jp ?? "Story"}</span>
+                  <span className="jp">{lesson.source === "pages" ? "📷 Your pages" : lesson.source === "text" ? "📄 Your text" : lesson.topic ?? styleLabel?.jp ?? "Story"}</span>
                   <span className="ml-auto">{lesson.pageCount} pages</span>
                 </div>
                 <h3 className="jp mt-2 text-lg font-bold">{stripRuby(lesson.title)}</h3>

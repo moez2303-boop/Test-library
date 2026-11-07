@@ -1,0 +1,2215 @@
+[
+ {
+  "id": "starter-n2-first-vote",
+  "title": "{十八歳|じゅうはっさい}の{一票|いっぴょう}",
+  "titleEn": "My First Vote",
+  "summaryEn": "Eighteen-year-old Yuki doubts his vote matters in his town's mayoral election, until talking with his friend and his grandmother shows him how differently the same issues touch people.",
+  "level": "N2",
+  "topic": "政治 · Politics",
+  "source": "story",
+  "pageCount": 3,
+  "pages": [
+   {
+    "panels": [
+     {
+      "scene": "{桜川町|さくらがわちょう}の{駅前|えきまえ}。{選挙|せんきょ}カーが{走|はし}っている。",
+      "sceneEn": "In front of Sakuragawa station. A campaign car drives past.",
+      "lines": [
+       {
+        "speaker": "選挙カー",
+        "text": "{森田|もりた}、{森田|もりた}をよろしくお{願|ねが}いいたします！",
+        "en": "Morita! Please vote for Morita!"
+       },
+       {
+        "speaker": "ユウキ",
+        "text": "うるさいなあ…。そもそも{誰|だれ}に{投票|とうひょう}すればいいのか、さっぱりわからないよ。",
+        "en": "So noisy... I have no idea who I'm even supposed to vote for."
+       }
+      ]
+     },
+     {
+      "scene": "{教室|きょうしつ}。{友達|ともだち}のケンタが{話|はな}しかける。",
+      "sceneEn": "The classroom. His friend Kenta starts talking to him.",
+      "lines": [
+       {
+        "speaker": "ケンタ",
+        "text": "ユウキ、もう{十八|じゅうはち}だろ？{日曜|にちよう}の{町長|ちょうちょう}{選挙|せんきょ}、{行|い}くの？",
+        "en": "Yuki, you're eighteen now, right? Are you going to vote in Sunday's mayoral election?"
+       },
+       {
+        "speaker": "ユウキ",
+        "text": "{行|い}かなきゃとは{思|おも}ってるけど、どうせ{俺|おれ}の{一票|いっぴょう}なんかで{何|なに}も{変|か}わらないし。",
+        "en": "I know I should, but my one vote isn't going to change anything anyway."
+       }
+      ]
+     },
+     {
+      "scene": "ケンタがスマホでポスターを{見|み}せる。",
+      "sceneEn": "Kenta shows him a poster on his phone.",
+      "lines": [
+       {
+        "speaker": "ケンタ",
+        "text": "{俺|おれ}は{森田|もりた}{派|は}だな。{駅前|えきまえ}にショッピングモールができれば、バイト{先|さき}も{増|ふ}えるし、{町|まち}に{人|ひと}が{戻|もど}ってくるって。",
+        "en": "I'm on Morita's side. If they build a mall by the station, there'll be more part-time jobs and people will come back to town."
+       },
+       {
+        "speaker": "ナレーション",
+        "text": "{現職|げんしょく}の{森田|もりた}{候補|こうほ}は{駅前|えきまえ}の{再開発|さいかいはつ}を、{新人|しんじん}の{青木|あおき}{候補|こうほ}は{子育|こそだ}て{支援|しえん}とバス{路線|ろせん}の{拡充|かくじゅう}を{訴|うった}えている。",
+        "en": "The incumbent, Morita, is campaigning on redeveloping the station area; the newcomer, Aoki, on childcare support and more bus routes."
+       }
+      ]
+     }
+    ]
+   },
+   {
+    "panels": [
+     {
+      "scene": "{夕方|ゆうがた}、ユウキの{家|いえ}。{祖母|そぼ}が{新聞|しんぶん}を{広|ひろ}げている。",
+      "sceneEn": "Evening at Yuki's house. His grandmother has the newspaper spread out.",
+      "lines": [
+       {
+        "speaker": "キヨ",
+        "text": "ユウキ、{選挙公報|せんきょこうほう}、もう{読|よ}んだかい？",
+        "en": "Yuki, have you read the election bulletin yet?"
+       },
+       {
+        "speaker": "ユウキ",
+        "text": "ばあちゃん、そんなの{読|よ}む{人|ひと}いるの？",
+        "en": "Grandma, does anyone actually read that?"
+       }
+      ]
+     },
+     {
+      "scene": "キヨが{紙|かみ}をトントンと{指|ゆび}でたたく。",
+      "sceneEn": "Kiyo taps the paper with her finger.",
+      "lines": [
+       {
+        "speaker": "キヨ",
+        "text": "いるよ。{私|わたし}は{毎回|まいかい}、{隅|すみ}から{隅|すみ}まで{読|よ}んでるよ。{去年|きょねん}バスの{本数|ほんすう}が{減|へ}ってからは、{病院|びょういん}に{行|い}くのも{一苦労|ひとくろう}なんだから。",
+        "en": "I do. I read it cover to cover every time. Since they cut the buses last year, even getting to the hospital is a struggle."
+       }
+      ]
+     },
+     {
+      "scene": "ユウキ、はっとする。",
+      "sceneEn": "Yuki is struck by this.",
+      "lines": [
+       {
+        "speaker": "ユウキ（心の声）",
+        "text": "…そうか。ケンタにとってはバイト、ばあちゃんにとってはバス。{同|おな}じ{町|まち}に{住|す}んでいても、{困|こま}っていることは{人|ひと}によって{全然|ぜんぜん}{違|ちが}うんだ。",
+        "en": "...I see. For Kenta it's jobs, for Grandma it's the bus. Even in the same town, what people struggle with is completely different."
+       }
+      ]
+     },
+     {
+      "scene": "ユウキが{少|すこ}し{考|かんが}えて{言|い}い{返|かえ}す。",
+      "sceneEn": "Yuki thinks for a moment and pushes back.",
+      "lines": [
+       {
+        "speaker": "ユウキ",
+        "text": "でも、モールができたら{税収|ぜいしゅう}が{増|ふ}えて、{結局|けっきょく}バスにもお{金|かね}が{回|まわ}るかもしれないじゃん。",
+        "en": "But if the mall brings in more tax money, some of it might end up going to the buses too."
+       },
+       {
+        "speaker": "キヨ",
+        "text": "かもしれないね。だからこそ、{自分|じぶん}で{調|しら}べて{決|き}めるんだよ。",
+        "en": "Maybe so. That's exactly why you look into it yourself and decide."
+       }
+      ]
+     }
+    ]
+   },
+   {
+    "panels": [
+     {
+      "scene": "{夜|よる}、ユウキの{部屋|へや}。スマホで{両|りょう}{候補|こうほ}の{公約|こうやく}を{比|くら}べている。",
+      "sceneEn": "Night, Yuki's room. He compares both candidates' promises on his phone.",
+      "lines": [
+       {
+        "speaker": "ユウキ（心の声）",
+        "text": "{再開発|さいかいはつ}は{町|まち}の{将来|しょうらい}への{投資|とうし}。{子育|こそだ}て{支援|しえん}は{今|いま}{困|こま}っている{人|ひと}への{支援|しえん}。どっちも{間違|まちが}ってはいない…。",
+        "en": "Redevelopment is an investment in the town's future. Childcare support helps people struggling right now. Neither one is wrong..."
+       }
+      ]
+     },
+     {
+      "scene": "ユウキ、{天井|てんじょう}を{見上|みあ}げる。",
+      "sceneEn": "Yuki stares up at the ceiling.",
+      "lines": [
+       {
+        "speaker": "ユウキ",
+        "text": "…{選|えら}ぶって、こんなに{難|むずか}しいことだったのか。",
+        "en": "...So choosing is this hard."
+       }
+      ]
+     },
+     {
+      "scene": "{日曜日|にちようび}。{投票所|とうひょうじょ}になった{小学校|しょうがっこう}。",
+      "sceneEn": "Sunday. The elementary school that serves as a polling station.",
+      "lines": [
+       {
+        "speaker": "SFX",
+        "text": "カタン",
+        "en": "(clack)"
+       },
+       {
+        "speaker": "ナレーション",
+        "text": "{誰|だれ}に{入|い}れたかは、ユウキだけの{秘密|ひみつ}だ。",
+        "en": "Who he voted for is Yuki's secret alone."
+       }
+      ]
+     },
+     {
+      "scene": "{帰|かえ}り{道|みち}。キヨと{並|なら}んで{歩|ある}く。",
+      "sceneEn": "On the way home, walking beside Kiyo.",
+      "lines": [
+       {
+        "speaker": "キヨ",
+        "text": "どうだった、{初|はじ}めての{選挙|せんきょ}は？",
+        "en": "So, how was your first election?"
+       },
+       {
+        "speaker": "ユウキ",
+        "text": "{緊張|きんちょう}した。でも、ちょっと{大人|おとな}になった{気|き}がする。",
+        "en": "I was nervous. But I feel a bit more grown-up."
+       },
+       {
+        "speaker": "キヨ",
+        "text": "{結果|けっか}がどうなっても、ちゃんと{見|み}ておくんだよ。",
+        "en": "Whatever the result, make sure you keep watching what happens."
+       }
+      ]
+     }
+    ]
+   }
+  ],
+  "glossary": [
+   {
+    "word": "選挙",
+    "reading": "せんきょ",
+    "meaning": "election"
+   },
+   {
+    "word": "投票",
+    "reading": "とうひょう",
+    "meaning": "voting, a vote"
+   },
+   {
+    "word": "現職",
+    "reading": "げんしょく",
+    "meaning": "incumbent (current office holder)"
+   },
+   {
+    "word": "候補",
+    "reading": "こうほ",
+    "meaning": "candidate"
+   },
+   {
+    "word": "再開発",
+    "reading": "さいかいはつ",
+    "meaning": "redevelopment"
+   },
+   {
+    "word": "訴える",
+    "reading": "うったえる",
+    "meaning": "to campaign for, appeal for"
+   },
+   {
+    "word": "拡充",
+    "reading": "かくじゅう",
+    "meaning": "expansion, enhancement"
+   },
+   {
+    "word": "選挙公報",
+    "reading": "せんきょこうほう",
+    "meaning": "official election bulletin"
+   },
+   {
+    "word": "隅から隅まで",
+    "reading": "すみからすみまで",
+    "meaning": "from cover to cover, thoroughly"
+   },
+   {
+    "word": "一苦労",
+    "reading": "ひとくろう",
+    "meaning": "quite a struggle"
+   },
+   {
+    "word": "税収",
+    "reading": "ぜいしゅう",
+    "meaning": "tax revenue"
+   },
+   {
+    "word": "公約",
+    "reading": "こうやく",
+    "meaning": "campaign promise"
+   }
+  ],
+  "exercises": [
+   {
+    "type": "vocabulary",
+    "prompt": "「{現職|げんしょく}の{森田|もりた}{候補|こうほ}」の「{現職|げんしょく}」の{意味|いみ}は？",
+    "promptEn": "In 現職の森田候補, what does 現職 mean?",
+    "options": [
+     "a first-time candidate",
+     "the incumbent (currently in office)",
+     "a campaign volunteer",
+     "an election official"
+    ],
+    "answerIndex": 1,
+    "explanation": "現職 (げんしょく) means someone currently holding the post. Morita is the sitting mayor; Aoki is the 新人, the newcomer.",
+    "referenceAnswer": ""
+   },
+   {
+    "type": "grammar",
+    "prompt": "どうせ{俺|おれ}の{一票|いっぴょう}＿＿で{何|なに}も{変|か}わらないし。",
+    "promptEn": "My one vote isn't going to change anything anyway.",
+    "options": [
+     "なんか",
+     "こそ",
+     "さえ",
+     "ばかり"
+    ],
+    "answerIndex": 0,
+    "explanation": "〜なんか (casual 〜など) makes light of something: \"something like my one vote\". It often pairs with どうせ to sound dismissive.",
+    "referenceAnswer": ""
+   },
+   {
+    "type": "who_said_it",
+    "prompt": "「だからこそ、{自分|じぶん}で{調|しら}べて{決|き}めるんだよ。」",
+    "promptEn": "\"That's exactly why you look into it yourself and decide.\" Who said it?",
+    "options": [
+     "ケンタ",
+     "ユウキ",
+     "キヨ",
+     "森田候補"
+    ],
+    "answerIndex": 2,
+    "explanation": "Kiyo, Yuki's grandmother. だからこそ = \"that's precisely why\".",
+    "referenceAnswer": ""
+   },
+   {
+    "type": "true_false",
+    "prompt": "{青木|あおき}{候補|こうほ}は、{駅前|えきまえ}にショッピングモールを{作|つく}ることを{訴|うった}えている。",
+    "promptEn": "Aoki is campaigning to build a shopping mall by the station.",
+    "options": [
+     "○ 正しい",
+     "× まちがい"
+    ],
+    "answerIndex": 1,
+    "explanation": "False. The mall and station redevelopment are Morita's platform; Aoki is campaigning on childcare support and bus routes.",
+    "referenceAnswer": ""
+   },
+   {
+    "type": "open_question",
+    "prompt": "ユウキの{選挙|せんきょ}に{対|たい}する{考|かんが}え{方|かた}は、{最初|さいしょ}と{最後|さいご}でどう{変|か}わりましたか。",
+    "promptEn": "How did Yuki's attitude toward the election change from the beginning to the end?",
+    "options": [],
+    "answerIndex": -1,
+    "explanation": "",
+    "referenceAnswer": "{最初|さいしょ}は{自分|じぶん}の{一票|いっぴょう}では{何|なに}も{変|か}わらないと{思|おも}っていましたが、{祖母|そぼ}と{話|はな}して{困|こま}っていることは{人|ひと}によって{違|ちが}うと{気|き}づき、{自分|じぶん}で{調|しら}べて{投票|とうひょう}するようになりました。"
+   },
+   {
+    "type": "continue_story",
+    "prompt": "{選挙|せんきょ}の{結果|けっか}が{発表|はっぴょう}されました。ユウキは{結果|けっか}を{見|み}て、{何|なに}を{考|かんが}えたり、したりすると{思|おも}いますか。3〜4{文|ぶん}で{書|か}いてください。",
+    "promptEn": "The election results are announced. What do you think Yuki thinks or does when he sees them? Write 3-4 sentences.",
+    "options": [],
+    "answerIndex": -1,
+    "explanation": "",
+    "referenceAnswer": "{結果|けっか}は{青木|あおき}{候補|こうほ}の{勝利|しょうり}でした。ユウキはケンタと{結果|けっか}について{話|はな}し{合|あ}いました。そして、{次|つぎ}の{選挙|せんきょ}までに{町|まち}がどう{変|か}わるか、{自分|じぶん}の{目|め}で{確|たし}かめようと{決|き}めました。"
+   }
+  ]
+ },
+ {
+  "id": "starter-n2-shutter-street",
+  "title": "シャッター{商店街|しょうてんがい}の{逆襲|ぎゃくしゅう}",
+  "titleEn": "Revenge of the Shuttered Shopping Street",
+  "summaryEn": "Minami moves back to her declining hometown as a remote worker and proposes turning empty shops into a shared office, against the doubts of the old shopkeepers.",
+  "level": "N2",
+  "topic": "社会 · Society",
+  "source": "story",
+  "pageCount": 3,
+  "pages": [
+   {
+    "panels": [
+     {
+      "scene": "{地方|ちほう}{都市|とし}のさびれた{商店街|しょうてんがい}。{半分|はんぶん}{以上|いじょう}の{店|みせ}がシャッターを{下|お}ろしている。",
+      "sceneEn": "A declining shopping street in a regional city. More than half the shops have their shutters down.",
+      "lines": [
+       {
+        "speaker": "ナレーション",
+        "text": "かつては「{町|まち}の{台所|だいどころ}」と{呼|よ}ばれた、ひばり{商店街|しょうてんがい}。",
+        "en": "Hibari Shopping Street, once called \"the town's kitchen\"."
+       },
+       {
+        "speaker": "ナレーション",
+        "text": "{今|いま}では、{開|あ}いている{店|みせ}のほうが{少|すく}ない。",
+        "en": "Now, fewer shops are open than closed."
+       }
+      ]
+     },
+     {
+      "scene": "{東京|とうきょう}から{戻|もど}ってきたミナミ（26）。",
+      "sceneEn": "Minami (26), back from Tokyo.",
+      "lines": [
+       {
+        "speaker": "ミナミ",
+        "text": "{子|こ}どもの{頃|ころ}は、ここを{歩|ある}くだけでわくわくしたのにな…。",
+        "en": "When I was a kid, just walking here was exciting..."
+       }
+      ]
+     },
+     {
+      "scene": "{魚屋|さかなや}の{店先|みせさき}。{源|げん}さんが{声|こえ}をかける。",
+      "sceneEn": "In front of the fish shop, Gen calls out to her.",
+      "lines": [
+       {
+        "speaker": "源さん",
+        "text": "おう、ミナミちゃんか。{東京|とうきょう}の{会社|かいしゃ}は{辞|や}めたのかい？",
+        "en": "Oh, Minami! Did you quit your Tokyo job?"
+       },
+       {
+        "speaker": "ミナミ",
+        "text": "{辞|や}めてないよ。{今|いま}はリモートワークだから、どこに{住|す}んでも{仕事|しごと}ができるの。",
+        "en": "No, I didn't. I work remotely now, so I can do my job wherever I live."
+       }
+      ]
+     },
+     {
+      "scene": "{源|げん}さんがため{息|いき}をつく。",
+      "sceneEn": "Gen sighs.",
+      "lines": [
+       {
+        "speaker": "源さん",
+        "text": "へえ、{便利|べんり}な{時代|じだい}になったもんだ。…でも、この{商店街|しょうてんがい}はもう{終|お}わりだよ。{後継|あとつ}ぎもいないし、{俺|おれ}も{来年|らいねん}で{店|みせ}を{畳|たた}むつもりだ。",
+        "en": "Huh, what a convenient age. ...But this street is finished. There's no one to take over, and I'm planning to close the shop next year."
+       }
+      ]
+     }
+    ]
+   },
+   {
+    "panels": [
+     {
+      "scene": "ミナミが{空|あ}き{店舗|てんぽ}の{中|なか}をのぞく。",
+      "sceneEn": "Minami peers into an empty shop.",
+      "lines": [
+       {
+        "speaker": "ミナミ（心の声）",
+        "text": "{家賃|やちん}は{東京|とうきょう}の{十分|じゅうぶん}の{一|いち}{以下|いか}。この{広|ひろ}さなら…。",
+        "en": "The rent is less than a tenth of Tokyo's. With this much space..."
+       }
+      ]
+     },
+     {
+      "scene": "{商店街|しょうてんがい}の{会議|かいぎ}。{年配|ねんぱい}の{店主|てんしゅ}たちが{並|なら}んでいる。",
+      "sceneEn": "A shopping-street meeting. Older shop owners sit in a row.",
+      "lines": [
+       {
+        "speaker": "ミナミ",
+        "text": "{空|あ}き{店舗|てんぽ}を、リモートワークの{人|ひと}たちが{使|つか}えるシェアオフィスにしませんか？",
+        "en": "Why don't we turn the empty shops into a shared office for remote workers?"
+       }
+      ]
+     },
+     {
+      "scene": "{会長|かいちょう}が{腕|うで}を{組|く}む。",
+      "sceneEn": "The association chairman folds his arms.",
+      "lines": [
+       {
+        "speaker": "会長",
+        "text": "そんなもの、{誰|だれ}が{来|く}るんだね。{若|わか}い{人|ひと}はみんな{出|で}て{行|い}ってしまったじゃないか。",
+        "en": "Who would come to something like that? All the young people have left."
+       },
+       {
+        "speaker": "店主",
+        "text": "どうせ{失敗|しっぱい}するに{決|き}まってる。",
+        "en": "It's bound to fail anyway."
+       }
+      ]
+     },
+     {
+      "scene": "ミナミがまっすぐ{前|まえ}を{見|み}る。",
+      "sceneEn": "Minami looks straight at them.",
+      "lines": [
+       {
+        "speaker": "ミナミ",
+        "text": "{出|で}て{行|い}った{人|ひと}の{中|なか}には、{本当|ほんとう}は{地元|じもと}で{暮|く}らしたい{人|ひと}もいるはずです。{仕事|しごと}さえあれば、{戻|もど}ってくるかもしれません。",
+        "en": "Among the people who left, some must actually want to live here. As long as there's work, they might come back."
+       }
+      ]
+     }
+    ]
+   },
+   {
+    "panels": [
+     {
+      "scene": "{半年後|はんとしご}。シェアオフィスで{若者|わかもの}たちがパソコンに{向|む}かっている。",
+      "sceneEn": "Six months later. Young people work at laptops in the shared office.",
+      "lines": [
+       {
+        "speaker": "ナレーション",
+        "text": "{半年後|はんとしご}――。",
+        "en": "Six months later..."
+       },
+       {
+        "speaker": "若者",
+        "text": "{昼|ひる}ごはん、{源|げん}さんの{店|みせ}の{海鮮丼|かいせんどん}にしない？",
+        "en": "Want to get Gen's seafood bowl for lunch?"
+       }
+      ]
+     },
+     {
+      "scene": "{魚屋|さかなや}の{前|まえ}に{行列|ぎょうれつ}ができている。",
+      "sceneEn": "There's a line in front of the fish shop.",
+      "lines": [
+       {
+        "speaker": "源さん",
+        "text": "おいおい、こんなに{客|きゃく}が{来|く}るのは{何十年|なんじゅうねん}ぶりだ？",
+        "en": "Whoa, when was the last time I had this many customers? Decades?"
+       }
+      ]
+     },
+     {
+      "scene": "{若者|わかもの}の{一人|ひとり}が{頭|あたま}を{下|さ}げる。",
+      "sceneEn": "One of the young people bows.",
+      "lines": [
+       {
+        "speaker": "若者",
+        "text": "{源|げん}さん、{魚|さかな}のさばき{方|かた}、{教|おし}えてもらえませんか？{僕|ぼく}、この{店|みせ}を{継|つ}ぎたいんです。",
+        "en": "Gen, could you teach me how to fillet fish? I want to take over this shop."
+       },
+       {
+        "speaker": "源さん",
+        "text": "…お{前|まえ}、{本気|ほんき}か？",
+        "en": "...Are you serious?"
+       }
+      ]
+     },
+     {
+      "scene": "{商店街|しょうてんがい}に{夕日|ゆうひ}。シャッターがまた{一枚|いちまい}{開|あ}く。",
+      "sceneEn": "Sunset over the street. Another shutter rolls up.",
+      "lines": [
+       {
+        "speaker": "ミナミ（心の声）",
+        "text": "シャッターが{一枚|いちまい}{開|あ}くたびに、{町|まち}が{少|すこ}しずつ{息|いき}を{吹|ふ}き{返|かえ}していく。",
+        "en": "Every time a shutter goes up, the town comes back to life a little more."
+       },
+       {
+        "speaker": "源さん",
+        "text": "{店|みせ}を{畳|たた}むのは、もう{少|すこ}し{先|さき}にするか。",
+        "en": "Maybe I'll put off closing the shop a little longer."
+       }
+      ]
+     }
+    ]
+   }
+  ],
+  "glossary": [
+   {
+    "word": "さびれる",
+    "reading": "さびれる",
+    "meaning": "to decline, become deserted"
+   },
+   {
+    "word": "商店街",
+    "reading": "しょうてんがい",
+    "meaning": "shopping street"
+   },
+   {
+    "word": "後継ぎ",
+    "reading": "あとつぎ",
+    "meaning": "successor, heir"
+   },
+   {
+    "word": "畳む",
+    "reading": "たたむ",
+    "meaning": "to close down (a business)"
+   },
+   {
+    "word": "空き店舗",
+    "reading": "あきてんぽ",
+    "meaning": "vacant shop"
+   },
+   {
+    "word": "家賃",
+    "reading": "やちん",
+    "meaning": "rent"
+   },
+   {
+    "word": "年配",
+    "reading": "ねんぱい",
+    "meaning": "older, elderly"
+   },
+   {
+    "word": "地元",
+    "reading": "じもと",
+    "meaning": "hometown, local area"
+   },
+   {
+    "word": "行列",
+    "reading": "ぎょうれつ",
+    "meaning": "line, queue"
+   },
+   {
+    "word": "さばく",
+    "reading": "さばく",
+    "meaning": "to fillet (fish)"
+   },
+   {
+    "word": "継ぐ",
+    "reading": "つぐ",
+    "meaning": "to take over, succeed to"
+   },
+   {
+    "word": "息を吹き返す",
+    "reading": "いきをふきかえす",
+    "meaning": "to come back to life"
+   }
+  ],
+  "exercises": [
+   {
+    "type": "kanji_reading",
+    "prompt": "「後継ぎ」の{読|よ}み{方|かた}は？",
+    "promptEn": "How do you read 後継ぎ?",
+    "options": [
+     "あとつぎ",
+     "こうけいぎ",
+     "うしろつぎ",
+     "ごけいぎ"
+    ],
+    "answerIndex": 0,
+    "explanation": "後継ぎ is read あとつぎ: 後 (あと, after) + 継ぐ (つぐ, to succeed). It means the person who takes over a family business.",
+    "referenceAnswer": ""
+   },
+   {
+    "type": "grammar",
+    "prompt": "どうせ{失敗|しっぱい}する＿＿。",
+    "promptEn": "It's bound to fail anyway.",
+    "options": [
+     "に決まってる",
+     "わけがない",
+     "どころではない",
+     "にすぎない"
+    ],
+    "answerIndex": 0,
+    "explanation": "〜に決まっている means \"is bound to, is certain to\". わけがない would mean the opposite (\"can't possibly fail\"), which doesn't fit どうせ.",
+    "referenceAnswer": ""
+   },
+   {
+    "type": "fill_blank",
+    "prompt": "「{仕事|しごと}＿＿あれば、{戻|もど}ってくるかもしれません。」",
+    "promptEn": "As long as there's work, they might come back.",
+    "options": [
+     "さえ",
+     "まで",
+     "こそ",
+     "しか"
+    ],
+    "answerIndex": 0,
+    "explanation": "〜さえ〜ば means \"as long as / if only\": 仕事さえあれば = \"as long as there is work\".",
+    "referenceAnswer": ""
+   },
+   {
+    "type": "true_false",
+    "prompt": "{会長|かいちょう}は{最初|さいしょ}、ミナミの{提案|ていあん}に{反対|はんたい}していた。",
+    "promptEn": "At first, the chairman was against Minami's proposal.",
+    "options": [
+     "○ 正しい",
+     "× まちがい"
+    ],
+    "answerIndex": 0,
+    "explanation": "True. He asks who would even come, since all the young people have left.",
+    "referenceAnswer": ""
+   },
+   {
+    "type": "say_it_in_japanese",
+    "prompt": "{次|つぎ}の{英語|えいご}を{日本語|にほんご}で{言|い}ってください：「This shopping street is finished. I'm planning to close my shop next year.」",
+    "promptEn": "Say this in Japanese: \"This shopping street is finished. I'm planning to close my shop next year.\"",
+    "options": [],
+    "answerIndex": -1,
+    "explanation": "",
+    "referenceAnswer": "この{商店街|しょうてんがい}はもう{終|お}わりだよ。{来年|らいねん}で{店|みせ}を{畳|たた}むつもりだ。"
+   },
+   {
+    "type": "open_question",
+    "prompt": "なぜ{商店街|しょうてんがい}に{人|ひと}が{戻|もど}ってきたのだと{思|おも}いますか。",
+    "promptEn": "Why do you think people came back to the shopping street?",
+    "options": [],
+    "answerIndex": -1,
+    "explanation": "",
+    "referenceAnswer": "{家賃|やちん}が{安|やす}い{空|あ}き{店舗|てんぽ}がシェアオフィスになって、リモートワークの{若者|わかもの}が{集|あつ}まったからです。{若者|わかもの}が{商店街|しょうてんがい}の{店|みせ}を{利用|りよう}するようになり、{店|みせ}を{継|つ}ぎたい{人|ひと}も{出|で}てきました。"
+   }
+  ]
+ },
+ {
+  "id": "starter-n2-final-round",
+  "title": "{最後|さいご}のラウンド",
+  "titleEn": "The Final Round",
+  "summaryEn": "Veteran fighting-game pro \"Reiji\", feeling his reflexes slow at 29, plays his retirement match against a 17-year-old prodigy who grew up watching him.",
+  "level": "N2",
+  "topic": "ゲーム · Esports",
+  "source": "story",
+  "pageCount": 3,
+  "pages": [
+   {
+    "panels": [
+     {
+      "scene": "{満員|まんいん}のeスポーツ{会場|かいじょう}。{巨大|きょだい}なスクリーン。",
+      "sceneEn": "A packed esports arena. A giant screen.",
+      "lines": [
+       {
+        "speaker": "実況",
+        "text": "さあ、いよいよ{決勝戦|けっしょうせん}！この{試合|しあい}を{最後|さいご}に{引退|いんたい}を{表明|ひょうめい}しているレジェンド、レイジ{選手|せんしゅ}の{登場|とうじょう}です！",
+        "en": "Here we go, the grand final! Making his entrance: the legend Reiji, who has announced this will be his last match before retiring!"
+       },
+       {
+        "speaker": "SFX",
+        "text": "ワアアアア",
+        "en": "(crowd roars)"
+       }
+      ]
+     },
+     {
+      "scene": "{控室|ひかえしつ}。レイジが{自分|じぶん}の{手|て}を{見|み}つめる。",
+      "sceneEn": "The green room. Reiji stares at his hands.",
+      "lines": [
+       {
+        "speaker": "レイジ（心の声）",
+        "text": "{反応速度|はんのうそくど}が{落|お}ちてきたのは、{自分|じぶん}が{一番|いちばん}よくわかっている。{二十九歳|にじゅうきゅうさい}。この{世界|せかい}では、もう{若|わか}くない。",
+        "en": "I know better than anyone that my reactions have slowed. Twenty-nine. In this world, that's not young anymore."
+       }
+      ]
+     },
+     {
+      "scene": "コーチが{肩|かた}に{手|て}を{置|お}く。",
+      "sceneEn": "His coach puts a hand on his shoulder.",
+      "lines": [
+       {
+        "speaker": "コーチ",
+        "text": "{本当|ほんとう}にこれで{最後|さいご}でいいのか？",
+        "en": "Are you sure this has to be the last one?"
+       },
+       {
+        "speaker": "レイジ",
+        "text": "ああ。{衰|おとろ}えた{姿|すがた}をファンに{見|み}せ{続|つづ}けるくらいなら、ここで{終|お}わりにしたいんだ。",
+        "en": "Yeah. Rather than keep showing the fans a version of me that's past it, I want to end it here."
+       }
+      ]
+     }
+    ]
+   },
+   {
+    "panels": [
+     {
+      "scene": "{対戦|たいせん}{相手|あいて}、{十七歳|じゅうななさい}のヒカリ。",
+      "sceneEn": "His opponent: seventeen-year-old Hikari.",
+      "lines": [
+       {
+        "speaker": "ヒカリ",
+        "text": "レイジさん、{私|わたし}、{小学生|しょうがくせい}の{頃|ころ}からずっとあなたの{試合|しあい}を{見|み}てきました。",
+        "en": "Reiji, I've been watching your matches since I was in elementary school."
+       },
+       {
+        "speaker": "ヒカリ",
+        "text": "{手加減|てかげん}なんかしたら、{許|ゆる}しませんから。",
+        "en": "If you go easy on me, I won't forgive you."
+       }
+      ]
+     },
+     {
+      "scene": "レイジがにやりと{笑|わら}う。",
+      "sceneEn": "Reiji grins.",
+      "lines": [
+       {
+        "speaker": "レイジ",
+        "text": "…{望|のぞ}むところだ。",
+        "en": "...Bring it on."
+       }
+      ]
+     },
+     {
+      "scene": "{試合|しあい}{開始|かいし}。{画面|がめん}の{中|なか}で{激|はげ}しいコンボが{続|つづ}く。",
+      "sceneEn": "The match begins. Fierce combos fill the screen.",
+      "lines": [
+       {
+        "speaker": "SFX",
+        "text": "ガガガッ",
+        "en": "(rapid hits)"
+       },
+       {
+        "speaker": "実況",
+        "text": "ヒカリ{選手|せんしゅ}、{速|はや}い！レイジ{選手|せんしゅ}、{防戦一方|ぼうせんいっぽう}だ！",
+        "en": "Hikari is fast! Reiji can only defend!"
+       }
+      ]
+     },
+     {
+      "scene": "レイジの{目|め}が{鋭|するど}くなる。",
+      "sceneEn": "Reiji's eyes sharpen.",
+      "lines": [
+       {
+        "speaker": "レイジ（心の声）",
+        "text": "{速|はや}さでは{勝|か}てない。だったら、{十年分|じゅうねんぶん}の{経験|けいけん}で{読|よ}むしかない。",
+        "en": "I can't win on speed. Then all I can do is read her with ten years of experience."
+       }
+      ]
+     }
+    ]
+   },
+   {
+    "panels": [
+     {
+      "scene": "{最終|さいしゅう}ラウンド。{両者|りょうしゃ}の{体力|たいりょく}ゲージはわずか。",
+      "sceneEn": "The final round. Both health bars are nearly empty.",
+      "lines": [
+       {
+        "speaker": "実況",
+        "text": "{両者|りょうしゃ}、{体力|たいりょく}はほぼゼロ！{次|つぎ}の{一撃|いちげき}で{決|き}まるぞ！",
+        "en": "Both players are almost out of health! The next hit decides it!"
+       }
+      ]
+     },
+     {
+      "scene": "レイジがヒカリの{動|うご}きを{読|よ}み、カウンターを{決|き}める。",
+      "sceneEn": "Reiji reads Hikari's move and lands a counter.",
+      "lines": [
+       {
+        "speaker": "SFX",
+        "text": "ドンッ",
+        "en": "(impact)"
+       },
+       {
+        "speaker": "実況",
+        "text": "カウンター！！レイジ、ヒカリの{必殺技|ひっさつわざ}を{完全|かんぜん}に{読|よ}み{切|き}った！",
+        "en": "A counter!! Reiji read Hikari's special move perfectly!"
+       }
+      ]
+     },
+     {
+      "scene": "{試合後|しあいご}、{二人|ふたり}が{握手|あくしゅ}する。",
+      "sceneEn": "After the match, the two shake hands.",
+      "lines": [
+       {
+        "speaker": "ヒカリ",
+        "text": "…{悔|くや}しい。でも、{最後|さいご}にレイジさんと{戦|たたか}えて、{本当|ほんとう}によかったです。",
+        "en": "...That stings. But I'm really glad I got to face you in your last match."
+       },
+       {
+        "speaker": "レイジ",
+        "text": "{次|つぎ}の{時代|じだい}は、{君|きみ}たちのものだ。",
+        "en": "The next era belongs to you."
+       }
+      ]
+     },
+     {
+      "scene": "{会場|かいじょう}を{後|あと}にするレイジの{背中|せなか}。",
+      "sceneEn": "Reiji's back as he leaves the arena.",
+      "lines": [
+       {
+        "speaker": "レイジ（心の声）",
+        "text": "{引退|いんたい}しても、ゲームが{好|す}きなことに{変|か}わりはない。",
+        "en": "Even if I retire, that doesn't change how much I love games."
+       },
+       {
+        "speaker": "ナレーション",
+        "text": "その{夜|よる}、レイジは{解説者|かいせつしゃ}として{新|あら}たな{一歩|いっぽ}を{踏|ふ}み{出|だ}すことを{発表|はっぴょう}した。",
+        "en": "That night, Reiji announced he was taking a new step as a commentator."
+       }
+      ]
+     }
+    ]
+   }
+  ],
+  "glossary": [
+   {
+    "word": "引退",
+    "reading": "いんたい",
+    "meaning": "retirement"
+   },
+   {
+    "word": "表明する",
+    "reading": "ひょうめいする",
+    "meaning": "to announce, declare"
+   },
+   {
+    "word": "反応速度",
+    "reading": "はんのうそくど",
+    "meaning": "reaction speed"
+   },
+   {
+    "word": "衰える",
+    "reading": "おとろえる",
+    "meaning": "to decline, weaken"
+   },
+   {
+    "word": "手加減",
+    "reading": "てかげん",
+    "meaning": "going easy (on someone)"
+   },
+   {
+    "word": "望むところだ",
+    "reading": "のぞむところだ",
+    "meaning": "bring it on, just what I want"
+   },
+   {
+    "word": "防戦一方",
+    "reading": "ぼうせんいっぽう",
+    "meaning": "entirely on the defensive"
+   },
+   {
+    "word": "一撃",
+    "reading": "いちげき",
+    "meaning": "a single blow"
+   },
+   {
+    "word": "読み切る",
+    "reading": "よみきる",
+    "meaning": "to read completely (anticipate)"
+   },
+   {
+    "word": "悔しい",
+    "reading": "くやしい",
+    "meaning": "frustrating, galling"
+   },
+   {
+    "word": "解説者",
+    "reading": "かいせつしゃ",
+    "meaning": "commentator"
+   },
+   {
+    "word": "踏み出す",
+    "reading": "ふみだす",
+    "meaning": "to step forward, take a step"
+   }
+  ],
+  "exercises": [
+   {
+    "type": "vocabulary",
+    "prompt": "「{手加減|てかげん}なんかしたら、{許|ゆる}しませんから。」の「{手加減|てかげん}」の{意味|いみ}は？",
+    "promptEn": "What does 手加減 mean here?",
+    "options": [
+     "going easy on someone",
+     "a hand injury",
+     "a combo attack",
+     "a time limit"
+    ],
+    "answerIndex": 0,
+    "explanation": "手加減 is holding back so the other person has an easier time. Hikari wants Reiji to fight at full strength.",
+    "referenceAnswer": ""
+   },
+   {
+    "type": "grammar",
+    "prompt": "{衰|おとろ}えた{姿|すがた}を{見|み}せ{続|つづ}ける＿＿、ここで{終|お}わりにしたい。",
+    "promptEn": "Rather than keep showing a version of me that's past it, I want to end it here.",
+    "options": [
+     "くらいなら",
+     "ばかりか",
+     "にしては",
+     "ものの"
+    ],
+    "answerIndex": 0,
+    "explanation": "AくらいならB means \"rather than (doing) A, I'd (prefer to) B\", used when A is something you really don't want.",
+    "referenceAnswer": ""
+   },
+   {
+    "type": "who_said_it",
+    "prompt": "「{次|つぎ}の{時代|じだい}は、{君|きみ}たちのものだ。」",
+    "promptEn": "\"The next era belongs to you.\" Who said it?",
+    "options": [
+     "ヒカリ",
+     "コーチ",
+     "実況",
+     "レイジ"
+    ],
+    "answerIndex": 3,
+    "explanation": "Reiji says it to Hikari after their handshake, passing the torch to the younger generation.",
+    "referenceAnswer": ""
+   },
+   {
+    "type": "true_false",
+    "prompt": "レイジはスピードでヒカリに{勝|か}った。",
+    "promptEn": "Reiji beat Hikari on speed.",
+    "options": [
+     "○ 正しい",
+     "× まちがい"
+    ],
+    "answerIndex": 1,
+    "explanation": "False. He admits he can't win on speed, so he reads her moves with experience and wins with a counter.",
+    "referenceAnswer": ""
+   },
+   {
+    "type": "say_it_in_japanese",
+    "prompt": "{次|つぎ}の{英語|えいご}を{日本語|にほんご}で{言|い}ってください：「Even if I retire, that doesn't change the fact that I love games.」",
+    "promptEn": "Say this in Japanese: \"Even if I retire, that doesn't change the fact that I love games.\"",
+    "options": [],
+    "answerIndex": -1,
+    "explanation": "",
+    "referenceAnswer": "{引退|いんたい}しても、ゲームが{好|す}きなことに{変|か}わりはない。"
+   },
+   {
+    "type": "continue_story",
+    "prompt": "{一年後|いちねんご}、{解説者|かいせつしゃ}になったレイジが、ヒカリの{世界大会|せかいたいかい}の{試合|しあい}を{解説|かいせつ}することになりました。どんな{場面|ばめん}になると{思|おも}いますか。3〜4{文|ぶん}で{書|か}いてください。",
+    "promptEn": "A year later, Reiji, now a commentator, is calling Hikari's match at the world championship. What do you think happens? Write 3-4 sentences.",
+    "options": [],
+    "answerIndex": -1,
+    "explanation": "",
+    "referenceAnswer": "ヒカリは{世界大会|せかいたいかい}の{決勝|けっしょう}で、レイジのようにカウンターを{決|き}めて{勝|か}ちました。レイジは{解説席|かいせつせき}で{思|おも}わず{立|た}ち{上|あ}がりました。{試合後|しあいご}、ヒカリは「レイジさんに{教|おし}わったんです」と{笑|わら}いました。"
+   }
+  ]
+ },
+ {
+  "id": "starter-n2-leave-on-time",
+  "title": "{定時|ていじ}で{帰|かえ}る{勇気|ゆうき}",
+  "titleEn": "The Courage to Leave on Time",
+  "summaryEn": "Akane starts leaving work at exactly six, and when her section chief calls her in, the talk goes somewhere neither of them expected.",
+  "level": "N2",
+  "topic": "社会 · Work culture",
+  "source": "story",
+  "pageCount": 3,
+  "pages": [
+   {
+    "panels": [
+     {
+      "scene": "{午後|ごご}{五時|ごじ}{五十九分|ごじゅうきゅうふん}のオフィス。{全員|ぜんいん}がまだパソコンに{向|む}かっている。",
+      "sceneEn": "The office at 5:59 p.m. Everyone is still at their computers.",
+      "lines": [
+       {
+        "speaker": "ナレーション",
+        "text": "{定時|ていじ}まで、あと{一分|いっぷん}。",
+        "en": "One minute until quitting time."
+       },
+       {
+        "speaker": "アカネ（心の声）",
+        "text": "{今日|きょう}こそ、{定時|ていじ}で{帰|かえ}る…！",
+        "en": "Today, I'm leaving on time...!"
+       }
+      ]
+     },
+     {
+      "scene": "{時計|とけい}が{六時|ろくじ}を{指|さ}す。アカネが{立|た}ち{上|あ}がる。",
+      "sceneEn": "The clock hits six. Akane stands up.",
+      "lines": [
+       {
+        "speaker": "アカネ",
+        "text": "お{先|さき}に{失礼|しつれい}します！",
+        "en": "I'm heading out, see you tomorrow!"
+       }
+      ]
+     },
+     {
+      "scene": "{周|まわ}りからの{視線|しせん}が{集|あつ}まる。",
+      "sceneEn": "All eyes turn to her.",
+      "lines": [
+       {
+        "speaker": "同僚",
+        "text": "え、もう{帰|かえ}るの？",
+        "en": "Huh, she's leaving already?"
+       },
+       {
+        "speaker": "同僚",
+        "text": "{課長|かちょう}、まだ{残|のこ}ってるのに…。",
+        "en": "And the section chief is still here..."
+       }
+      ]
+     },
+     {
+      "scene": "{課長|かちょう}の{山下|やました}が{顔|かお}を{上|あ}げる。",
+      "sceneEn": "Section chief Yamashita looks up.",
+      "lines": [
+       {
+        "speaker": "山下課長",
+        "text": "{佐藤|さとう}くん、ちょっといいかな。",
+        "en": "Sato, do you have a moment?"
+       },
+       {
+        "speaker": "アカネ（心の声）",
+        "text": "…{来|き}た。",
+        "en": "...Here it comes."
+       }
+      ]
+     }
+    ]
+   },
+   {
+    "panels": [
+     {
+      "scene": "{会議室|かいぎしつ}。{二人|ふたり}きり。",
+      "sceneEn": "A meeting room. Just the two of them.",
+      "lines": [
+       {
+        "speaker": "山下課長",
+        "text": "{最近|さいきん}、{毎日|まいにち}{定時|ていじ}で{帰|かえ}っているようだね。",
+        "en": "You've been leaving on time every day lately."
+       },
+       {
+        "speaker": "アカネ",
+        "text": "はい。{自分|じぶん}の{仕事|しごと}は{時間内|じかんない}に{終|お}わらせていますので。",
+        "en": "Yes. I finish my own work within working hours."
+       }
+      ]
+     },
+     {
+      "scene": "{課長|かちょう}が{手|て}を{振|ふ}る。",
+      "sceneEn": "The chief waves his hand.",
+      "lines": [
+       {
+        "speaker": "山下課長",
+        "text": "それはわかっている。{君|きみ}の{成績|せいせき}はむしろ{上|あ}がっているくらいだ。",
+        "en": "I know. If anything, your results have gone up."
+       },
+       {
+        "speaker": "アカネ",
+        "text": "では、{何|なに}か{問題|もんだい}でも…？",
+        "en": "Then, is there some problem...?"
+       }
+      ]
+     },
+     {
+      "scene": "{課長|かちょう}が{少|すこ}し{恥|は}ずかしそうに{目|め}をそらす。",
+      "sceneEn": "The chief looks away, a little embarrassed.",
+      "lines": [
+       {
+        "speaker": "山下課長",
+        "text": "…{実|じつ}はね、{私|わたし}も{早|はや}く{帰|かえ}りたいんだ。{娘|むすめ}の{誕生日|たんじょうび}なのに、{去年|きょねん}も{一昨年|おととし}も、{夕飯|ゆうはん}に{間|ま}に{合|あ}わなかった。",
+        "en": "...The truth is, I want to go home early too. Even on my daughter's birthday, last year and the year before, I didn't make it back for dinner."
+       }
+      ]
+     },
+     {
+      "scene": "アカネ、{驚|おどろ}いて{身|み}を{乗|の}り{出|だ}す。",
+      "sceneEn": "Akane leans forward in surprise.",
+      "lines": [
+       {
+        "speaker": "山下課長",
+        "text": "でも、{上司|じょうし}が{先|さき}に{帰|かえ}ったら、{部下|ぶか}が{気|き}を{使|つか}うだろう？それで、なかなか{帰|かえ}れなくてね。",
+        "en": "But if the boss leaves first, the staff feel awkward about it, right? So I could never quite leave."
+       },
+       {
+        "speaker": "アカネ",
+        "text": "{課長|かちょう}が{残|のこ}っているから、みんなも{帰|かえ}れないんですよ！",
+        "en": "Everyone else can't leave because YOU'RE still here!"
+       }
+      ]
+     }
+    ]
+   },
+   {
+    "panels": [
+     {
+      "scene": "{翌朝|よくあさ}の{朝礼|ちょうれい}。",
+      "sceneEn": "The next morning's team meeting.",
+      "lines": [
+       {
+        "speaker": "山下課長",
+        "text": "{今日|きょう}から、うちの{課|か}では「ノー{残業|ざんぎょう}デー」を{始|はじ}めます。まずは{私|わたし}から、{毎週|まいしゅう}{水曜日|すいようび}は{定時|ていじ}で{帰|かえ}ります。",
+        "en": "Starting today, our section is starting \"no-overtime day\". Beginning with me: every Wednesday, I leave on time."
+       }
+      ]
+     },
+     {
+      "scene": "{社員|しゃいん}たちがざわざわする。",
+      "sceneEn": "The staff murmur.",
+      "lines": [
+       {
+        "speaker": "新人ジュン",
+        "text": "え、{本当|ほんとう}にいいんですか？",
+        "en": "Wait, are we really allowed?"
+       }
+      ]
+     },
+     {
+      "scene": "{水曜日|すいようび}、{午後|ごご}{六時|ろくじ}。{課長|かちょう}がかばんを{持|も}って{立|た}ち{上|あ}がる。",
+      "sceneEn": "Wednesday, 6 p.m. The chief picks up his bag and stands.",
+      "lines": [
+       {
+        "speaker": "山下課長",
+        "text": "では、お{先|さき}に{失礼|しつれい}します。{娘|むすめ}の{誕生日|たんじょうび}なので！",
+        "en": "Well then, I'm heading out. It's my daughter's birthday!"
+       }
+      ]
+     },
+     {
+      "scene": "アカネが{手|て}を{振|ふ}る。",
+      "sceneEn": "Akane waves.",
+      "lines": [
+       {
+        "speaker": "アカネ",
+        "text": "いってらっしゃい！",
+        "en": "Have a good evening!"
+       },
+       {
+        "speaker": "ナレーション",
+        "text": "その{日|ひ}、オフィスの{電気|でんき}は、{一年|いちねん}ぶりに{六時半|ろくじはん}に{消|き}えた。",
+        "en": "That day, the office lights went out at 6:30 for the first time in a year."
+       }
+      ]
+     }
+    ]
+   }
+  ],
+  "glossary": [
+   {
+    "word": "定時",
+    "reading": "ていじ",
+    "meaning": "regular quitting time"
+   },
+   {
+    "word": "お先に失礼します",
+    "reading": "おさきにしつれいします",
+    "meaning": "excuse me for leaving first"
+   },
+   {
+    "word": "視線",
+    "reading": "しせん",
+    "meaning": "gaze, eyes"
+   },
+   {
+    "word": "同僚",
+    "reading": "どうりょう",
+    "meaning": "colleague"
+   },
+   {
+    "word": "課長",
+    "reading": "かちょう",
+    "meaning": "section chief"
+   },
+   {
+    "word": "成績",
+    "reading": "せいせき",
+    "meaning": "results, performance"
+   },
+   {
+    "word": "むしろ",
+    "reading": "むしろ",
+    "meaning": "rather, if anything"
+   },
+   {
+    "word": "上司",
+    "reading": "じょうし",
+    "meaning": "boss, superior"
+   },
+   {
+    "word": "部下",
+    "reading": "ぶか",
+    "meaning": "subordinate, staff"
+   },
+   {
+    "word": "気を使う",
+    "reading": "きをつかう",
+    "meaning": "to be mindful of others, feel awkward"
+   },
+   {
+    "word": "朝礼",
+    "reading": "ちょうれい",
+    "meaning": "morning meeting"
+   },
+   {
+    "word": "残業",
+    "reading": "ざんぎょう",
+    "meaning": "overtime"
+   }
+  ],
+  "exercises": [
+   {
+    "type": "kanji_reading",
+    "prompt": "「同僚」の{読|よ}み{方|かた}は？",
+    "promptEn": "How do you read 同僚?",
+    "options": [
+     "どうろう",
+     "どうりょう",
+     "とうりょう",
+     "どうりよう"
+    ],
+    "answerIndex": 1,
+    "explanation": "同僚 is どうりょう (with a small ょ): a colleague at the same level.",
+    "referenceAnswer": ""
+   },
+   {
+    "type": "vocabulary",
+    "prompt": "「{部下|ぶか}が{気|き}を{使|つか}う」の「{気|き}を{使|つか}う」の{意味|いみ}は？",
+    "promptEn": "What does 気を使う mean in 部下が気を使う?",
+    "options": [
+     "to be mindful of others and hold back",
+     "to lose one's temper",
+     "to feel sick",
+     "to make a careless mistake"
+    ],
+    "answerIndex": 0,
+    "explanation": "気を使う means being considerate of others' feelings. Here the staff feel they shouldn't leave before the boss.",
+    "referenceAnswer": ""
+   },
+   {
+    "type": "grammar",
+    "prompt": "{娘|むすめ}の{誕生日|たんじょうび}＿＿、{夕飯|ゆうはん}に{間|ま}に{合|あ}わなかった。",
+    "promptEn": "Even though it was my daughter's birthday, I didn't make it back for dinner.",
+    "options": [
+     "なのに",
+     "なので",
+     "なら",
+     "だから"
+    ],
+    "answerIndex": 0,
+    "explanation": "〜なのに (\"even though\") shows a result that goes against what you'd expect. After a noun, のに becomes なのに.",
+    "referenceAnswer": ""
+   },
+   {
+    "type": "true_false",
+    "prompt": "{山下|やました}{課長|かちょう}は{去年|きょねん}、{娘|むすめ}の{誕生日|たんじょうび}の{夕飯|ゆうはん}に{間|ま}に{合|あ}った。",
+    "promptEn": "Last year, Chief Yamashita made it home for dinner on his daughter's birthday.",
+    "options": [
+     "○ 正しい",
+     "× まちがい"
+    ],
+    "answerIndex": 1,
+    "explanation": "False. He says he missed it both last year and the year before (去年も一昨年も).",
+    "referenceAnswer": ""
+   },
+   {
+    "type": "open_question",
+    "prompt": "なぜこの{会社|かいしゃ}の{社員|しゃいん}たちは、{定時|ていじ}で{帰|かえ}りにくかったのですか。",
+    "promptEn": "Why was it hard for people at this company to leave on time?",
+    "options": [],
+    "answerIndex": -1,
+    "explanation": "",
+    "referenceAnswer": "{上司|じょうし}がまだ{残|のこ}っていると、{部下|ぶか}は{先|さき}に{帰|かえ}ることに{気|き}を{使|つか}ってしまうからです。でも{課長|かちょう}も、{部下|ぶか}のために{帰|かえ}れずにいました。"
+   },
+   {
+    "type": "continue_story",
+    "prompt": "{次|つぎ}の{水曜日|すいようび}、{新人|しんじん}のジュンが{定時|ていじ}で{帰|かえ}ろうとすると、{大事|だいじ}な{取引先|とりひきさき}から{電話|でんわ}がかかってきました。ジュンはどうすると{思|おも}いますか。3〜4{文|ぶん}で{書|か}いてください。",
+    "promptEn": "Next Wednesday, just as new hire Jun is about to leave, an important client calls. What do you think Jun does? Write 3-4 sentences.",
+    "options": [],
+    "answerIndex": -1,
+    "explanation": "",
+    "referenceAnswer": "ジュンは{電話|でんわ}に{出|で}て、{明日|あした}の{朝|あさ}{一番|いちばん}に{返事|へんじ}をすると{約束|やくそく}しました。そして{課長|かちょう}に{報告|ほうこく}してから、{定時|ていじ}で{帰|かえ}りました。{課長|かちょう}は「よくやった」と{言|い}いました。"
+   }
+  ]
+ },
+ {
+  "id": "starter-n3-last-pk",
+  "title": "{最後|さいご}のPK",
+  "titleEn": "The Last Penalty Kick",
+  "summaryEn": "In a high-school soccer final, bench goalkeeper Takumi has to step in for an injured senior during the penalty shootout.",
+  "level": "N3",
+  "topic": "スポーツ · Sports",
+  "source": "story",
+  "pageCount": 3,
+  "pages": [
+   {
+    "panels": [
+     {
+      "scene": "{高校|こうこう}サッカー{県大会|けんたいかい}の{決勝|けっしょう}。スコアは1{対|たい}1。",
+      "sceneEn": "The final of the prefectural high-school soccer tournament. The score is 1-1.",
+      "lines": [
+       {
+        "speaker": "ナレーション",
+        "text": "{延長戦|えんちょうせん}でも{決着|けっちゃく}がつかず、PK{戦|せん}になった。",
+        "en": "Even extra time didn't settle it. It's going to penalties."
+       }
+      ]
+     },
+     {
+      "scene": "キーパーの{先輩|せんぱい}が{足|あし}を{押|お}さえて{倒|たお}れている。",
+      "sceneEn": "The senior goalkeeper is down, holding his leg.",
+      "lines": [
+       {
+        "speaker": "先輩",
+        "text": "くっ…{足|あし}が…。",
+        "en": "Ugh... my leg..."
+       },
+       {
+        "speaker": "監督",
+        "text": "だめだ、{交代|こうたい}だ。タクミ、{行|い}けるか！？",
+        "en": "No good, we're subbing him off. Takumi, can you go in!?"
+       }
+      ]
+     },
+     {
+      "scene": "ベンチのタクミが{固|かた}まる。",
+      "sceneEn": "Takumi freezes on the bench.",
+      "lines": [
+       {
+        "speaker": "タクミ",
+        "text": "え…ぼ、{僕|ぼく}ですか！？{一回|いっかい}も{試合|しあい}に{出|で}たことないのに…。",
+        "en": "Wh-what, me!? I've never even played in a match..."
+       }
+      ]
+     },
+     {
+      "scene": "{先輩|せんぱい}がタクミの{腕|うで}をつかむ。",
+      "sceneEn": "The senior grabs Takumi's arm.",
+      "lines": [
+       {
+        "speaker": "先輩",
+        "text": "タクミ、お{前|まえ}は{毎日|まいにち}、{誰|だれ}よりも{遅|おそ}くまで{練習|れんしゅう}してたじゃないか。{大丈夫|だいじょうぶ}だ。",
+        "en": "Takumi, you practiced later than anyone, every single day. You'll be fine."
+       }
+      ]
+     }
+    ]
+   },
+   {
+    "panels": [
+     {
+      "scene": "ゴールの{前|まえ}に{立|た}つタクミ。{足|あし}が{震|ふる}えている。",
+      "sceneEn": "Takumi stands in goal. His legs are shaking.",
+      "lines": [
+       {
+        "speaker": "タクミ（心の声）",
+        "text": "どうしよう…。みんなが{見|み}てる…。",
+        "en": "What do I do... everyone's watching..."
+       }
+      ]
+     },
+     {
+      "scene": "ボールがゴールに{入|はい}る。",
+      "sceneEn": "The ball goes into the net.",
+      "lines": [
+       {
+        "speaker": "SFX",
+        "text": "ドッ",
+        "en": "(thud)"
+       },
+       {
+        "speaker": "相手チーム",
+        "text": "よっしゃー！",
+        "en": "Yesss!"
+       },
+       {
+        "speaker": "タクミ（心の声）",
+        "text": "{全然|ぜんぜん}{動|うご}けなかった…。",
+        "en": "I couldn't move at all..."
+       }
+      ]
+     },
+     {
+      "scene": "{次|つぎ}のキッカーがボールを{置|お}く。",
+      "sceneEn": "The next kicker places the ball.",
+      "lines": [
+       {
+        "speaker": "タクミ（心の声）",
+        "text": "{落|お}ち{着|つ}け。{練習|れんしゅう}では、{相手|あいて}の{目|め}と{足|あし}を{見|み}ていたはずだ。",
+        "en": "Calm down. In practice, I always watched their eyes and feet."
+       }
+      ]
+     },
+     {
+      "scene": "タクミが{右|みぎ}に{飛|と}ぶ。",
+      "sceneEn": "Takumi dives to the right.",
+      "lines": [
+       {
+        "speaker": "タクミ（心の声）",
+        "text": "…{右|みぎ}だ！",
+        "en": "...Right!"
+       },
+       {
+        "speaker": "SFX",
+        "text": "バシッ",
+        "en": "(smack)"
+       },
+       {
+        "speaker": "ナレーション",
+        "text": "タクミは{右|みぎ}に{飛|と}んで、ボールを{止|と}めた。",
+        "en": "Takumi dove right and stopped the ball."
+       }
+      ]
+     }
+    ]
+   },
+   {
+    "panels": [
+     {
+      "scene": "スコアボード：4{対|たい}4。{最後|さいご}のキッカーは{相手|あいて}のエース。",
+      "sceneEn": "Scoreboard: 4-4. The last kicker is the other team's ace.",
+      "lines": [
+       {
+        "speaker": "ナレーション",
+        "text": "4{対|たい}4。{次|つぎ}を{止|と}めれば、{優勝|ゆうしょう}が{決|き}まる。",
+        "en": "4-4. Stop the next one, and the championship is theirs."
+       }
+      ]
+     },
+     {
+      "scene": "{相手|あいて}のエースがにやりと{笑|わら}う。",
+      "sceneEn": "The ace smirks.",
+      "lines": [
+       {
+        "speaker": "相手エース",
+        "text": "{一年間|いちねんかん}{補欠|ほけつ}だった{奴|やつ}に、{止|と}められるわけがない。",
+        "en": "No way a guy who's been on the bench all year can stop me."
+       }
+      ]
+     },
+     {
+      "scene": "{強|つよ}いシュート。タクミが{両手|りょうて}でボールをつかむ。",
+      "sceneEn": "A powerful shot. Takumi catches it with both hands.",
+      "lines": [
+       {
+        "speaker": "SFX",
+        "text": "ドンッ！バシッ！",
+        "en": "(boom! smack!)"
+       }
+      ]
+     },
+     {
+      "scene": "チームメイトがタクミに{飛|と}びつく。",
+      "sceneEn": "His teammates pile onto him.",
+      "lines": [
+       {
+        "speaker": "チームメイト",
+        "text": "タクミー！やったな！",
+        "en": "Takumiii! You did it!"
+       },
+       {
+        "speaker": "タクミ",
+        "text": "…{先輩|せんぱい}、{止|と}めました…！",
+        "en": "...I stopped it...!"
+       },
+       {
+        "speaker": "先輩",
+        "text": "{見|み}てたぞ。お{前|まえ}の{努力|どりょく}は、ちゃんと{結果|けっか}になったな。",
+        "en": "I saw. All your hard work paid off."
+       }
+      ]
+     }
+    ]
+   }
+  ],
+  "glossary": [
+   {
+    "word": "決勝",
+    "reading": "けっしょう",
+    "meaning": "final (match)"
+   },
+   {
+    "word": "延長戦",
+    "reading": "えんちょうせん",
+    "meaning": "extra time, overtime"
+   },
+   {
+    "word": "決着がつく",
+    "reading": "けっちゃくがつく",
+    "meaning": "to be settled, decided"
+   },
+   {
+    "word": "交代",
+    "reading": "こうたい",
+    "meaning": "substitution, switch"
+   },
+   {
+    "word": "監督",
+    "reading": "かんとく",
+    "meaning": "coach, manager"
+   },
+   {
+    "word": "震える",
+    "reading": "ふるえる",
+    "meaning": "to shake, tremble"
+   },
+   {
+    "word": "落ち着く",
+    "reading": "おちつく",
+    "meaning": "to calm down"
+   },
+   {
+    "word": "補欠",
+    "reading": "ほけつ",
+    "meaning": "substitute, bench player"
+   },
+   {
+    "word": "優勝",
+    "reading": "ゆうしょう",
+    "meaning": "winning the championship"
+   },
+   {
+    "word": "努力",
+    "reading": "どりょく",
+    "meaning": "effort, hard work"
+   }
+  ],
+  "exercises": [
+   {
+    "type": "vocabulary",
+    "prompt": "「{補欠|ほけつ}」の{意味|いみ}は？",
+    "promptEn": "What does 補欠 mean?",
+    "options": [
+     "a substitute (bench) player",
+     "the team captain",
+     "the referee",
+     "a supporter in the stands"
+    ],
+    "answerIndex": 0,
+    "explanation": "補欠 is a reserve player who usually sits on the bench, which is how the rival ace sees Takumi.",
+    "referenceAnswer": ""
+   },
+   {
+    "type": "kanji_reading",
+    "prompt": "「延長戦」の{読|よ}み{方|かた}は？",
+    "promptEn": "How do you read 延長戦?",
+    "options": [
+     "えんちょうせん",
+     "えんちょうさん",
+     "いんちょうせん",
+     "えんながせん"
+    ],
+    "answerIndex": 0,
+    "explanation": "延長戦 = えんちょうせん: 延長 (えんちょう, extension) + 戦 (せん, match).",
+    "referenceAnswer": ""
+   },
+   {
+    "type": "who_said_it",
+    "prompt": "「お{前|まえ}は{毎日|まいにち}、{誰|だれ}よりも{遅|おそ}くまで{練習|れんしゅう}してたじゃないか。」",
+    "promptEn": "\"You practiced later than anyone, every single day.\" Who said it?",
+    "options": [
+     "監督",
+     "先輩",
+     "相手エース",
+     "チームメイト"
+    ],
+    "answerIndex": 1,
+    "explanation": "The injured senior goalkeeper says it to encourage Takumi.",
+    "referenceAnswer": ""
+   },
+   {
+    "type": "grammar",
+    "prompt": "{一回|いっかい}も{試合|しあい}に{出|で}たことない＿＿…。",
+    "promptEn": "Even though I've never played in a match...",
+    "options": [
+     "のに",
+     "ので",
+     "から",
+     "ため"
+    ],
+    "answerIndex": 0,
+    "explanation": "〜のに shows surprise or complaint: \"even though / and yet\". Takumi can't believe he's being sent in despite never having played.",
+    "referenceAnswer": ""
+   },
+   {
+    "type": "open_question",
+    "prompt": "タクミはどうやって{二本目|にほんめ}のPKを{止|と}めることができましたか。",
+    "promptEn": "How was Takumi able to stop the second penalty?",
+    "options": [],
+    "answerIndex": -1,
+    "explanation": "",
+    "referenceAnswer": "{練習|れんしゅう}のときのように{相手|あいて}の{目|め}と{足|あし}をよく{見|み}て、ボールが{右|みぎ}に{来|く}ると{読|よ}んだからです。"
+   },
+   {
+    "type": "continue_story",
+    "prompt": "{優勝|ゆうしょう}した{次|つぎ}の{日|ひ}、{学校|がっこう}でタクミに{何|なに}が{起|お}きると{思|おも}いますか。3〜4{文|ぶん}で{書|か}いてください。",
+    "promptEn": "The day after the win, what do you think happens to Takumi at school? Write 3-4 sentences.",
+    "options": [],
+    "answerIndex": -1,
+    "explanation": "",
+    "referenceAnswer": "タクミが{教室|きょうしつ}に{入|はい}ると、みんなが{拍手|はくしゅ}をしました。{知|し}らない{生徒|せいと}にも{声|こえ}をかけられて、タクミは{恥|は}ずかしくなりました。{放課後|ほうかご}、{監督|かんとく}は「{次|つぎ}の{大会|たいかい}はお{前|まえ}がレギュラーだ」と{言|い}いました。"
+   }
+  ]
+ },
+ {
+  "id": "starter-n3-gamer-grandma",
+  "title": "おばあちゃんはゲーマー",
+  "titleEn": "Grandma Is a Gamer",
+  "summaryEn": "Middle-schooler Sota keeps losing to the top-ranked online player \"HANA-72\", and discovers on a summer visit who it really is.",
+  "level": "N3",
+  "topic": "ゲーム · Video games",
+  "source": "story",
+  "pageCount": 3,
+  "pages": [
+   {
+    "panels": [
+     {
+      "scene": "ソウタの{部屋|へや}。オンラインゲームで{負|ま}けている。",
+      "sceneEn": "Sota's room. He's losing at an online game.",
+      "lines": [
+       {
+        "speaker": "ソウタ",
+        "text": "くそっ、また{負|ま}けた！このランキング{一位|いちい}の「HANA-72」って、いったい{誰|だれ}なんだよ。",
+        "en": "Dammit, lost again! Who on earth is this number-one \"HANA-72\"?"
+       }
+      ]
+     },
+     {
+      "scene": "{夏休|なつやす}み、おばあちゃんの{家|いえ}に{遊|あそ}びに{来|き}たソウタ。",
+      "sceneEn": "Summer break. Sota visits his grandmother's house.",
+      "lines": [
+       {
+        "speaker": "ハナ",
+        "text": "ソウタ、いらっしゃい。スイカ{切|き}ってあるよ。",
+        "en": "Welcome, Sota. I've cut some watermelon for you."
+       }
+      ]
+     },
+     {
+      "scene": "おばあちゃんの{部屋|へや}に、{大|おお}きなモニターとヘッドセット。",
+      "sceneEn": "In grandma's room: a big monitor and a headset.",
+      "lines": [
+       {
+        "speaker": "ソウタ",
+        "text": "…え？ばあちゃん、なんでこんなすごいパソコン{持|も}ってるの？",
+        "en": "...Huh? Grandma, why do you have such an amazing computer?"
+       }
+      ]
+     },
+     {
+      "scene": "ハナが{少|すこ}しさびしそうに{笑|わら}う。",
+      "sceneEn": "Hana smiles a little sadly.",
+      "lines": [
+       {
+        "speaker": "ハナ",
+        "text": "じいちゃんが{亡|な}くなってから、さびしくてね。{友達|ともだち}に{勧|すす}められて、ゲームを{始|はじ}めたのよ。",
+        "en": "After grandpa passed away, I was lonely. A friend recommended it, so I started playing games."
+       }
+      ]
+     }
+    ]
+   },
+   {
+    "panels": [
+     {
+      "scene": "{画面|がめん}に「HANA-72」の{文字|もじ}。",
+      "sceneEn": "The screen shows \"HANA-72\".",
+      "lines": [
+       {
+        "speaker": "ソウタ",
+        "text": "HANA-72…！？ばあちゃんがランキング{一位|いちい}！？",
+        "en": "HANA-72...!? Grandma, you're number one!?"
+       }
+      ]
+     },
+     {
+      "scene": "ハナがピースをする。",
+      "sceneEn": "Hana flashes a peace sign.",
+      "lines": [
+       {
+        "speaker": "ハナ",
+        "text": "72はね、{私|わたし}の{年齢|ねんれい}よ。{毎日|まいにち}{三時間|さんじかん}{練習|れんしゅう}してるの。",
+        "en": "The 72 is my age. I practice three hours every day."
+       },
+       {
+        "speaker": "ソウタ",
+        "text": "{三時間|さんじかん}も！？",
+        "en": "Three hours!?"
+       }
+      ]
+     },
+     {
+      "scene": "{画面|がめん}のチャット{欄|らん}に、いろいろな{国|くに}の{名前|なまえ}。",
+      "sceneEn": "The chat window shows names from all over the world.",
+      "lines": [
+       {
+        "speaker": "ハナ",
+        "text": "ゲームの{中|なか}には、{世界中|せかいじゅう}に{友達|ともだち}がいるの。{昨日|きのう}もブラジルの{子|こ}とチームを{組|く}んだわ。",
+        "en": "In the game, I have friends all over the world. Yesterday I teamed up with a kid from Brazil."
+       },
+       {
+        "speaker": "ソウタ",
+        "text": "ばあちゃん、{英語|えいご}できるの？",
+        "en": "Grandma, can you speak English?"
+       },
+       {
+        "speaker": "ハナ",
+        "text": "{言葉|ことば}が{通|つう}じなくても、ゲームなら{気持|きも}ちは{伝|つた}わるのよ。",
+        "en": "Even if we don't share a language, in a game your feelings still get across."
+       }
+      ]
+     }
+    ]
+   },
+   {
+    "panels": [
+     {
+      "scene": "{二人|ふたり}でコントローラーを{持|も}つ。",
+      "sceneEn": "The two of them pick up controllers.",
+      "lines": [
+       {
+        "speaker": "ハナ",
+        "text": "じゃあ、{一回|いっかい}{勝負|しょうぶ}しようか。{手加減|てかげん}はしないよ。",
+        "en": "Well then, shall we have a match? I won't go easy on you."
+       },
+       {
+        "speaker": "SFX",
+        "text": "カチカチカチ",
+        "en": "(click click click)"
+       }
+      ]
+     },
+     {
+      "scene": "ソウタのキャラクターがあっという{間|ま}に{倒|たお}される。",
+      "sceneEn": "Sota's character is knocked out in no time.",
+      "lines": [
+       {
+        "speaker": "ソウタ",
+        "text": "うわっ、{速|はや}い！どうやったらそんなに{上手|じょうず}になれるの？",
+        "en": "Whoa, so fast! How do you get that good?"
+       }
+      ]
+     },
+     {
+      "scene": "{机|つくえ}の{上|うえ}にノートの{山|やま}。",
+      "sceneEn": "A pile of notebooks on the desk.",
+      "lines": [
+       {
+        "speaker": "ハナ",
+        "text": "{負|ま}けても、なぜ{負|ま}けたかを{毎回|まいかい}ノートに{書|か}いてるのよ。{勉強|べんきょう}と{同|おな}じね。",
+        "en": "Every time I lose, I write down why in a notebook. Same as studying."
+       }
+      ]
+     },
+     {
+      "scene": "ソウタがノートを{手|て}に{取|と}る。",
+      "sceneEn": "Sota picks up a notebook.",
+      "lines": [
+       {
+        "speaker": "ソウタ",
+        "text": "…ばあちゃん、{明日|あした}も{教|おし}えてくれる？",
+        "en": "...Grandma, will you teach me again tomorrow?"
+       },
+       {
+        "speaker": "ハナ",
+        "text": "いいよ。その{代|か}わり、{宿題|しゅくだい}が{終|お}わってからね。",
+        "en": "Sure. But only after your homework's done."
+       },
+       {
+        "speaker": "ナレーション",
+        "text": "その{夏|なつ}、ソウタのランキングは{少|すこ}しだけ{上|あ}がった。",
+        "en": "That summer, Sota's ranking went up, just a little."
+       }
+      ]
+     }
+    ]
+   }
+  ],
+  "glossary": [
+   {
+    "word": "負ける",
+    "reading": "まける",
+    "meaning": "to lose"
+   },
+   {
+    "word": "いったい",
+    "reading": "いったい",
+    "meaning": "on earth, exactly (emphasis)"
+   },
+   {
+    "word": "亡くなる",
+    "reading": "なくなる",
+    "meaning": "to pass away"
+   },
+   {
+    "word": "勧める",
+    "reading": "すすめる",
+    "meaning": "to recommend"
+   },
+   {
+    "word": "年齢",
+    "reading": "ねんれい",
+    "meaning": "age"
+   },
+   {
+    "word": "組む",
+    "reading": "くむ",
+    "meaning": "to team up, pair up"
+   },
+   {
+    "word": "通じる",
+    "reading": "つうじる",
+    "meaning": "to be understood, get through"
+   },
+   {
+    "word": "伝わる",
+    "reading": "つたわる",
+    "meaning": "to be conveyed, get across"
+   },
+   {
+    "word": "勝負",
+    "reading": "しょうぶ",
+    "meaning": "match, contest"
+   },
+   {
+    "word": "その代わり",
+    "reading": "そのかわり",
+    "meaning": "in exchange, but in return"
+   }
+  ],
+  "exercises": [
+   {
+    "type": "true_false",
+    "prompt": "ハナは{毎日|まいにち}{一時間|いちじかん}ゲームの{練習|れんしゅう}をしている。",
+    "promptEn": "Hana practices the game for one hour every day.",
+    "options": [
+     "○ 正しい",
+     "× まちがい"
+    ],
+    "answerIndex": 1,
+    "explanation": "False. She practices three hours a day (毎日三時間).",
+    "referenceAnswer": ""
+   },
+   {
+    "type": "vocabulary",
+    "prompt": "「{友達|ともだち}に{勧|すす}められて」の「{勧|すす}める」の{意味|いみ}は？",
+    "promptEn": "In 友達に勧められて, what does 勧める mean?",
+    "options": [
+     "to recommend",
+     "to forbid",
+     "to teach",
+     "to buy for someone"
+    ],
+    "answerIndex": 0,
+    "explanation": "勧める is \"to recommend\". 勧められて is passive: \"having been recommended (it) by a friend\".",
+    "referenceAnswer": ""
+   },
+   {
+    "type": "fill_blank",
+    "prompt": "「{言葉|ことば}が{通|つう}じ＿＿、ゲームなら{気持|きも}ちは{伝|つた}わるのよ。」",
+    "promptEn": "Even if we don't share a language, in a game your feelings get across.",
+    "options": [
+     "なくても",
+     "ないので",
+     "なければ",
+     "なくて"
+    ],
+    "answerIndex": 0,
+    "explanation": "〜なくても = \"even if (it) doesn't\": 通じなくても, \"even if we can't understand each other\".",
+    "referenceAnswer": ""
+   },
+   {
+    "type": "kanji_reading",
+    "prompt": "「年齢」の{読|よ}み{方|かた}は？",
+    "promptEn": "How do you read 年齢?",
+    "options": [
+     "ねんれい",
+     "としれい",
+     "ねんりょう",
+     "ねんれ"
+    ],
+    "answerIndex": 0,
+    "explanation": "年齢 is ねんれい, a more formal word for age than 年 (とし).",
+    "referenceAnswer": ""
+   },
+   {
+    "type": "open_question",
+    "prompt": "ハナはどうしてゲームが{上手|じょうず}になったのですか。",
+    "promptEn": "Why did Hana become so good at the game?",
+    "options": [],
+    "answerIndex": -1,
+    "explanation": "",
+    "referenceAnswer": "{毎日|まいにち}{三時間|さんじかん}{練習|れんしゅう}して、{負|ま}けたときは{理由|りゆう}を{毎回|まいかい}ノートに{書|か}いているからです。"
+   },
+   {
+    "type": "say_it_in_japanese",
+    "prompt": "{次|つぎ}の{英語|えいご}を{日本語|にほんご}で{言|い}ってください：「Grandma, will you teach me again tomorrow?」",
+    "promptEn": "Say this in Japanese: \"Grandma, will you teach me again tomorrow?\"",
+    "options": [],
+    "answerIndex": -1,
+    "explanation": "",
+    "referenceAnswer": "ばあちゃん、{明日|あした}も{教|おし}えてくれる？"
+   }
+  ]
+ },
+ {
+  "id": "starter-n3-garbage-rules",
+  "title": "ゴミ{出|だ}しのルール",
+  "titleEn": "The Garbage Rules",
+  "summaryEn": "Lin, a new international student, keeps getting the garbage days wrong, and the grumpy neighbor who scolds her turns out to be the one who helps.",
+  "level": "N3",
+  "topic": "社会 · Daily life",
+  "source": "story",
+  "pageCount": 3,
+  "pages": [
+   {
+    "panels": [
+     {
+      "scene": "{朝|あさ}のアパートのゴミ{置|お}き{場|ば}。",
+      "sceneEn": "The apartment's garbage area in the morning.",
+      "lines": [
+       {
+        "speaker": "田中さん",
+        "text": "ちょっと！{今日|きょう}は{燃|も}えないゴミの{日|ひ}じゃないよ！",
+        "en": "Hey! Today isn't non-burnable garbage day!"
+       }
+      ]
+     },
+     {
+      "scene": "ベトナムから{来|き}た{留学生|りゅうがくせい}のリンが{頭|あたま}を{下|さ}げる。",
+      "sceneEn": "Lin, an international student from Vietnam, bows.",
+      "lines": [
+       {
+        "speaker": "リン",
+        "text": "す、すみません！{日本|にほん}のゴミのルール、まだよくわからなくて…。",
+        "en": "I-I'm sorry! I still don't really understand Japan's garbage rules..."
+       }
+      ]
+     },
+     {
+      "scene": "{田中|たなか}さんが{指|ゆび}を{折|お}って{数|かぞ}える。",
+      "sceneEn": "Ms. Tanaka counts on her fingers.",
+      "lines": [
+       {
+        "speaker": "田中さん",
+        "text": "{燃|も}えるゴミは{月曜|げつよう}と{木曜|もくよう}。ペットボトルは{水曜|すいよう}。ちゃんとカレンダーを{見|み}なさい。",
+        "en": "Burnable garbage is Monday and Thursday. Plastic bottles are Wednesday. Look at the calendar properly."
+       }
+      ]
+     },
+     {
+      "scene": "{部屋|へや}に{戻|もど}ったリン。",
+      "sceneEn": "Lin, back in her room.",
+      "lines": [
+       {
+        "speaker": "リン（心の声）",
+        "text": "こわい…。でも、カレンダーは{全部|ぜんぶ}{日本語|にほんご}で、{漢字|かんじ}が{読|よ}めないんだよなあ…。",
+        "en": "Scary... But the calendar's all in Japanese, and I can't read the kanji..."
+       }
+      ]
+     }
+    ]
+   },
+   {
+    "panels": [
+     {
+      "scene": "{数日後|すうじつご}。リンがカレンダーを{辞書|じしょ}で{調|しら}べている。",
+      "sceneEn": "A few days later. Lin is looking up the calendar in a dictionary.",
+      "lines": [
+       {
+        "speaker": "リン",
+        "text": "「{資源|しげん}ゴミ」…しげん…？",
+        "en": "\"Resource garbage\"... shigen...?"
+       }
+      ]
+     },
+     {
+      "scene": "ドアをノックする{音|おと}。",
+      "sceneEn": "A knock at the door.",
+      "lines": [
+       {
+        "speaker": "SFX",
+        "text": "トントン",
+        "en": "(knock knock)"
+       },
+       {
+        "speaker": "田中さん",
+        "text": "これ、あんたのために{作|つく}ったから。",
+        "en": "Here. I made this for you."
+       }
+      ]
+     },
+     {
+      "scene": "{絵|え}と{英語|えいご}が{入|はい}った{手作|てづく}りのカレンダー。",
+      "sceneEn": "A handmade calendar with pictures and English.",
+      "lines": [
+       {
+        "speaker": "リン",
+        "text": "わあ…！{絵|え}があるから、すごくわかりやすいです！",
+        "en": "Wow...! With the pictures, it's so easy to understand!"
+       }
+      ]
+     },
+     {
+      "scene": "{田中|たなか}さんがそっぽを{向|む}く。",
+      "sceneEn": "Ms. Tanaka looks away.",
+      "lines": [
+       {
+        "speaker": "田中さん",
+        "text": "{孫|まご}に{手伝|てつだ}ってもらったんだよ。{英語|えいご}なんて、{私|わたし}にはさっぱりだからね。",
+        "en": "My grandkid helped me. I can't make heads or tails of English."
+       }
+      ]
+     }
+    ]
+   },
+   {
+    "panels": [
+     {
+      "scene": "{木曜日|もくようび}の{朝|あさ}。{二人|ふたり}でゴミを{出|だ}す。",
+      "sceneEn": "Thursday morning. They take the garbage out together.",
+      "lines": [
+       {
+        "speaker": "リン",
+        "text": "{田中|たなか}さん、おはようございます！{今日|きょう}は{燃|も}えるゴミの{日|ひ}ですね。",
+        "en": "Good morning, Ms. Tanaka! Today is burnable garbage day, right?"
+       },
+       {
+        "speaker": "田中さん",
+        "text": "おっ、ちゃんと{覚|おぼ}えたじゃないか。",
+        "en": "Oh, you remembered properly."
+       }
+      ]
+     },
+     {
+      "scene": "リンが{容器|ようき}を{差|さ}し{出|だ}す。",
+      "sceneEn": "Lin holds out a container.",
+      "lines": [
+       {
+        "speaker": "リン",
+        "text": "お{礼|れい}に、ベトナムの{料理|りょうり}を{作|つく}ったんです。よかったら{食|た}べてください。",
+        "en": "As a thank-you, I made some Vietnamese food. Please try it if you'd like."
+       }
+      ]
+     },
+     {
+      "scene": "{田中|たなか}さんが{少|すこ}し{迷|まよ}ってから、{一口|ひとくち}{食|た}べる。",
+      "sceneEn": "Ms. Tanaka hesitates, then takes a bite.",
+      "lines": [
+       {
+        "speaker": "田中さん",
+        "text": "…{私|わたし}、{外国|がいこく}の{料理|りょうり}は{食|た}べたことがないんだけど…。",
+        "en": "...I've never eaten foreign food, you know..."
+       },
+       {
+        "speaker": "SFX",
+        "text": "パクッ",
+        "en": "(chomp)"
+       },
+       {
+        "speaker": "田中さん",
+        "text": "…おいしい！",
+        "en": "...Delicious!"
+       }
+      ]
+     },
+     {
+      "scene": "{数か月後|すうかげつご}、{田中|たなか}さんの{部屋|へや}。テーブルに{料理|りょうり}が{並|なら}ぶ。",
+      "sceneEn": "A few months later, Ms. Tanaka's apartment. Dishes cover the table.",
+      "lines": [
+       {
+        "speaker": "ナレーション",
+        "text": "ルールを{守|まも}ることから{始|はじ}まった{二人|ふたり}の{付|つ}き{合|あ}いは、{今|いま}では{毎週|まいしゅう}の{夕食会|ゆうしょくかい}になっている。",
+        "en": "What started with following the rules has become a weekly dinner together."
+       }
+      ]
+     }
+    ]
+   }
+  ],
+  "glossary": [
+   {
+    "word": "燃えるゴミ",
+    "reading": "もえるごみ",
+    "meaning": "burnable garbage"
+   },
+   {
+    "word": "燃えないゴミ",
+    "reading": "もえないごみ",
+    "meaning": "non-burnable garbage"
+   },
+   {
+    "word": "留学生",
+    "reading": "りゅうがくせい",
+    "meaning": "international student"
+   },
+   {
+    "word": "資源ゴミ",
+    "reading": "しげんごみ",
+    "meaning": "recyclables"
+   },
+   {
+    "word": "辞書",
+    "reading": "じしょ",
+    "meaning": "dictionary"
+   },
+   {
+    "word": "手作り",
+    "reading": "てづくり",
+    "meaning": "handmade"
+   },
+   {
+    "word": "孫",
+    "reading": "まご",
+    "meaning": "grandchild"
+   },
+   {
+    "word": "さっぱり（〜ない）",
+    "reading": "さっぱり",
+    "meaning": "(not) at all"
+   },
+   {
+    "word": "お礼",
+    "reading": "おれい",
+    "meaning": "thanks, a thank-you gift"
+   },
+   {
+    "word": "付き合い",
+    "reading": "つきあい",
+    "meaning": "relationship, association"
+   },
+   {
+    "word": "守る",
+    "reading": "まもる",
+    "meaning": "to follow (rules), protect"
+   }
+  ],
+  "exercises": [
+   {
+    "type": "who_said_it",
+    "prompt": "「{孫|まご}に{手伝|てつだ}ってもらったんだよ。」",
+    "promptEn": "\"My grandkid helped me.\" Who said it?",
+    "options": [
+     "リン",
+     "田中さん",
+     "リンの友達",
+     "大家さん"
+    ],
+    "answerIndex": 1,
+    "explanation": "Ms. Tanaka says it, a little embarrassed, when she gives Lin the handmade calendar.",
+    "referenceAnswer": ""
+   },
+   {
+    "type": "grammar",
+    "prompt": "「{孫|まご}に{手伝|てつだ}って＿＿んだよ。」",
+    "promptEn": "\"I had my grandkid help me.\"",
+    "options": [
+     "もらった",
+     "あげた",
+     "くれた",
+     "やった"
+    ],
+    "answerIndex": 0,
+    "explanation": "〜てもらう means receiving a favor from someone, marked with に: 孫に手伝ってもらった = \"I got my grandchild to help (me)\".",
+    "referenceAnswer": ""
+   },
+   {
+    "type": "vocabulary",
+    "prompt": "「{英語|えいご}なんて、{私|わたし}にはさっぱりだからね。」の「さっぱり」の{意味|いみ}は？",
+    "promptEn": "What does さっぱり mean here?",
+    "options": [
+     "not at all (I don't understand it)",
+     "a little",
+     "perfectly",
+     "sometimes"
+    ],
+    "answerIndex": 0,
+    "explanation": "With a negative meaning, さっぱり means \"not at all\": さっぱりわからない = \"I don't understand it at all\".",
+    "referenceAnswer": ""
+   },
+   {
+    "type": "true_false",
+    "prompt": "{田中|たなか}さんは{前|まえ}からベトナム{料理|りょうり}が{大好|だいす}きだった。",
+    "promptEn": "Ms. Tanaka has always loved Vietnamese food.",
+    "options": [
+     "○ 正しい",
+     "× まちがい"
+    ],
+    "answerIndex": 1,
+    "explanation": "False. She says she has never eaten foreign food before (外国の料理は食べたことがない).",
+    "referenceAnswer": ""
+   },
+   {
+    "type": "open_question",
+    "prompt": "{田中|たなか}さんは{最初|さいしょ}、リンにどんな{態度|たいど}でしたか。そのあと、どう{変|か}わりましたか。",
+    "promptEn": "How did Ms. Tanaka treat Lin at first, and how did that change?",
+    "options": [],
+    "answerIndex": -1,
+    "explanation": "",
+    "referenceAnswer": "{最初|さいしょ}は{厳|きび}しく{注意|ちゅうい}していましたが、リンのために{手作|てづく}りのカレンダーを{作|つく}ってくれました。{今|いま}では{毎週|まいしゅう}{一緒|いっしょ}に{夕食|ゆうしょく}を{食|た}べる{仲|なか}になりました。"
+   },
+   {
+    "type": "continue_story",
+    "prompt": "{夕食会|ゆうしょくかい}に、{田中|たなか}さんのお{孫|まご}さんも{来|く}ることになりました。どんなことが{起|お}きると{思|おも}いますか。3〜4{文|ぶん}で{書|か}いてください。",
+    "promptEn": "Ms. Tanaka's grandchild is coming to the dinner too. What do you think happens? Write 3-4 sentences.",
+    "options": [],
+    "answerIndex": -1,
+    "explanation": "",
+    "referenceAnswer": "お{孫|まご}さんはリンと{同|おな}じ{大学|だいがく}の{学生|がくせい}でした。{二人|ふたり}は{英語|えいご}と{日本語|にほんご}で{話|はな}して、すぐに{仲良|なかよ}くなりました。{田中|たなか}さんは「{私|わたし}も{英語|えいご}を{勉強|べんきょう}しようかな」と{言|い}いました。"
+   }
+  ]
+ }
+]

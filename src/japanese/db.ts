@@ -1,7 +1,7 @@
 import { openDB, type DBSchema, type IDBPDatabase } from "idb";
 import type { Attempt, Clip } from "./types";
 import type { MangaLesson } from "./manga/types";
-import { STARTER_LESSON } from "./manga/starter";
+import { STARTER_LESSONS } from "./manga/starter";
 import { DEMO_CLIP } from "./sample";
 
 interface KotobaDB extends DBSchema {
@@ -104,19 +104,35 @@ export async function getAllAttempts(): Promise<Attempt[]> {
 
 const MANGA_SEEDED_KEY = "kotoba.mangaSeeded";
 
+/** IDs of ready-made lessons already added to this browser (so deleted ones stay deleted). */
+function seededIds(): Set<string> {
+  try {
+    const raw = localStorage.getItem(MANGA_SEEDED_KEY);
+    if (!raw) return new Set();
+    // Older versions stored a single id rather than a JSON list.
+    return new Set(raw.startsWith("[") ? (JSON.parse(raw) as string[]) : [raw]);
+  } catch {
+    return new Set();
+  }
+}
+
 export async function getAllMangaLessons(): Promise<MangaLesson[]> {
   const db = await getDB();
-  let seeded = false;
-  try {
-    seeded = localStorage.getItem(MANGA_SEEDED_KEY) === STARTER_LESSON.id;
-  } catch {
-    /* storage unavailable */
+  const seeded = seededIds();
+  const now = Date.now();
+  let added = false;
+  for (const [i, lesson] of STARTER_LESSONS.entries()) {
+    const existing = await db.get("manga", lesson.id);
+    // Lessons saved before topics existed get theirs (progress is kept).
+    if (existing && !existing.topic && lesson.topic) await db.put("manga", { ...existing, topic: lesson.topic });
+    if (seeded.has(lesson.id)) continue;
+    if (!existing) await db.put("manga", { ...lesson, createdAt: now - i });
+    seeded.add(lesson.id);
+    added = true;
   }
-  // Add the ready-made chapter once, unless it's already there (or was deleted after seeding).
-  if (!seeded && !(await db.get("manga", STARTER_LESSON.id))) {
-    await db.put("manga", { ...STARTER_LESSON, createdAt: Date.now() });
+  if (added) {
     try {
-      localStorage.setItem(MANGA_SEEDED_KEY, STARTER_LESSON.id);
+      localStorage.setItem(MANGA_SEEDED_KEY, JSON.stringify([...seeded]));
     } catch {
       /* storage unavailable */
     }

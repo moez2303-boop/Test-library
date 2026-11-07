@@ -92,6 +92,8 @@ export interface MangaLesson {
   /** The uploaded file's name, with the part or page range used. */
   fileLabel?: string;
   style?: StyleKey;
+  /** Shown on ready-made lessons, e.g. "政治 · Politics". */
+  topic?: string;
   pageCount: number;
   pages: MangaPage[];
   glossary: GlossaryItem[];

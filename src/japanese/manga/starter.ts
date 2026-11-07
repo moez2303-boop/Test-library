@@ -1,4 +1,5 @@
 import type { MangaLesson } from "./types";
+import more from "./starters.json";
 
 /**
  * A ready-made original chapter, so the Manga tab has something to read on
@@ -13,6 +14,7 @@ export const STARTER_LESSON: MangaLesson = {
   level: "N3",
   source: "story",
   style: "random",
+  topic: "コメディ · Comedy",
   pageCount: 3,
   pages: [
     {
@@ -242,3 +244,9 @@ export const STARTER_LESSON: MangaLesson = {
   results: {},
   createdAt: 0,
 };
+
+/** Every ready-made lesson, newest first in the list. */
+export const STARTER_LESSONS: MangaLesson[] = [
+  ...(more as Omit<MangaLesson, "results" | "createdAt">[]).map((l) => ({ ...l, results: {}, createdAt: 0 })),
+  STARTER_LESSON,
+];

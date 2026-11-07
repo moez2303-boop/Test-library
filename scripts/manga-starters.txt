@@ -1,0 +1,598 @@
+# Ready-made manga lessons (original stories), converted by scripts/build_starters.py
+# into src/japanese/manga/starters.json.
+#
+# Format: "=== id" starts a lesson; "--- page" / "--- glossary" / "--- exercise <type>" start sections.
+# Fields are separated by " || ". Readings: {漢字|かんじ}.
+#   > scene || scene_en
+#   @speaker || text || en
+#   glossary: word || reading || meaning
+#   exercise: ? prompt || prompt_en, "+ correct option", "- other option", "! explanation", "= reference answer"
+
+=== starter-n2-first-vote
+title: {十八歳|じゅうはっさい}の{一票|いっぴょう}
+title_en: My First Vote
+level: N2
+topic: 政治 · Politics
+summary: Eighteen-year-old Yuki doubts his vote matters in his town's mayoral election, until talking with his friend and his grandmother shows him how differently the same issues touch people.
+--- page
+> {桜川町|さくらがわちょう}の{駅前|えきまえ}。{選挙|せんきょ}カーが{走|はし}っている。 || In front of Sakuragawa station. A campaign car drives past.
+@選挙カー || {森田|もりた}、{森田|もりた}をよろしくお{願|ねが}いいたします！ || Morita! Please vote for Morita!
+@ユウキ || うるさいなあ…。そもそも{誰|だれ}に{投票|とうひょう}すればいいのか、さっぱりわからないよ。 || So noisy... I have no idea who I'm even supposed to vote for.
+> {教室|きょうしつ}。{友達|ともだち}のケンタが{話|はな}しかける。 || The classroom. His friend Kenta starts talking to him.
+@ケンタ || ユウキ、もう{十八|じゅうはち}だろ？{日曜|にちよう}の{町長|ちょうちょう}{選挙|せんきょ}、{行|い}くの？ || Yuki, you're eighteen now, right? Are you going to vote in Sunday's mayoral election?
+@ユウキ || {行|い}かなきゃとは{思|おも}ってるけど、どうせ{俺|おれ}の{一票|いっぴょう}なんかで{何|なに}も{変|か}わらないし。 || I know I should, but my one vote isn't going to change anything anyway.
+> ケンタがスマホでポスターを{見|み}せる。 || Kenta shows him a poster on his phone.
+@ケンタ || {俺|おれ}は{森田|もりた}{派|は}だな。{駅前|えきまえ}にショッピングモールができれば、バイト{先|さき}も{増|ふ}えるし、{町|まち}に{人|ひと}が{戻|もど}ってくるって。 || I'm on Morita's side. If they build a mall by the station, there'll be more part-time jobs and people will come back to town.
+@ナレーション || {現職|げんしょく}の{森田|もりた}{候補|こうほ}は{駅前|えきまえ}の{再開発|さいかいはつ}を、{新人|しんじん}の{青木|あおき}{候補|こうほ}は{子育|こそだ}て{支援|しえん}とバス{路線|ろせん}の{拡充|かくじゅう}を{訴|うった}えている。 || The incumbent, Morita, is campaigning on redeveloping the station area; the newcomer, Aoki, on childcare support and more bus routes.
+--- page
+> {夕方|ゆうがた}、ユウキの{家|いえ}。{祖母|そぼ}が{新聞|しんぶん}を{広|ひろ}げている。 || Evening at Yuki's house. His grandmother has the newspaper spread out.
+@キヨ || ユウキ、{選挙公報|せんきょこうほう}、もう{読|よ}んだかい？ || Yuki, have you read the election bulletin yet?
+@ユウキ || ばあちゃん、そんなの{読|よ}む{人|ひと}いるの？ || Grandma, does anyone actually read that?
+> キヨが{紙|かみ}をトントンと{指|ゆび}でたたく。 || Kiyo taps the paper with her finger.
+@キヨ || いるよ。{私|わたし}は{毎回|まいかい}、{隅|すみ}から{隅|すみ}まで{読|よ}んでるよ。{去年|きょねん}バスの{本数|ほんすう}が{減|へ}ってからは、{病院|びょういん}に{行|い}くのも{一苦労|ひとくろう}なんだから。 || I do. I read it cover to cover every time. Since they cut the buses last year, even getting to the hospital is a struggle.
+> ユウキ、はっとする。 || Yuki is struck by this.
+@ユウキ（心の声） || …そうか。ケンタにとってはバイト、ばあちゃんにとってはバス。{同|おな}じ{町|まち}に{住|す}んでいても、{困|こま}っていることは{人|ひと}によって{全然|ぜんぜん}{違|ちが}うんだ。 || ...I see. For Kenta it's jobs, for Grandma it's the bus. Even in the same town, what people struggle with is completely different.
+> ユウキが{少|すこ}し{考|かんが}えて{言|い}い{返|かえ}す。 || Yuki thinks for a moment and pushes back.
+@ユウキ || でも、モールができたら{税収|ぜいしゅう}が{増|ふ}えて、{結局|けっきょく}バスにもお{金|かね}が{回|まわ}るかもしれないじゃん。 || But if the mall brings in more tax money, some of it might end up going to the buses too.
+@キヨ || かもしれないね。だからこそ、{自分|じぶん}で{調|しら}べて{決|き}めるんだよ。 || Maybe so. That's exactly why you look into it yourself and decide.
+--- page
+> {夜|よる}、ユウキの{部屋|へや}。スマホで{両|りょう}{候補|こうほ}の{公約|こうやく}を{比|くら}べている。 || Night, Yuki's room. He compares both candidates' promises on his phone.
+@ユウキ（心の声） || {再開発|さいかいはつ}は{町|まち}の{将来|しょうらい}への{投資|とうし}。{子育|こそだ}て{支援|しえん}は{今|いま}{困|こま}っている{人|ひと}への{支援|しえん}。どっちも{間違|まちが}ってはいない…。 || Redevelopment is an investment in the town's future. Childcare support helps people struggling right now. Neither one is wrong...
+> ユウキ、{天井|てんじょう}を{見上|みあ}げる。 || Yuki stares up at the ceiling.
+@ユウキ || …{選|えら}ぶって、こんなに{難|むずか}しいことだったのか。 || ...So choosing is this hard.
+> {日曜日|にちようび}。{投票所|とうひょうじょ}になった{小学校|しょうがっこう}。 || Sunday. The elementary school that serves as a polling station.
+@SFX || カタン || (clack)
+@ナレーション || {誰|だれ}に{入|い}れたかは、ユウキだけの{秘密|ひみつ}だ。 || Who he voted for is Yuki's secret alone.
+> {帰|かえ}り{道|みち}。キヨと{並|なら}んで{歩|ある}く。 || On the way home, walking beside Kiyo.
+@キヨ || どうだった、{初|はじ}めての{選挙|せんきょ}は？ || So, how was your first election?
+@ユウキ || {緊張|きんちょう}した。でも、ちょっと{大人|おとな}になった{気|き}がする。 || I was nervous. But I feel a bit more grown-up.
+@キヨ || {結果|けっか}がどうなっても、ちゃんと{見|み}ておくんだよ。 || Whatever the result, make sure you keep watching what happens.
+--- glossary
+選挙 || せんきょ || election
+投票 || とうひょう || voting, a vote
+現職 || げんしょく || incumbent (current office holder)
+候補 || こうほ || candidate
+再開発 || さいかいはつ || redevelopment
+訴える || うったえる || to campaign for, appeal for
+拡充 || かくじゅう || expansion, enhancement
+選挙公報 || せんきょこうほう || official election bulletin
+隅から隅まで || すみからすみまで || from cover to cover, thoroughly
+一苦労 || ひとくろう || quite a struggle
+税収 || ぜいしゅう || tax revenue
+公約 || こうやく || campaign promise
+--- exercise vocabulary
+? 「{現職|げんしょく}の{森田|もりた}{候補|こうほ}」の「{現職|げんしょく}」の{意味|いみ}は？ || In 現職の森田候補, what does 現職 mean?
+- a first-time candidate
++ the incumbent (currently in office)
+- a campaign volunteer
+- an election official
+! 現職 (げんしょく) means someone currently holding the post. Morita is the sitting mayor; Aoki is the 新人, the newcomer.
+--- exercise grammar
+? どうせ{俺|おれ}の{一票|いっぴょう}＿＿で{何|なに}も{変|か}わらないし。 || My one vote isn't going to change anything anyway.
++ なんか
+- こそ
+- さえ
+- ばかり
+! 〜なんか (casual 〜など) makes light of something: "something like my one vote". It often pairs with どうせ to sound dismissive.
+--- exercise who_said_it
+? 「だからこそ、{自分|じぶん}で{調|しら}べて{決|き}めるんだよ。」 || "That's exactly why you look into it yourself and decide." Who said it?
+- ケンタ
+- ユウキ
++ キヨ
+- 森田候補
+! Kiyo, Yuki's grandmother. だからこそ = "that's precisely why".
+--- exercise true_false
+? {青木|あおき}{候補|こうほ}は、{駅前|えきまえ}にショッピングモールを{作|つく}ることを{訴|うった}えている。 || Aoki is campaigning to build a shopping mall by the station.
+- ○ 正しい
++ × まちがい
+! False. The mall and station redevelopment are Morita's platform; Aoki is campaigning on childcare support and bus routes.
+--- exercise open_question
+? ユウキの{選挙|せんきょ}に{対|たい}する{考|かんが}え{方|かた}は、{最初|さいしょ}と{最後|さいご}でどう{変|か}わりましたか。 || How did Yuki's attitude toward the election change from the beginning to the end?
+= {最初|さいしょ}は{自分|じぶん}の{一票|いっぴょう}では{何|なに}も{変|か}わらないと{思|おも}っていましたが、{祖母|そぼ}と{話|はな}して{困|こま}っていることは{人|ひと}によって{違|ちが}うと{気|き}づき、{自分|じぶん}で{調|しら}べて{投票|とうひょう}するようになりました。
+--- exercise continue_story
+? {選挙|せんきょ}の{結果|けっか}が{発表|はっぴょう}されました。ユウキは{結果|けっか}を{見|み}て、{何|なに}を{考|かんが}えたり、したりすると{思|おも}いますか。3〜4{文|ぶん}で{書|か}いてください。 || The election results are announced. What do you think Yuki thinks or does when he sees them? Write 3-4 sentences.
+= {結果|けっか}は{青木|あおき}{候補|こうほ}の{勝利|しょうり}でした。ユウキはケンタと{結果|けっか}について{話|はな}し{合|あ}いました。そして、{次|つぎ}の{選挙|せんきょ}までに{町|まち}がどう{変|か}わるか、{自分|じぶん}の{目|め}で{確|たし}かめようと{決|き}めました。
+
+=== starter-n2-shutter-street
+title: シャッター{商店街|しょうてんがい}の{逆襲|ぎゃくしゅう}
+title_en: Revenge of the Shuttered Shopping Street
+level: N2
+topic: 社会 · Society
+summary: Minami moves back to her declining hometown as a remote worker and proposes turning empty shops into a shared office, against the doubts of the old shopkeepers.
+--- page
+> {地方|ちほう}{都市|とし}のさびれた{商店街|しょうてんがい}。{半分|はんぶん}{以上|いじょう}の{店|みせ}がシャッターを{下|お}ろしている。 || A declining shopping street in a regional city. More than half the shops have their shutters down.
+@ナレーション || かつては「{町|まち}の{台所|だいどころ}」と{呼|よ}ばれた、ひばり{商店街|しょうてんがい}。 || Hibari Shopping Street, once called "the town's kitchen".
+@ナレーション || {今|いま}では、{開|あ}いている{店|みせ}のほうが{少|すく}ない。 || Now, fewer shops are open than closed.
+> {東京|とうきょう}から{戻|もど}ってきたミナミ（26）。 || Minami (26), back from Tokyo.
+@ミナミ || {子|こ}どもの{頃|ころ}は、ここを{歩|ある}くだけでわくわくしたのにな…。 || When I was a kid, just walking here was exciting...
+> {魚屋|さかなや}の{店先|みせさき}。{源|げん}さんが{声|こえ}をかける。 || In front of the fish shop, Gen calls out to her.
+@源さん || おう、ミナミちゃんか。{東京|とうきょう}の{会社|かいしゃ}は{辞|や}めたのかい？ || Oh, Minami! Did you quit your Tokyo job?
+@ミナミ || {辞|や}めてないよ。{今|いま}はリモートワークだから、どこに{住|す}んでも{仕事|しごと}ができるの。 || No, I didn't. I work remotely now, so I can do my job wherever I live.
+> {源|げん}さんがため{息|いき}をつく。 || Gen sighs.
+@源さん || へえ、{便利|べんり}な{時代|じだい}になったもんだ。…でも、この{商店街|しょうてんがい}はもう{終|お}わりだよ。{後継|あとつ}ぎもいないし、{俺|おれ}も{来年|らいねん}で{店|みせ}を{畳|たた}むつもりだ。 || Huh, what a convenient age. ...But this street is finished. There's no one to take over, and I'm planning to close the shop next year.
+--- page
+> ミナミが{空|あ}き{店舗|てんぽ}の{中|なか}をのぞく。 || Minami peers into an empty shop.
+@ミナミ（心の声） || {家賃|やちん}は{東京|とうきょう}の{十分|じゅうぶん}の{一|いち}{以下|いか}。この{広|ひろ}さなら…。 || The rent is less than a tenth of Tokyo's. With this much space...
+> {商店街|しょうてんがい}の{会議|かいぎ}。{年配|ねんぱい}の{店主|てんしゅ}たちが{並|なら}んでいる。 || A shopping-street meeting. Older shop owners sit in a row.
+@ミナミ || {空|あ}き{店舗|てんぽ}を、リモートワークの{人|ひと}たちが{使|つか}えるシェアオフィスにしませんか？ || Why don't we turn the empty shops into a shared office for remote workers?
+> {会長|かいちょう}が{腕|うで}を{組|く}む。 || The association chairman folds his arms.
+@会長 || そんなもの、{誰|だれ}が{来|く}るんだね。{若|わか}い{人|ひと}はみんな{出|で}て{行|い}ってしまったじゃないか。 || Who would come to something like that? All the young people have left.
+@店主 || どうせ{失敗|しっぱい}するに{決|き}まってる。 || It's bound to fail anyway.
+> ミナミがまっすぐ{前|まえ}を{見|み}る。 || Minami looks straight at them.
+@ミナミ || {出|で}て{行|い}った{人|ひと}の{中|なか}には、{本当|ほんとう}は{地元|じもと}で{暮|く}らしたい{人|ひと}もいるはずです。{仕事|しごと}さえあれば、{戻|もど}ってくるかもしれません。 || Among the people who left, some must actually want to live here. As long as there's work, they might come back.
+--- page
+> {半年後|はんとしご}。シェアオフィスで{若者|わかもの}たちがパソコンに{向|む}かっている。 || Six months later. Young people work at laptops in the shared office.
+@ナレーション || {半年後|はんとしご}――。 || Six months later...
+@若者 || {昼|ひる}ごはん、{源|げん}さんの{店|みせ}の{海鮮丼|かいせんどん}にしない？ || Want to get Gen's seafood bowl for lunch?
+> {魚屋|さかなや}の{前|まえ}に{行列|ぎょうれつ}ができている。 || There's a line in front of the fish shop.
+@源さん || おいおい、こんなに{客|きゃく}が{来|く}るのは{何十年|なんじゅうねん}ぶりだ？ || Whoa, when was the last time I had this many customers? Decades?
+> {若者|わかもの}の{一人|ひとり}が{頭|あたま}を{下|さ}げる。 || One of the young people bows.
+@若者 || {源|げん}さん、{魚|さかな}のさばき{方|かた}、{教|おし}えてもらえませんか？{僕|ぼく}、この{店|みせ}を{継|つ}ぎたいんです。 || Gen, could you teach me how to fillet fish? I want to take over this shop.
+@源さん || …お{前|まえ}、{本気|ほんき}か？ || ...Are you serious?
+> {商店街|しょうてんがい}に{夕日|ゆうひ}。シャッターがまた{一枚|いちまい}{開|あ}く。 || Sunset over the street. Another shutter rolls up.
+@ミナミ（心の声） || シャッターが{一枚|いちまい}{開|あ}くたびに、{町|まち}が{少|すこ}しずつ{息|いき}を{吹|ふ}き{返|かえ}していく。 || Every time a shutter goes up, the town comes back to life a little more.
+@源さん || {店|みせ}を{畳|たた}むのは、もう{少|すこ}し{先|さき}にするか。 || Maybe I'll put off closing the shop a little longer.
+--- glossary
+さびれる || さびれる || to decline, become deserted
+商店街 || しょうてんがい || shopping street
+後継ぎ || あとつぎ || successor, heir
+畳む || たたむ || to close down (a business)
+空き店舗 || あきてんぽ || vacant shop
+家賃 || やちん || rent
+年配 || ねんぱい || older, elderly
+地元 || じもと || hometown, local area
+行列 || ぎょうれつ || line, queue
+さばく || さばく || to fillet (fish)
+継ぐ || つぐ || to take over, succeed to
+息を吹き返す || いきをふきかえす || to come back to life
+--- exercise kanji_reading
+? 「後継ぎ」の{読|よ}み{方|かた}は？ || How do you read 後継ぎ?
++ あとつぎ
+- こうけいぎ
+- うしろつぎ
+- ごけいぎ
+! 後継ぎ is read あとつぎ: 後 (あと, after) + 継ぐ (つぐ, to succeed). It means the person who takes over a family business.
+--- exercise grammar
+? どうせ{失敗|しっぱい}する＿＿。 || It's bound to fail anyway.
++ に決まってる
+- わけがない
+- どころではない
+- にすぎない
+! 〜に決まっている means "is bound to, is certain to". わけがない would mean the opposite ("can't possibly fail"), which doesn't fit どうせ.
+--- exercise fill_blank
+? 「{仕事|しごと}＿＿あれば、{戻|もど}ってくるかもしれません。」 || As long as there's work, they might come back.
++ さえ
+- まで
+- こそ
+- しか
+! 〜さえ〜ば means "as long as / if only": 仕事さえあれば = "as long as there is work".
+--- exercise true_false
+? {会長|かいちょう}は{最初|さいしょ}、ミナミの{提案|ていあん}に{反対|はんたい}していた。 || At first, the chairman was against Minami's proposal.
++ ○ 正しい
+- × まちがい
+! True. He asks who would even come, since all the young people have left.
+--- exercise say_it_in_japanese
+? {次|つぎ}の{英語|えいご}を{日本語|にほんご}で{言|い}ってください：「This shopping street is finished. I'm planning to close my shop next year.」 || Say this in Japanese: "This shopping street is finished. I'm planning to close my shop next year."
+= この{商店街|しょうてんがい}はもう{終|お}わりだよ。{来年|らいねん}で{店|みせ}を{畳|たた}むつもりだ。
+--- exercise open_question
+? なぜ{商店街|しょうてんがい}に{人|ひと}が{戻|もど}ってきたのだと{思|おも}いますか。 || Why do you think people came back to the shopping street?
+= {家賃|やちん}が{安|やす}い{空|あ}き{店舗|てんぽ}がシェアオフィスになって、リモートワークの{若者|わかもの}が{集|あつ}まったからです。{若者|わかもの}が{商店街|しょうてんがい}の{店|みせ}を{利用|りよう}するようになり、{店|みせ}を{継|つ}ぎたい{人|ひと}も{出|で}てきました。
+
+=== starter-n2-final-round
+title: {最後|さいご}のラウンド
+title_en: The Final Round
+level: N2
+topic: ゲーム · Esports
+summary: Veteran fighting-game pro "Reiji", feeling his reflexes slow at 29, plays his retirement match against a 17-year-old prodigy who grew up watching him.
+--- page
+> {満員|まんいん}のeスポーツ{会場|かいじょう}。{巨大|きょだい}なスクリーン。 || A packed esports arena. A giant screen.
+@実況 || さあ、いよいよ{決勝戦|けっしょうせん}！この{試合|しあい}を{最後|さいご}に{引退|いんたい}を{表明|ひょうめい}しているレジェンド、レイジ{選手|せんしゅ}の{登場|とうじょう}です！ || Here we go, the grand final! Making his entrance: the legend Reiji, who has announced this will be his last match before retiring!
+@SFX || ワアアアア || (crowd roars)
+> {控室|ひかえしつ}。レイジが{自分|じぶん}の{手|て}を{見|み}つめる。 || The green room. Reiji stares at his hands.
+@レイジ（心の声） || {反応速度|はんのうそくど}が{落|お}ちてきたのは、{自分|じぶん}が{一番|いちばん}よくわかっている。{二十九歳|にじゅうきゅうさい}。この{世界|せかい}では、もう{若|わか}くない。 || I know better than anyone that my reactions have slowed. Twenty-nine. In this world, that's not young anymore.
+> コーチが{肩|かた}に{手|て}を{置|お}く。 || His coach puts a hand on his shoulder.
+@コーチ || {本当|ほんとう}にこれで{最後|さいご}でいいのか？ || Are you sure this has to be the last one?
+@レイジ || ああ。{衰|おとろ}えた{姿|すがた}をファンに{見|み}せ{続|つづ}けるくらいなら、ここで{終|お}わりにしたいんだ。 || Yeah. Rather than keep showing the fans a version of me that's past it, I want to end it here.
+--- page
+> {対戦|たいせん}{相手|あいて}、{十七歳|じゅうななさい}のヒカリ。 || His opponent: seventeen-year-old Hikari.
+@ヒカリ || レイジさん、{私|わたし}、{小学生|しょうがくせい}の{頃|ころ}からずっとあなたの{試合|しあい}を{見|み}てきました。 || Reiji, I've been watching your matches since I was in elementary school.
+@ヒカリ || {手加減|てかげん}なんかしたら、{許|ゆる}しませんから。 || If you go easy on me, I won't forgive you.
+> レイジがにやりと{笑|わら}う。 || Reiji grins.
+@レイジ || …{望|のぞ}むところだ。 || ...Bring it on.
+> {試合|しあい}{開始|かいし}。{画面|がめん}の{中|なか}で{激|はげ}しいコンボが{続|つづ}く。 || The match begins. Fierce combos fill the screen.
+@SFX || ガガガッ || (rapid hits)
+@実況 || ヒカリ{選手|せんしゅ}、{速|はや}い！レイジ{選手|せんしゅ}、{防戦一方|ぼうせんいっぽう}だ！ || Hikari is fast! Reiji can only defend!
+> レイジの{目|め}が{鋭|するど}くなる。 || Reiji's eyes sharpen.
+@レイジ（心の声） || {速|はや}さでは{勝|か}てない。だったら、{十年分|じゅうねんぶん}の{経験|けいけん}で{読|よ}むしかない。 || I can't win on speed. Then all I can do is read her with ten years of experience.
+--- page
+> {最終|さいしゅう}ラウンド。{両者|りょうしゃ}の{体力|たいりょく}ゲージはわずか。 || The final round. Both health bars are nearly empty.
+@実況 || {両者|りょうしゃ}、{体力|たいりょく}はほぼゼロ！{次|つぎ}の{一撃|いちげき}で{決|き}まるぞ！ || Both players are almost out of health! The next hit decides it!
+> レイジがヒカリの{動|うご}きを{読|よ}み、カウンターを{決|き}める。 || Reiji reads Hikari's move and lands a counter.
+@SFX || ドンッ || (impact)
+@実況 || カウンター！！レイジ、ヒカリの{必殺技|ひっさつわざ}を{完全|かんぜん}に{読|よ}み{切|き}った！ || A counter!! Reiji read Hikari's special move perfectly!
+> {試合後|しあいご}、{二人|ふたり}が{握手|あくしゅ}する。 || After the match, the two shake hands.
+@ヒカリ || …{悔|くや}しい。でも、{最後|さいご}にレイジさんと{戦|たたか}えて、{本当|ほんとう}によかったです。 || ...That stings. But I'm really glad I got to face you in your last match.
+@レイジ || {次|つぎ}の{時代|じだい}は、{君|きみ}たちのものだ。 || The next era belongs to you.
+> {会場|かいじょう}を{後|あと}にするレイジの{背中|せなか}。 || Reiji's back as he leaves the arena.
+@レイジ（心の声） || {引退|いんたい}しても、ゲームが{好|す}きなことに{変|か}わりはない。 || Even if I retire, that doesn't change how much I love games.
+@ナレーション || その{夜|よる}、レイジは{解説者|かいせつしゃ}として{新|あら}たな{一歩|いっぽ}を{踏|ふ}み{出|だ}すことを{発表|はっぴょう}した。 || That night, Reiji announced he was taking a new step as a commentator.
+--- glossary
+引退 || いんたい || retirement
+表明する || ひょうめいする || to announce, declare
+反応速度 || はんのうそくど || reaction speed
+衰える || おとろえる || to decline, weaken
+手加減 || てかげん || going easy (on someone)
+望むところだ || のぞむところだ || bring it on, just what I want
+防戦一方 || ぼうせんいっぽう || entirely on the defensive
+一撃 || いちげき || a single blow
+読み切る || よみきる || to read completely (anticipate)
+悔しい || くやしい || frustrating, galling
+解説者 || かいせつしゃ || commentator
+踏み出す || ふみだす || to step forward, take a step
+--- exercise vocabulary
+? 「{手加減|てかげん}なんかしたら、{許|ゆる}しませんから。」の「{手加減|てかげん}」の{意味|いみ}は？ || What does 手加減 mean here?
++ going easy on someone
+- a hand injury
+- a combo attack
+- a time limit
+! 手加減 is holding back so the other person has an easier time. Hikari wants Reiji to fight at full strength.
+--- exercise grammar
+? {衰|おとろ}えた{姿|すがた}を{見|み}せ{続|つづ}ける＿＿、ここで{終|お}わりにしたい。 || Rather than keep showing a version of me that's past it, I want to end it here.
++ くらいなら
+- ばかりか
+- にしては
+- ものの
+! AくらいならB means "rather than (doing) A, I'd (prefer to) B", used when A is something you really don't want.
+--- exercise who_said_it
+? 「{次|つぎ}の{時代|じだい}は、{君|きみ}たちのものだ。」 || "The next era belongs to you." Who said it?
+- ヒカリ
+- コーチ
+- 実況
++ レイジ
+! Reiji says it to Hikari after their handshake, passing the torch to the younger generation.
+--- exercise true_false
+? レイジはスピードでヒカリに{勝|か}った。 || Reiji beat Hikari on speed.
+- ○ 正しい
++ × まちがい
+! False. He admits he can't win on speed, so he reads her moves with experience and wins with a counter.
+--- exercise say_it_in_japanese
+? {次|つぎ}の{英語|えいご}を{日本語|にほんご}で{言|い}ってください：「Even if I retire, that doesn't change the fact that I love games.」 || Say this in Japanese: "Even if I retire, that doesn't change the fact that I love games."
+= {引退|いんたい}しても、ゲームが{好|す}きなことに{変|か}わりはない。
+--- exercise continue_story
+? {一年後|いちねんご}、{解説者|かいせつしゃ}になったレイジが、ヒカリの{世界大会|せかいたいかい}の{試合|しあい}を{解説|かいせつ}することになりました。どんな{場面|ばめん}になると{思|おも}いますか。3〜4{文|ぶん}で{書|か}いてください。 || A year later, Reiji, now a commentator, is calling Hikari's match at the world championship. What do you think happens? Write 3-4 sentences.
+= ヒカリは{世界大会|せかいたいかい}の{決勝|けっしょう}で、レイジのようにカウンターを{決|き}めて{勝|か}ちました。レイジは{解説席|かいせつせき}で{思|おも}わず{立|た}ち{上|あ}がりました。{試合後|しあいご}、ヒカリは「レイジさんに{教|おし}わったんです」と{笑|わら}いました。
+
+=== starter-n2-leave-on-time
+title: {定時|ていじ}で{帰|かえ}る{勇気|ゆうき}
+title_en: The Courage to Leave on Time
+level: N2
+topic: 社会 · Work culture
+summary: Akane starts leaving work at exactly six, and when her section chief calls her in, the talk goes somewhere neither of them expected.
+--- page
+> {午後|ごご}{五時|ごじ}{五十九分|ごじゅうきゅうふん}のオフィス。{全員|ぜんいん}がまだパソコンに{向|む}かっている。 || The office at 5:59 p.m. Everyone is still at their computers.
+@ナレーション || {定時|ていじ}まで、あと{一分|いっぷん}。 || One minute until quitting time.
+@アカネ（心の声） || {今日|きょう}こそ、{定時|ていじ}で{帰|かえ}る…！ || Today, I'm leaving on time...!
+> {時計|とけい}が{六時|ろくじ}を{指|さ}す。アカネが{立|た}ち{上|あ}がる。 || The clock hits six. Akane stands up.
+@アカネ || お{先|さき}に{失礼|しつれい}します！ || I'm heading out, see you tomorrow!
+> {周|まわ}りからの{視線|しせん}が{集|あつ}まる。 || All eyes turn to her.
+@同僚 || え、もう{帰|かえ}るの？ || Huh, she's leaving already?
+@同僚 || {課長|かちょう}、まだ{残|のこ}ってるのに…。 || And the section chief is still here...
+> {課長|かちょう}の{山下|やました}が{顔|かお}を{上|あ}げる。 || Section chief Yamashita looks up.
+@山下課長 || {佐藤|さとう}くん、ちょっといいかな。 || Sato, do you have a moment?
+@アカネ（心の声） || …{来|き}た。 || ...Here it comes.
+--- page
+> {会議室|かいぎしつ}。{二人|ふたり}きり。 || A meeting room. Just the two of them.
+@山下課長 || {最近|さいきん}、{毎日|まいにち}{定時|ていじ}で{帰|かえ}っているようだね。 || You've been leaving on time every day lately.
+@アカネ || はい。{自分|じぶん}の{仕事|しごと}は{時間内|じかんない}に{終|お}わらせていますので。 || Yes. I finish my own work within working hours.
+> {課長|かちょう}が{手|て}を{振|ふ}る。 || The chief waves his hand.
+@山下課長 || それはわかっている。{君|きみ}の{成績|せいせき}はむしろ{上|あ}がっているくらいだ。 || I know. If anything, your results have gone up.
+@アカネ || では、{何|なに}か{問題|もんだい}でも…？ || Then, is there some problem...?
+> {課長|かちょう}が{少|すこ}し{恥|は}ずかしそうに{目|め}をそらす。 || The chief looks away, a little embarrassed.
+@山下課長 || …{実|じつ}はね、{私|わたし}も{早|はや}く{帰|かえ}りたいんだ。{娘|むすめ}の{誕生日|たんじょうび}なのに、{去年|きょねん}も{一昨年|おととし}も、{夕飯|ゆうはん}に{間|ま}に{合|あ}わなかった。 || ...The truth is, I want to go home early too. Even on my daughter's birthday, last year and the year before, I didn't make it back for dinner.
+> アカネ、{驚|おどろ}いて{身|み}を{乗|の}り{出|だ}す。 || Akane leans forward in surprise.
+@山下課長 || でも、{上司|じょうし}が{先|さき}に{帰|かえ}ったら、{部下|ぶか}が{気|き}を{使|つか}うだろう？それで、なかなか{帰|かえ}れなくてね。 || But if the boss leaves first, the staff feel awkward about it, right? So I could never quite leave.
+@アカネ || {課長|かちょう}が{残|のこ}っているから、みんなも{帰|かえ}れないんですよ！ || Everyone else can't leave because YOU'RE still here!
+--- page
+> {翌朝|よくあさ}の{朝礼|ちょうれい}。 || The next morning's team meeting.
+@山下課長 || {今日|きょう}から、うちの{課|か}では「ノー{残業|ざんぎょう}デー」を{始|はじ}めます。まずは{私|わたし}から、{毎週|まいしゅう}{水曜日|すいようび}は{定時|ていじ}で{帰|かえ}ります。 || Starting today, our section is starting "no-overtime day". Beginning with me: every Wednesday, I leave on time.
+> {社員|しゃいん}たちがざわざわする。 || The staff murmur.
+@新人ジュン || え、{本当|ほんとう}にいいんですか？ || Wait, are we really allowed?
+> {水曜日|すいようび}、{午後|ごご}{六時|ろくじ}。{課長|かちょう}がかばんを{持|も}って{立|た}ち{上|あ}がる。 || Wednesday, 6 p.m. The chief picks up his bag and stands.
+@山下課長 || では、お{先|さき}に{失礼|しつれい}します。{娘|むすめ}の{誕生日|たんじょうび}なので！ || Well then, I'm heading out. It's my daughter's birthday!
+> アカネが{手|て}を{振|ふ}る。 || Akane waves.
+@アカネ || いってらっしゃい！ || Have a good evening!
+@ナレーション || その{日|ひ}、オフィスの{電気|でんき}は、{一年|いちねん}ぶりに{六時半|ろくじはん}に{消|き}えた。 || That day, the office lights went out at 6:30 for the first time in a year.
+--- glossary
+定時 || ていじ || regular quitting time
+お先に失礼します || おさきにしつれいします || excuse me for leaving first
+視線 || しせん || gaze, eyes
+同僚 || どうりょう || colleague
+課長 || かちょう || section chief
+成績 || せいせき || results, performance
+むしろ || むしろ || rather, if anything
+上司 || じょうし || boss, superior
+部下 || ぶか || subordinate, staff
+気を使う || きをつかう || to be mindful of others, feel awkward
+朝礼 || ちょうれい || morning meeting
+残業 || ざんぎょう || overtime
+--- exercise kanji_reading
+? 「同僚」の{読|よ}み{方|かた}は？ || How do you read 同僚?
+- どうろう
++ どうりょう
+- とうりょう
+- どうりよう
+! 同僚 is どうりょう (with a small ょ): a colleague at the same level.
+--- exercise vocabulary
+? 「{部下|ぶか}が{気|き}を{使|つか}う」の「{気|き}を{使|つか}う」の{意味|いみ}は？ || What does 気を使う mean in 部下が気を使う?
++ to be mindful of others and hold back
+- to lose one's temper
+- to feel sick
+- to make a careless mistake
+! 気を使う means being considerate of others' feelings. Here the staff feel they shouldn't leave before the boss.
+--- exercise grammar
+? {娘|むすめ}の{誕生日|たんじょうび}＿＿、{夕飯|ゆうはん}に{間|ま}に{合|あ}わなかった。 || Even though it was my daughter's birthday, I didn't make it back for dinner.
++ なのに
+- なので
+- なら
+- だから
+! 〜なのに ("even though") shows a result that goes against what you'd expect. After a noun, のに becomes なのに.
+--- exercise true_false
+? {山下|やました}{課長|かちょう}は{去年|きょねん}、{娘|むすめ}の{誕生日|たんじょうび}の{夕飯|ゆうはん}に{間|ま}に{合|あ}った。 || Last year, Chief Yamashita made it home for dinner on his daughter's birthday.
+- ○ 正しい
++ × まちがい
+! False. He says he missed it both last year and the year before (去年も一昨年も).
+--- exercise open_question
+? なぜこの{会社|かいしゃ}の{社員|しゃいん}たちは、{定時|ていじ}で{帰|かえ}りにくかったのですか。 || Why was it hard for people at this company to leave on time?
+= {上司|じょうし}がまだ{残|のこ}っていると、{部下|ぶか}は{先|さき}に{帰|かえ}ることに{気|き}を{使|つか}ってしまうからです。でも{課長|かちょう}も、{部下|ぶか}のために{帰|かえ}れずにいました。
+--- exercise continue_story
+? {次|つぎ}の{水曜日|すいようび}、{新人|しんじん}のジュンが{定時|ていじ}で{帰|かえ}ろうとすると、{大事|だいじ}な{取引先|とりひきさき}から{電話|でんわ}がかかってきました。ジュンはどうすると{思|おも}いますか。3〜4{文|ぶん}で{書|か}いてください。 || Next Wednesday, just as new hire Jun is about to leave, an important client calls. What do you think Jun does? Write 3-4 sentences.
+= ジュンは{電話|でんわ}に{出|で}て、{明日|あした}の{朝|あさ}{一番|いちばん}に{返事|へんじ}をすると{約束|やくそく}しました。そして{課長|かちょう}に{報告|ほうこく}してから、{定時|ていじ}で{帰|かえ}りました。{課長|かちょう}は「よくやった」と{言|い}いました。
+
+=== starter-n3-last-pk
+title: {最後|さいご}のPK
+title_en: The Last Penalty Kick
+level: N3
+topic: スポーツ · Sports
+summary: In a high-school soccer final, bench goalkeeper Takumi has to step in for an injured senior during the penalty shootout.
+--- page
+> {高校|こうこう}サッカー{県大会|けんたいかい}の{決勝|けっしょう}。スコアは1{対|たい}1。 || The final of the prefectural high-school soccer tournament. The score is 1-1.
+@ナレーション || {延長戦|えんちょうせん}でも{決着|けっちゃく}がつかず、PK{戦|せん}になった。 || Even extra time didn't settle it. It's going to penalties.
+> キーパーの{先輩|せんぱい}が{足|あし}を{押|お}さえて{倒|たお}れている。 || The senior goalkeeper is down, holding his leg.
+@先輩 || くっ…{足|あし}が…。 || Ugh... my leg...
+@監督 || だめだ、{交代|こうたい}だ。タクミ、{行|い}けるか！？ || No good, we're subbing him off. Takumi, can you go in!?
+> ベンチのタクミが{固|かた}まる。 || Takumi freezes on the bench.
+@タクミ || え…ぼ、{僕|ぼく}ですか！？{一回|いっかい}も{試合|しあい}に{出|で}たことないのに…。 || Wh-what, me!? I've never even played in a match...
+> {先輩|せんぱい}がタクミの{腕|うで}をつかむ。 || The senior grabs Takumi's arm.
+@先輩 || タクミ、お{前|まえ}は{毎日|まいにち}、{誰|だれ}よりも{遅|おそ}くまで{練習|れんしゅう}してたじゃないか。{大丈夫|だいじょうぶ}だ。 || Takumi, you practiced later than anyone, every single day. You'll be fine.
+--- page
+> ゴールの{前|まえ}に{立|た}つタクミ。{足|あし}が{震|ふる}えている。 || Takumi stands in goal. His legs are shaking.
+@タクミ（心の声） || どうしよう…。みんなが{見|み}てる…。 || What do I do... everyone's watching...
+> ボールがゴールに{入|はい}る。 || The ball goes into the net.
+@SFX || ドッ || (thud)
+@相手チーム || よっしゃー！ || Yesss!
+@タクミ（心の声） || {全然|ぜんぜん}{動|うご}けなかった…。 || I couldn't move at all...
+> {次|つぎ}のキッカーがボールを{置|お}く。 || The next kicker places the ball.
+@タクミ（心の声） || {落|お}ち{着|つ}け。{練習|れんしゅう}では、{相手|あいて}の{目|め}と{足|あし}を{見|み}ていたはずだ。 || Calm down. In practice, I always watched their eyes and feet.
+> タクミが{右|みぎ}に{飛|と}ぶ。 || Takumi dives to the right.
+@タクミ（心の声） || …{右|みぎ}だ！ || ...Right!
+@SFX || バシッ || (smack)
+@ナレーション || タクミは{右|みぎ}に{飛|と}んで、ボールを{止|と}めた。 || Takumi dove right and stopped the ball.
+--- page
+> スコアボード：4{対|たい}4。{最後|さいご}のキッカーは{相手|あいて}のエース。 || Scoreboard: 4-4. The last kicker is the other team's ace.
+@ナレーション || 4{対|たい}4。{次|つぎ}を{止|と}めれば、{優勝|ゆうしょう}が{決|き}まる。 || 4-4. Stop the next one, and the championship is theirs.
+> {相手|あいて}のエースがにやりと{笑|わら}う。 || The ace smirks.
+@相手エース || {一年間|いちねんかん}{補欠|ほけつ}だった{奴|やつ}に、{止|と}められるわけがない。 || No way a guy who's been on the bench all year can stop me.
+> {強|つよ}いシュート。タクミが{両手|りょうて}でボールをつかむ。 || A powerful shot. Takumi catches it with both hands.
+@SFX || ドンッ！バシッ！ || (boom! smack!)
+> チームメイトがタクミに{飛|と}びつく。 || His teammates pile onto him.
+@チームメイト || タクミー！やったな！ || Takumiii! You did it!
+@タクミ || …{先輩|せんぱい}、{止|と}めました…！ || ...I stopped it...!
+@先輩 || {見|み}てたぞ。お{前|まえ}の{努力|どりょく}は、ちゃんと{結果|けっか}になったな。 || I saw. All your hard work paid off.
+--- glossary
+決勝 || けっしょう || final (match)
+延長戦 || えんちょうせん || extra time, overtime
+決着がつく || けっちゃくがつく || to be settled, decided
+交代 || こうたい || substitution, switch
+監督 || かんとく || coach, manager
+震える || ふるえる || to shake, tremble
+落ち着く || おちつく || to calm down
+補欠 || ほけつ || substitute, bench player
+優勝 || ゆうしょう || winning the championship
+努力 || どりょく || effort, hard work
+--- exercise vocabulary
+? 「{補欠|ほけつ}」の{意味|いみ}は？ || What does 補欠 mean?
++ a substitute (bench) player
+- the team captain
+- the referee
+- a supporter in the stands
+! 補欠 is a reserve player who usually sits on the bench, which is how the rival ace sees Takumi.
+--- exercise kanji_reading
+? 「延長戦」の{読|よ}み{方|かた}は？ || How do you read 延長戦?
++ えんちょうせん
+- えんちょうさん
+- いんちょうせん
+- えんながせん
+! 延長戦 = えんちょうせん: 延長 (えんちょう, extension) + 戦 (せん, match).
+--- exercise who_said_it
+? 「お{前|まえ}は{毎日|まいにち}、{誰|だれ}よりも{遅|おそ}くまで{練習|れんしゅう}してたじゃないか。」 || "You practiced later than anyone, every single day." Who said it?
+- 監督
++ 先輩
+- 相手エース
+- チームメイト
+! The injured senior goalkeeper says it to encourage Takumi.
+--- exercise grammar
+? {一回|いっかい}も{試合|しあい}に{出|で}たことない＿＿…。 || Even though I've never played in a match...
++ のに
+- ので
+- から
+- ため
+! 〜のに shows surprise or complaint: "even though / and yet". Takumi can't believe he's being sent in despite never having played.
+--- exercise open_question
+? タクミはどうやって{二本目|にほんめ}のPKを{止|と}めることができましたか。 || How was Takumi able to stop the second penalty?
+= {練習|れんしゅう}のときのように{相手|あいて}の{目|め}と{足|あし}をよく{見|み}て、ボールが{右|みぎ}に{来|く}ると{読|よ}んだからです。
+--- exercise continue_story
+? {優勝|ゆうしょう}した{次|つぎ}の{日|ひ}、{学校|がっこう}でタクミに{何|なに}が{起|お}きると{思|おも}いますか。3〜4{文|ぶん}で{書|か}いてください。 || The day after the win, what do you think happens to Takumi at school? Write 3-4 sentences.
+= タクミが{教室|きょうしつ}に{入|はい}ると、みんなが{拍手|はくしゅ}をしました。{知|し}らない{生徒|せいと}にも{声|こえ}をかけられて、タクミは{恥|は}ずかしくなりました。{放課後|ほうかご}、{監督|かんとく}は「{次|つぎ}の{大会|たいかい}はお{前|まえ}がレギュラーだ」と{言|い}いました。
+
+=== starter-n3-gamer-grandma
+title: おばあちゃんはゲーマー
+title_en: Grandma Is a Gamer
+level: N3
+topic: ゲーム · Video games
+summary: Middle-schooler Sota keeps losing to the top-ranked online player "HANA-72", and discovers on a summer visit who it really is.
+--- page
+> ソウタの{部屋|へや}。オンラインゲームで{負|ま}けている。 || Sota's room. He's losing at an online game.
+@ソウタ || くそっ、また{負|ま}けた！このランキング{一位|いちい}の「HANA-72」って、いったい{誰|だれ}なんだよ。 || Dammit, lost again! Who on earth is this number-one "HANA-72"?
+> {夏休|なつやす}み、おばあちゃんの{家|いえ}に{遊|あそ}びに{来|き}たソウタ。 || Summer break. Sota visits his grandmother's house.
+@ハナ || ソウタ、いらっしゃい。スイカ{切|き}ってあるよ。 || Welcome, Sota. I've cut some watermelon for you.
+> おばあちゃんの{部屋|へや}に、{大|おお}きなモニターとヘッドセット。 || In grandma's room: a big monitor and a headset.
+@ソウタ || …え？ばあちゃん、なんでこんなすごいパソコン{持|も}ってるの？ || ...Huh? Grandma, why do you have such an amazing computer?
+> ハナが{少|すこ}しさびしそうに{笑|わら}う。 || Hana smiles a little sadly.
+@ハナ || じいちゃんが{亡|な}くなってから、さびしくてね。{友達|ともだち}に{勧|すす}められて、ゲームを{始|はじ}めたのよ。 || After grandpa passed away, I was lonely. A friend recommended it, so I started playing games.
+--- page
+> {画面|がめん}に「HANA-72」の{文字|もじ}。 || The screen shows "HANA-72".
+@ソウタ || HANA-72…！？ばあちゃんがランキング{一位|いちい}！？ || HANA-72...!? Grandma, you're number one!?
+> ハナがピースをする。 || Hana flashes a peace sign.
+@ハナ || 72はね、{私|わたし}の{年齢|ねんれい}よ。{毎日|まいにち}{三時間|さんじかん}{練習|れんしゅう}してるの。 || The 72 is my age. I practice three hours every day.
+@ソウタ || {三時間|さんじかん}も！？ || Three hours!?
+> {画面|がめん}のチャット{欄|らん}に、いろいろな{国|くに}の{名前|なまえ}。 || The chat window shows names from all over the world.
+@ハナ || ゲームの{中|なか}には、{世界中|せかいじゅう}に{友達|ともだち}がいるの。{昨日|きのう}もブラジルの{子|こ}とチームを{組|く}んだわ。 || In the game, I have friends all over the world. Yesterday I teamed up with a kid from Brazil.
+@ソウタ || ばあちゃん、{英語|えいご}できるの？ || Grandma, can you speak English?
+@ハナ || {言葉|ことば}が{通|つう}じなくても、ゲームなら{気持|きも}ちは{伝|つた}わるのよ。 || Even if we don't share a language, in a game your feelings still get across.
+--- page
+> {二人|ふたり}でコントローラーを{持|も}つ。 || The two of them pick up controllers.
+@ハナ || じゃあ、{一回|いっかい}{勝負|しょうぶ}しようか。{手加減|てかげん}はしないよ。 || Well then, shall we have a match? I won't go easy on you.
+@SFX || カチカチカチ || (click click click)
+> ソウタのキャラクターがあっという{間|ま}に{倒|たお}される。 || Sota's character is knocked out in no time.
+@ソウタ || うわっ、{速|はや}い！どうやったらそんなに{上手|じょうず}になれるの？ || Whoa, so fast! How do you get that good?
+> {机|つくえ}の{上|うえ}にノートの{山|やま}。 || A pile of notebooks on the desk.
+@ハナ || {負|ま}けても、なぜ{負|ま}けたかを{毎回|まいかい}ノートに{書|か}いてるのよ。{勉強|べんきょう}と{同|おな}じね。 || Every time I lose, I write down why in a notebook. Same as studying.
+> ソウタがノートを{手|て}に{取|と}る。 || Sota picks up a notebook.
+@ソウタ || …ばあちゃん、{明日|あした}も{教|おし}えてくれる？ || ...Grandma, will you teach me again tomorrow?
+@ハナ || いいよ。その{代|か}わり、{宿題|しゅくだい}が{終|お}わってからね。 || Sure. But only after your homework's done.
+@ナレーション || その{夏|なつ}、ソウタのランキングは{少|すこ}しだけ{上|あ}がった。 || That summer, Sota's ranking went up, just a little.
+--- glossary
+負ける || まける || to lose
+いったい || いったい || on earth, exactly (emphasis)
+亡くなる || なくなる || to pass away
+勧める || すすめる || to recommend
+年齢 || ねんれい || age
+組む || くむ || to team up, pair up
+通じる || つうじる || to be understood, get through
+伝わる || つたわる || to be conveyed, get across
+勝負 || しょうぶ || match, contest
+その代わり || そのかわり || in exchange, but in return
+--- exercise true_false
+? ハナは{毎日|まいにち}{一時間|いちじかん}ゲームの{練習|れんしゅう}をしている。 || Hana practices the game for one hour every day.
+- ○ 正しい
++ × まちがい
+! False. She practices three hours a day (毎日三時間).
+--- exercise vocabulary
+? 「{友達|ともだち}に{勧|すす}められて」の「{勧|すす}める」の{意味|いみ}は？ || In 友達に勧められて, what does 勧める mean?
++ to recommend
+- to forbid
+- to teach
+- to buy for someone
+! 勧める is "to recommend". 勧められて is passive: "having been recommended (it) by a friend".
+--- exercise fill_blank
+? 「{言葉|ことば}が{通|つう}じ＿＿、ゲームなら{気持|きも}ちは{伝|つた}わるのよ。」 || Even if we don't share a language, in a game your feelings get across.
++ なくても
+- ないので
+- なければ
+- なくて
+! 〜なくても = "even if (it) doesn't": 通じなくても, "even if we can't understand each other".
+--- exercise kanji_reading
+? 「年齢」の{読|よ}み{方|かた}は？ || How do you read 年齢?
++ ねんれい
+- としれい
+- ねんりょう
+- ねんれ
+! 年齢 is ねんれい, a more formal word for age than 年 (とし).
+--- exercise open_question
+? ハナはどうしてゲームが{上手|じょうず}になったのですか。 || Why did Hana become so good at the game?
+= {毎日|まいにち}{三時間|さんじかん}{練習|れんしゅう}して、{負|ま}けたときは{理由|りゆう}を{毎回|まいかい}ノートに{書|か}いているからです。
+--- exercise say_it_in_japanese
+? {次|つぎ}の{英語|えいご}を{日本語|にほんご}で{言|い}ってください：「Grandma, will you teach me again tomorrow?」 || Say this in Japanese: "Grandma, will you teach me again tomorrow?"
+= ばあちゃん、{明日|あした}も{教|おし}えてくれる？
+
+=== starter-n3-garbage-rules
+title: ゴミ{出|だ}しのルール
+title_en: The Garbage Rules
+level: N3
+topic: 社会 · Daily life
+summary: Lin, a new international student, keeps getting the garbage days wrong, and the grumpy neighbor who scolds her turns out to be the one who helps.
+--- page
+> {朝|あさ}のアパートのゴミ{置|お}き{場|ば}。 || The apartment's garbage area in the morning.
+@田中さん || ちょっと！{今日|きょう}は{燃|も}えないゴミの{日|ひ}じゃないよ！ || Hey! Today isn't non-burnable garbage day!
+> ベトナムから{来|き}た{留学生|りゅうがくせい}のリンが{頭|あたま}を{下|さ}げる。 || Lin, an international student from Vietnam, bows.
+@リン || す、すみません！{日本|にほん}のゴミのルール、まだよくわからなくて…。 || I-I'm sorry! I still don't really understand Japan's garbage rules...
+> {田中|たなか}さんが{指|ゆび}を{折|お}って{数|かぞ}える。 || Ms. Tanaka counts on her fingers.
+@田中さん || {燃|も}えるゴミは{月曜|げつよう}と{木曜|もくよう}。ペットボトルは{水曜|すいよう}。ちゃんとカレンダーを{見|み}なさい。 || Burnable garbage is Monday and Thursday. Plastic bottles are Wednesday. Look at the calendar properly.
+> {部屋|へや}に{戻|もど}ったリン。 || Lin, back in her room.
+@リン（心の声） || こわい…。でも、カレンダーは{全部|ぜんぶ}{日本語|にほんご}で、{漢字|かんじ}が{読|よ}めないんだよなあ…。 || Scary... But the calendar's all in Japanese, and I can't read the kanji...
+--- page
+> {数日後|すうじつご}。リンがカレンダーを{辞書|じしょ}で{調|しら}べている。 || A few days later. Lin is looking up the calendar in a dictionary.
+@リン || 「{資源|しげん}ゴミ」…しげん…？ || "Resource garbage"... shigen...?
+> ドアをノックする{音|おと}。 || A knock at the door.
+@SFX || トントン || (knock knock)
+@田中さん || これ、あんたのために{作|つく}ったから。 || Here. I made this for you.
+> {絵|え}と{英語|えいご}が{入|はい}った{手作|てづく}りのカレンダー。 || A handmade calendar with pictures and English.
+@リン || わあ…！{絵|え}があるから、すごくわかりやすいです！ || Wow...! With the pictures, it's so easy to understand!
+> {田中|たなか}さんがそっぽを{向|む}く。 || Ms. Tanaka looks away.
+@田中さん || {孫|まご}に{手伝|てつだ}ってもらったんだよ。{英語|えいご}なんて、{私|わたし}にはさっぱりだからね。 || My grandkid helped me. I can't make heads or tails of English.
+--- page
+> {木曜日|もくようび}の{朝|あさ}。{二人|ふたり}でゴミを{出|だ}す。 || Thursday morning. They take the garbage out together.
+@リン || {田中|たなか}さん、おはようございます！{今日|きょう}は{燃|も}えるゴミの{日|ひ}ですね。 || Good morning, Ms. Tanaka! Today is burnable garbage day, right?
+@田中さん || おっ、ちゃんと{覚|おぼ}えたじゃないか。 || Oh, you remembered properly.
+> リンが{容器|ようき}を{差|さ}し{出|だ}す。 || Lin holds out a container.
+@リン || お{礼|れい}に、ベトナムの{料理|りょうり}を{作|つく}ったんです。よかったら{食|た}べてください。 || As a thank-you, I made some Vietnamese food. Please try it if you'd like.
+> {田中|たなか}さんが{少|すこ}し{迷|まよ}ってから、{一口|ひとくち}{食|た}べる。 || Ms. Tanaka hesitates, then takes a bite.
+@田中さん || …{私|わたし}、{外国|がいこく}の{料理|りょうり}は{食|た}べたことがないんだけど…。 || ...I've never eaten foreign food, you know...
+@SFX || パクッ || (chomp)
+@田中さん || …おいしい！ || ...Delicious!
+> {数か月後|すうかげつご}、{田中|たなか}さんの{部屋|へや}。テーブルに{料理|りょうり}が{並|なら}ぶ。 || A few months later, Ms. Tanaka's apartment. Dishes cover the table.
+@ナレーション || ルールを{守|まも}ることから{始|はじ}まった{二人|ふたり}の{付|つ}き{合|あ}いは、{今|いま}では{毎週|まいしゅう}の{夕食会|ゆうしょくかい}になっている。 || What started with following the rules has become a weekly dinner together.
+--- glossary
+燃えるゴミ || もえるごみ || burnable garbage
+燃えないゴミ || もえないごみ || non-burnable garbage
+留学生 || りゅうがくせい || international student
+資源ゴミ || しげんごみ || recyclables
+辞書 || じしょ || dictionary
+手作り || てづくり || handmade
+孫 || まご || grandchild
+さっぱり（〜ない） || さっぱり || (not) at all
+お礼 || おれい || thanks, a thank-you gift
+付き合い || つきあい || relationship, association
+守る || まもる || to follow (rules), protect
+--- exercise who_said_it
+? 「{孫|まご}に{手伝|てつだ}ってもらったんだよ。」 || "My grandkid helped me." Who said it?
+- リン
++ 田中さん
+- リンの友達
+- 大家さん
+! Ms. Tanaka says it, a little embarrassed, when she gives Lin the handmade calendar.
+--- exercise grammar
+? 「{孫|まご}に{手伝|てつだ}って＿＿んだよ。」 || "I had my grandkid help me."
++ もらった
+- あげた
+- くれた
+- やった
+! 〜てもらう means receiving a favor from someone, marked with に: 孫に手伝ってもらった = "I got my grandchild to help (me)".
+--- exercise vocabulary
+? 「{英語|えいご}なんて、{私|わたし}にはさっぱりだからね。」の「さっぱり」の{意味|いみ}は？ || What does さっぱり mean here?
++ not at all (I don't understand it)
+- a little
+- perfectly
+- sometimes
+! With a negative meaning, さっぱり means "not at all": さっぱりわからない = "I don't understand it at all".
+--- exercise true_false
+? {田中|たなか}さんは{前|まえ}からベトナム{料理|りょうり}が{大好|だいす}きだった。 || Ms. Tanaka has always loved Vietnamese food.
+- ○ 正しい
++ × まちがい
+! False. She says she has never eaten foreign food before (外国の料理は食べたことがない).
+--- exercise open_question
+? {田中|たなか}さんは{最初|さいしょ}、リンにどんな{態度|たいど}でしたか。そのあと、どう{変|か}わりましたか。 || How did Ms. Tanaka treat Lin at first, and how did that change?
+= {最初|さいしょ}は{厳|きび}しく{注意|ちゅうい}していましたが、リンのために{手作|てづく}りのカレンダーを{作|つく}ってくれました。{今|いま}では{毎週|まいしゅう}{一緒|いっしょ}に{夕食|ゆうしょく}を{食|た}べる{仲|なか}になりました。
+--- exercise continue_story
+? {夕食会|ゆうしょくかい}に、{田中|たなか}さんのお{孫|まご}さんも{来|く}ることになりました。どんなことが{起|お}きると{思|おも}いますか。3〜4{文|ぶん}で{書|か}いてください。 || Ms. Tanaka's grandchild is coming to the dinner too. What do you think happens? Write 3-4 sentences.
+= お{孫|まご}さんはリンと{同|おな}じ{大学|だいがく}の{学生|がくせい}でした。{二人|ふたり}は{英語|えいご}と{日本語|にほんご}で{話|はな}して、すぐに{仲良|なかよ}くなりました。{田中|たなか}さんは「{私|わたし}も{英語|えいご}を{勉強|べんきょう}しようかな」と{言|い}いました。
