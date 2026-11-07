@@ -21,6 +21,8 @@ export interface CallOptions {
   onProgress?: (chars: number) => void;
   /** Ask for a fresh answer instead of a cached one (e.g. "write me a new story"). */
   fresh?: boolean;
+  /** A short, routine request (a word lookup): use the fastest model tier. */
+  quick?: boolean;
 }
 
 /** How many images one call can carry in this view (0 = none). */
@@ -95,10 +97,11 @@ Reply with only one JSON object that matches this JSON Schema, with no other tex
 ${JSON.stringify(schema)}`;
   try {
     return await sample.json(prompt, {
-      effort: "medium",
+      effort: opts.quick ? "low" : "medium",
       ...(opts.images?.length ? { images: opts.images } : {}),
       ...(opts.onProgress ? { onText: ({ text }) => opts.onProgress!(text.length) } : {}),
       ...(opts.fresh ? { cache: false } : {}),
+      ...(opts.quick ? { modelTier: "quick" as const } : {}),
     });
   } catch (err) {
     const code = (err as SampleError)?.code ?? "upstream_error";

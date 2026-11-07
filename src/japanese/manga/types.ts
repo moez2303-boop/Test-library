@@ -81,6 +81,16 @@ export interface ExerciseResult {
 
 export type StyleKey = "overpowered" | "hitman" | "teacher" | "spy" | "random";
 
+export interface WordInfo {
+  /** The word as it appears in a dictionary (e.g. 慣れる for a tapped 慣). */
+  dictionaryForm: string;
+  reading: string;
+  meaning: string;
+  /** How it's used in this line (conjugation, nuance). May be empty. */
+  note: string;
+  source: "list" | "claude";
+}
+
 export interface MangaLesson {
   id: string;
   title: string;
@@ -99,5 +109,7 @@ export interface MangaLesson {
   glossary: GlossaryItem[];
   exercises: Exercise[];
   results: Record<number, ExerciseResult>;
+  /** Looked-up words, keyed "word|reading", so a second tap is instant. */
+  wordNotes?: Record<string, WordInfo>;
   createdAt: number;
 }

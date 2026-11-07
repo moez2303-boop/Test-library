@@ -6,7 +6,9 @@ import { FeedbackPanel } from "../components/FeedbackPanel";
 import type { Settings } from "../types";
 import { scoreColor } from "../util";
 import { gradeWriting } from "./prompts";
-import { Ruby } from "./Ruby";
+import { Ruby, stripRuby } from "./Ruby";
+import { WordCard, type WordLookupState } from "./WordCard";
+import { fromWordList, lookupWithClaude } from "./wordLookup";
 import { lessonProgress } from "./score";
 import {
   EXERCISE_LABELS,
@@ -34,6 +36,7 @@ export function MangaLessonView({
   const [english, setEnglish] = useState(false);
   const [showText, setShowText] = useState(initial.source === "story");
   const [images, setImages] = useState<string[]>([]);
+  const [lookup, setLookup] = useState<WordLookupState | null>(null);
   const [index, setIndex] = useState(() => {
     const first = initial.exercises.findIndex((_, i) => !initial.results[i]);
     return first === -1 ? 0 : first;
@@ -60,6 +63,34 @@ export function MangaLessonView({
     setLesson(next);
     await saveMangaLesson(next);
     onChanged(next);
+  };
+
+  // Words from the word list that appear in the text without furigana (e.g. バレる).
+  const listWords = lesson.glossary.map((g) => g.word).filter((w) => !/[\u4e00-\u9fff]/.test(w));
+
+  /** Shows a tapped word's meaning: saved note, then word list, then Claude. */
+  const lookUpWord = async (word: string, reading: string, line: string) => {
+    const key = `${word}|${reading}`;
+    const saved = lesson.wordNotes?.[key] ?? fromWordList(lesson.glossary, word, reading);
+    if (saved) return setLookup({ word, reading, info: saved });
+    if (!IS_ARTIFACT && !settings.apiKey) {
+      setLookup({ word, reading, error: "Add an API key in Settings, or use the claude.ai version, to look up words." });
+      return;
+    }
+    setLookup({ word, reading, loading: true });
+    try {
+      const info = await lookupWithClaude(settings, lesson.level, word, reading, stripRuby(line));
+      setLookup((cur) => (cur?.word === word && cur.reading === reading ? { word, reading, info } : cur));
+      setLesson((cur) => {
+        const next = { ...cur, wordNotes: { ...cur.wordNotes, [key]: info } };
+        void saveMangaLesson(next);
+        onChanged(next);
+        return next;
+      });
+    } catch (err) {
+      const error = err instanceof GraderError ? err.message : "Couldn't look that word up. Try again.";
+      setLookup((cur) => (cur?.word === word ? { word, reading, error } : cur));
+    }
   };
 
   const progress = lessonProgress(lesson);
@@ -102,6 +133,10 @@ export function MangaLessonView({
         </a>
       </div>
 
+      <p className="mt-3 text-xs text-sumi-soft">
+        Tap an <span className="underline decoration-ai/40 decoration-dotted decoration-2 underline-offset-4">underlined word</span> to see its meaning.
+      </p>
+
       {/* Pages */}
       <div className="mt-4 grid gap-6">
         {Array.from({ length: Math.max(lesson.pages.length, images.length) }, (_, pi) => lesson.pages[pi] ?? { panels: [] }).map((page, pi) => (
@@ -117,7 +152,15 @@ export function MangaLessonView({
               // Manga reads right to left: on wide screens the first panel sits top-right.
               <div className="grid gap-3 sm:grid-cols-2 sm:[direction:rtl]">
                 {page.panels.map((panel, i) => (
-                  <Panel key={i} panel={panel} n={i + 1} furigana={furigana} english={english} />
+                  <Panel
+                    key={i}
+                    panel={panel}
+                    n={i + 1}
+                    furigana={furigana}
+                    english={english}
+                    listWords={listWords}
+                    onWord={(w, r, line) => void lookUpWord(w, r, line)}
+                  />
                 ))}
                 {page.panels.length === 0 && (
                   <p className="text-sm text-sumi-soft">No text was found on this page.</p>
@@ -204,6 +247,7 @@ export function MangaLessonView({
             settings={settings}
             onNeedSettings={onNeedSettings}
             onResult={(r) => void update({ ...lesson, results: { ...lesson.results, [index]: r } })}
+            onWord={(w, r, line) => void lookUpWord(w, r, line)}
             onNext={index < lesson.exercises.length - 1 ? () => setIndex(index + 1) : undefined}
           />
         )}
@@ -227,17 +271,34 @@ export function MangaLessonView({
           </div>
         )}
       </section>
+
+      {lookup && <WordCard state={lookup} onClose={() => setLookup(null)} />}
+      {lookup && <div className="h-40" aria-hidden="true" />}
     </div>
   );
 }
 
-function Panel({ panel, n, furigana, english }: { panel: MangaPanel; n: number; furigana: boolean; english: boolean }) {
+function Panel({
+  panel,
+  n,
+  furigana,
+  english,
+  listWords,
+  onWord,
+}: {
+  panel: MangaPanel;
+  n: number;
+  furigana: boolean;
+  english: boolean;
+  listWords: string[];
+  onWord: (word: string, reading: string, line: string) => void;
+}) {
   return (
     <div className="[direction:ltr] rounded-xl border-2 border-sumi/80 bg-card p-3">
       <div className="mb-2 flex gap-2 text-xs text-sumi-soft">
         <span className="font-semibold">{n}</span>
         <span className="jp">
-          <Ruby text={panel.scene} show={furigana} />
+          <Ruby text={panel.scene} show={furigana} onWord={(w, r) => onWord(w, r, panel.scene)} />
           {english && panel.sceneEn && <span className="block font-sans italic">{panel.sceneEn}</span>}
         </span>
       </div>
@@ -257,7 +318,12 @@ function Panel({ panel, n, furigana, english }: { panel: MangaPanel; n: number; 
                       : "rounded-2xl border border-sumi/25 bg-washi px-3 py-1.5 text-base"
                 }`}
               >
-                <Ruby text={line.text} show={furigana} />
+                <Ruby
+                  text={line.text}
+                  show={furigana}
+                  extraWords={listWords}
+                  onWord={(w, r) => onWord(w, r, line.text)}
+                />
               </div>
               {english && line.en && <div className="mt-0.5 px-1 text-xs text-sumi-soft italic">{line.en}</div>}
             </div>
@@ -278,6 +344,7 @@ function ExerciseCard({
   onNeedSettings,
   onResult,
   onNext,
+  onWord,
 }: {
   exercise: Exercise;
   n: number;
@@ -288,6 +355,7 @@ function ExerciseCard({
   onNeedSettings: () => void;
   onResult: (r: MangaLesson["results"][number]) => void;
   onNext?: () => void;
+  onWord: (word: string, reading: string, line: string) => void;
 }) {
   const result = lesson.results[n - 1];
   const isWriting = WRITING_TYPES.includes(exercise.type);
@@ -325,7 +393,7 @@ function ExerciseCard({
         </span>
       </div>
       <p className="jp mt-3 text-xl leading-relaxed whitespace-pre-line">
-        <Ruby text={exercise.prompt} show={furigana} />
+        <Ruby text={exercise.prompt} show={furigana} onWord={(w, r) => onWord(w, r, exercise.prompt)} />
       </p>
       {exercise.promptEn && (
         <button onClick={() => setShowEn((v) => !v)} className="mt-1 text-xs text-ai hover:underline">
