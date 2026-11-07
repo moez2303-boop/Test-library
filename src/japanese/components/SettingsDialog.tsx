@@ -30,6 +30,18 @@ export function SettingsDialog({
         }}
       >
         <h2 className="font-display text-xl font-bold">Settings</h2>
+        <p className="mt-2 rounded-lg bg-washi px-3 py-2 text-sm">
+          No API key? Use{" "}
+          <a
+            href="https://claude.ai/artifact/SWeJznmUJL99ArjfRybi2k"
+            target="_blank"
+            rel="noreferrer"
+            className="font-semibold text-ai underline"
+          >
+            the claude.ai version
+          </a>{" "}
+          instead: it grades with your Claude account, no key needed.
+        </p>
 
         <label className="mt-5 block text-sm font-medium">Anthropic API key</label>
         <input

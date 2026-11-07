@@ -238,11 +238,20 @@ export default function App() {
         </div>
         {!IS_ARTIFACT && !settings.apiKey && (
           <div className="bg-kin/15 px-4 py-2 text-center text-sm">
-            Grading uses Claude.{" "}
-            <button className="font-semibold underline" onClick={() => setSettingsOpen(true)}>
-              Add your Anthropic API key
-            </button>{" "}
-            to get feedback on your answers.
+            Free grading with your Claude account:{" "}
+            <a
+              href="https://claude.ai/artifact/SWeJznmUJL99ArjfRybi2k"
+              target="_blank"
+              rel="noreferrer"
+              className="font-semibold underline"
+            >
+              open Kotoba Clips on claude.ai
+            </a>
+            . Or{" "}
+            <button className="underline" onClick={() => setSettingsOpen(true)}>
+              add an API key
+            </button>
+            .
           </div>
         )}
       </header>
