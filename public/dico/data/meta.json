@@ -1,0 +1,41 @@
+{
+ "version": 1,
+ "words": 211689,
+ "kanji": 12633,
+ "files": {
+  "mots.ndjson.gz": 12509454,
+  "kanji.ndjson.gz": 3145292
+ },
+ "attribution": [
+  {
+   "source": "JMdict — Electronic Dictionary Research and Development Group (EDRDG)",
+   "licence": "CC BY-SA 4.0",
+   "url": "https://www.edrdg.org/jmdict/j_jmdict.html"
+  },
+  {
+   "source": "Jiyomi — sens français ajoutés",
+   "licence": "CC BY-SA 4.0",
+   "url": "https://jiyomi.app"
+  },
+  {
+   "source": "KanjiVG — Ulrich Apel (ordre des traits)",
+   "licence": "CC BY-SA 3.0",
+   "url": "https://kanjivg.tagaini.net"
+  },
+  {
+   "source": "wordfreq — Robyn Speer (fréquence des mots : Wikipédia, OpenSubtitles, web, Twitter, Reddit)",
+   "licence": "CC BY-SA 4.0",
+   "url": "https://github.com/rspeer/wordfreq"
+  },
+  {
+   "source": "KANJIDIC2 — Electronic Dictionary Research and Development Group (lectures et sens des kanji)",
+   "licence": "CC BY-SA 4.0",
+   "url": "https://www.edrdg.org/wiki/index.php/KANJIDIC_Project"
+  },
+  {
+   "source": "Wikipédia en japonais — titres des articles, liens entre langues et clés de tri (contributeurs de Wikipédia)",
+   "licence": "CC BY-SA 4.0",
+   "url": "https://ja.wikipedia.org/"
+  }
+ ]
+}
