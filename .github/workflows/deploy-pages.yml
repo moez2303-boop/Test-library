@@ -5,7 +5,6 @@ on:
   push:
     branches:
       - claude/pdf-library-app-yxbgse
-      - claude/wonderful-bohr-vvba08
 
 permissions:
   contents: read
