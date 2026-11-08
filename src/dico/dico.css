@@ -1,0 +1,79 @@
+@import url("https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Noto+Sans+JP:wght@400;500;700&display=swap");
+@import "tailwindcss";
+
+@theme {
+  --font-sans: "Inter", "Noto Sans JP", system-ui, sans-serif;
+  --font-jp: "Noto Sans JP", "Hiragino Sans", "Yu Gothic", sans-serif;
+
+  --color-paper: #f6f5f1;
+  --color-card: #ffffff;
+  --color-line: #e4e1d8;
+  --color-ink: #1d1f24;
+  --color-ink-soft: #5d6068;
+  --color-ai: #2c4a7e;
+  --color-ai-soft: #e3e9f4;
+  --color-beni: #c0392b;
+  --color-matcha: #4f7a3a;
+  --color-kin: #a87b1f;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --color-paper: #15171b;
+    --color-card: #1f2228;
+    --color-line: #31353d;
+    --color-ink: #eceae4;
+    --color-ink-soft: #a3a6ad;
+    --color-ai: #8fb0e6;
+    --color-ai-soft: #26324a;
+    --color-beni: #ec7466;
+    --color-matcha: #93bf73;
+    --color-kin: #d9ac52;
+    color-scheme: dark;
+  }
+}
+:root[data-theme="dark"] {
+  --color-paper: #15171b;
+  --color-card: #1f2228;
+  --color-line: #31353d;
+  --color-ink: #eceae4;
+  --color-ink-soft: #a3a6ad;
+  --color-ai: #8fb0e6;
+  --color-ai-soft: #26324a;
+  --color-beni: #ec7466;
+  --color-matcha: #93bf73;
+  --color-kin: #d9ac52;
+  color-scheme: dark;
+}
+
+html,
+body,
+#root {
+  min-height: 100%;
+}
+
+body {
+  font-family: var(--font-sans);
+  background: var(--color-paper);
+  color: var(--color-ink);
+  -webkit-tap-highlight-color: transparent;
+}
+
+.jp {
+  font-family: var(--font-jp);
+}
+
+ruby rt {
+  font-size: 0.45em;
+  color: var(--color-ink-soft);
+  font-weight: 500;
+}
+
+@keyframes stroke-draw {
+  to {
+    stroke-dashoffset: 0;
+  }
+}
+.stroke-anim {
+  animation: stroke-draw var(--dur, 0.5s) ease-in-out forwards;
+}

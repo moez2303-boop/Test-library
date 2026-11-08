@@ -39,3 +39,20 @@ npm run build
 - Tailwind CSS v4
 - pdf.js (`pdfjs-dist`) for parsing and rendering
 - `idb` for IndexedDB storage
+
+## Kotoba Dico — dictionnaire japonais–français (`/dico/`)
+
+An offline Japanese → French dictionary app, in French, at `dico/index.html`.
+
+- Search by kanji, kana, romaji **or French** (`猫`, `ねこ`, `neko`, `chat`)
+- Conjugated forms are traced back to the dictionary form (`食べなかった` → `食べる`)
+- Sentences are split into words you can tap (`猫が好きです`)
+- Word pages: furigana, French senses (with English on request), conjugation tables, audio
+- Kanji pages: animated stroke order, on/kun readings, French meanings, words using the kanji
+- Lists (favourites and your own), CSV export for Anki, spaced-repetition flashcards
+- Installs once (~15 MB) into IndexedDB and then works offline (service worker for the app shell)
+
+The data in `public/dico/data/` (211,689 words, 12,633 kanji) is built by
+`scripts/build_dico.py` from the CC BY-SA Jiyomi Japanese → French dictionary
+(JMdict + KANJIDIC2 + KanjiVG with French senses). See
+`public/dico/data/LICENSE.md` for attribution; the data stays under CC BY-SA.
