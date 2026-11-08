@@ -99,7 +99,8 @@ export async function searchFrench(input: string): Promise<Hit[]> {
   const hits: Hit[] = [];
   for (const w of words) {
     let best = 0;
-    w.s.forEach((s, si) => {
+    // Rank by position among French senses: an English-only sense ahead must not push a word down.
+    w.s.filter((s) => s.f?.length).forEach((s, si) => {
       for (const g of s.f ?? []) {
         const gk = frGlossKey(g);
         let sc = 0;
