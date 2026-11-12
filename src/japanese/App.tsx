@@ -4,6 +4,7 @@ import { ATASHINCHI, pickRandomVideo } from "./packs";
 import { GENERIC_QUESTIONS } from "./tiktok";
 import { loadLevel, saveLevel, uid } from "./util";
 import { RandomLessonCard } from "./components/RandomLessonCard";
+import { WordMatchGame } from "./game/WordMatchGame";
 import {
   deleteClip,
   deleteMangaLesson,
@@ -29,6 +30,7 @@ import { SettingsDialog } from "./components/SettingsDialog";
 import { TikTokQuickAdd } from "./components/TikTokQuickAdd";
 
 type View =
+  | { name: "game" }
   | { name: "manga" }
   | { name: "manga-lesson"; lessonId: string }
   | { name: "library" }
@@ -200,7 +202,7 @@ export default function App() {
             </span>
             <span className="text-left leading-tight">
               <span className="block font-display text-lg font-bold">Kotoba Clips</span>
-              <span className="block text-xs text-sumi-soft">Read manga, learn Japanese</span>
+              <span className="hidden text-xs text-sumi-soft sm:block">Read manga, learn Japanese</span>
             </span>
           </button>
           <div className="flex-1" />
@@ -208,18 +210,24 @@ export default function App() {
             {(
               [
                 ["manga", "マンガ", "Manga"],
+                ["game", "ゲーム", "Game"],
                 ["library", "動画", "Clips"],
               ] as const
             ).map(([name, jp, en]) => {
-              const active = name === "manga" ? view.name.startsWith("manga") : !view.name.startsWith("manga");
+              const active =
+                name === "manga"
+                  ? view.name.startsWith("manga")
+                  : name === "game"
+                    ? view.name === "game"
+                    : !view.name.startsWith("manga") && view.name !== "game";
               return (
                 <button
                   key={name}
                   onClick={() => {
-                    setView(name === "manga" ? { name: "manga" } : { name: "library" });
+                    setView(name === "manga" ? { name: "manga" } : name === "game" ? { name: "game" } : { name: "library" });
                     void refresh();
                   }}
-                  className={`px-3 py-1.5 sm:px-4 ${active ? "bg-sumi text-washi" : "hover:bg-washi-dark"}`}
+                  className={`px-2.5 py-1.5 whitespace-nowrap sm:px-4 ${active ? "bg-sumi text-washi" : "hover:bg-washi-dark"}`}
                 >
                   <span className="jp">{jp}</span>
                   <span className="ml-1 hidden sm:inline">{en}</span>
@@ -259,6 +267,8 @@ export default function App() {
       <main className="mx-auto max-w-6xl px-4 py-6">
         {clips === null || lessons === null ? (
           <p className="py-20 text-center text-sumi-soft">Loading…</p>
+        ) : view.name === "game" ? (
+          <WordMatchGame />
         ) : view.name === "manga" ? (
           <MangaHome
             lessons={lessons}

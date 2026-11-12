@@ -1,0 +1,504 @@
+# Word list for the matching game: word<TAB>reading<TAB>English. "# N3" / "# N2" start each level.
+# Checked by scripts/check_words.py (no duplicate words or meanings, exactly 500 entries).
+# N3
+集める	あつめる	to collect
+預ける	あずける	to deposit, leave in someone's care
+謝る	あやまる	to apologize
+争う	あらそう	to compete, dispute
+表す	あらわす	to express
+現れる	あらわれる	to appear
+祝う	いわう	to celebrate
+植える	うえる	to plant
+疑う	うたがう	to doubt
+移る	うつる	to move (to another place)
+追う	おう	to chase
+驚く	おどろく	to be surprised
+降ろす	おろす	to take down, unload
+抱える	かかえる	to hold in one's arms
+隠す	かくす	to hide
+重ねる	かさねる	to pile up
+稼ぐ	かせぐ	to earn (money)
+叶う	かなう	to come true
+乾く	かわく	to dry
+比べる	くらべる	to compare
+加える	くわえる	to add
+越える	こえる	to go over, cross
+断る	ことわる	to refuse
+叫ぶ	さけぶ	to shout
+支える	ささえる	to support (hold up)
+誘う	さそう	to invite
+沈む	しずむ	to sink
+従う	したがう	to obey, follow
+過ごす	すごす	to spend (time)
+進む	すすむ	to advance
+備える	そなえる	to prepare for
+倒れる	たおれる	to fall over, collapse
+確かめる	たしかめる	to confirm, check
+助ける	たすける	to rescue, help
+黙る	だまる	to fall silent
+頼む	たのむ	to ask a favor
+縮む	ちぢむ	to shrink
+捕まえる	つかまえる	to catch
+伝える	つたえる	to tell, convey
+包む	つつむ	to wrap
+勤める	つとめる	to work for (a company)
+積む	つむ	to pile, load
+溶ける	とける	to melt
+届ける	とどける	to deliver
+泊まる	とまる	to stay overnight
+取り消す	とりけす	to cancel
+流れる	ながれる	to flow
+慰める	なぐさめる	to comfort
+悩む	なやむ	to be troubled, worry over
+握る	にぎる	to grip
+逃げる	にげる	to run away
+濡れる	ぬれる	to get wet
+残る	のこる	to remain
+伸びる	のびる	to stretch, grow longer
+測る	はかる	to measure
+外す	はずす	to take off, remove
+離れる	はなれる	to separate, move away
+省く	はぶく	to omit
+冷える	ひえる	to get cold
+引っ越す	ひっこす	to move house
+広がる	ひろがる	to spread
+増える	ふえる	to increase
+防ぐ	ふせぐ	to prevent
+減る	へる	to decrease
+褒める	ほめる	to praise
+任せる	まかせる	to entrust, leave to
+混ぜる	まぜる	to mix
+迷う	まよう	to get lost
+守る	まもる	to protect
+認める	みとめる	to admit, recognize
+迎える	むかえる	to welcome, go to meet
+燃える	もえる	to burn
+破る	やぶる	to tear; to break (a rule)
+辞める	やめる	to quit (a job)
+許す	ゆるす	to forgive
+汚す	よごす	to make dirty
+喜ぶ	よろこぶ	to be delighted
+分ける	わける	to divide, split up
+割る	わる	to break, crack
+落ち着く	おちつく	to calm down
+意見	いけん	opinion
+印象	いんしょう	impression
+永遠	えいえん	eternity
+影響	えいきょう	influence
+栄養	えいよう	nutrition
+演技	えんぎ	acting
+応援	おうえん	cheering on
+屋上	おくじょう	rooftop
+温度	おんど	temperature
+割引	わりびき	discount
+学期	がっき	school term
+活動	かつどう	activity
+家庭	かてい	household, home
+我慢	がまん	patience, putting up with
+感情	かんじょう	emotion
+関係	かんけい	relationship, connection
+観光	かんこう	sightseeing
+感謝	かんしゃ	gratitude
+完成	かんせい	completion
+記憶	きおく	memory
+機会	きかい	opportunity
+期間	きかん	period of time
+規則	きそく	rule, regulation
+期待	きたい	expectation
+基本	きほん	basics
+給料	きゅうりょう	salary
+教育	きょういく	education
+共通	きょうつう	in common, shared
+興味	きょうみ	interest
+協力	きょうりょく	cooperation
+許可	きょか	permission
+距離	きょり	distance
+記録	きろく	record
+緊張	きんちょう	nervousness
+苦労	くろう	hardship
+計画	けいかく	plan
+経済	けいざい	economy
+警察	けいさつ	police
+結果	けっか	result
+原因	げんいん	cause
+喧嘩	けんか	quarrel, fight
+健康	けんこう	health
+現在	げんざい	the present
+効果	こうか	effect
+交通	こうつう	traffic, transport
+行動	こうどう	action, behavior
+故郷	こきょう	hometown
+国際	こくさい	international
+個人	こじん	individual
+材料	ざいりょう	ingredients, materials
+作品	さくひん	work (of art)
+試合	しあい	match, game
+自然	しぜん	nature
+失敗	しっぱい	failure
+自信	じしん	self-confidence
+地震	じしん	earthquake
+姿勢	しせい	posture
+習慣	しゅうかん	habit, custom
+手段	しゅだん	means
+出身	しゅっしん	where one is from
+準備	じゅんび	preparation
+紹介	しょうかい	introduction
+将来	しょうらい	future
+職業	しょくぎょう	occupation
+食欲	しょくよく	appetite
+書類	しょるい	documents
+信号	しんごう	traffic light
+人生	じんせい	(one's) life
+新鮮	しんせん	fresh
+成功	せいこう	success
+性格	せいかく	personality
+生活	せいかつ	daily life, living
+世代	せだい	generation
+責任	せきにん	responsibility
+節約	せつやく	saving, cutting costs
+選択	せんたく	choice
+相談	そうだん	asking for advice
+卒業	そつぎょう	graduation
+体重	たいじゅう	body weight
+態度	たいど	attitude
+大会	たいかい	tournament
+大統領	だいとうりょう	president (of a country)
+他人	たにん	other people, strangers
+単語	たんご	word (vocabulary)
+地域	ちいき	region, area
+知識	ちしき	knowledge
+注意	ちゅうい	caution, attention
+調査	ちょうさ	survey, investigation
+通勤	つうきん	commuting
+都合	つごう	convenience (for one's schedule)
+天気予報	てんきよほう	weather forecast
+伝統	でんとう	tradition
+道具	どうぐ	tool
+特徴	とくちょう	characteristic
+努力	どりょく	effort
+内容	ないよう	content
+仲間	なかま	companion, buddy
+涙	なみだ	tears
+値段	ねだん	price
+熱	ねつ	fever
+年齢	ねんれい	age
+場合	ばあい	case, situation
+発見	はっけん	discovery
+発表	はっぴょう	presentation, announcement
+判断	はんだん	judgment
+被害	ひがい	damage, harm
+比較	ひかく	comparison
+表情	ひょうじょう	facial expression
+評判	ひょうばん	reputation
+不安	ふあん	anxiety
+服装	ふくそう	outfit, attire
+普段	ふだん	usually, normally
+文化	ぶんか	culture
+平和	へいわ	peace
+方法	ほうほう	method
+保険	ほけん	insurance
+本物	ほんもの	the real thing
+迷子	まいご	lost child
+窓口	まどぐち	service counter
+満足	まんぞく	satisfaction
+魅力	みりょく	charm, appeal
+無駄	むだ	waste
+目的	もくてき	purpose
+目標	もくひょう	goal, target
+約束	やくそく	promise
+役割	やくわり	role
+夢中	むちゅう	absorbed in, crazy about
+様子	ようす	state, appearance
+理由	りゆう	reason
+留守	るす	being away from home
+礼儀	れいぎ	manners
+連絡	れんらく	contact, getting in touch
+話題	わだい	topic
+割合	わりあい	proportion
+怪しい	あやしい	suspicious
+恐ろしい	おそろしい	terrifying
+大人しい	おとなしい	quiet, well-behaved
+賢い	かしこい	clever, wise
+険しい	けわしい	steep
+細かい	こまかい	small, fine (in detail)
+騒がしい	さわがしい	noisy
+親しい	したしい	close, intimate
+素晴らしい	すばらしい	wonderful
+鋭い	するどい	sharp
+頼もしい	たのもしい	reliable, dependable
+懐かしい	なつかしい	nostalgic
+激しい	はげしい	intense, violent
+恥ずかしい	はずかしい	embarrassed
+貧しい	まずしい	poor (not rich)
+珍しい	めずらしい	rare, unusual
+柔らかい	やわらかい	soft
+詳しい	くわしい	detailed, knowledgeable
+確か	たしか	certain, sure
+素直	すなお	obedient, docile
+正直	しょうじき	honest
+丁寧	ていねい	polite, careful
+退屈	たいくつ	boring, bored
+必死	ひっし	desperate, frantic
+複雑	ふくざつ	complicated
+立派	りっぱ	splendid
+急に	きゅうに	suddenly
+必ず	かならず	without fail
+早速	さっそく	right away
+次第に	しだいに	gradually
+ついに	ついに	finally
+まるで	まるで	just like, as if
+わざと	わざと	on purpose
+しばらく	しばらく	for a while
+いきなり	いきなり	abruptly, without warning
+そっと	そっと	softly, quietly
+# N2
+相次ぐ	あいつぐ	to happen one after another
+憧れる	あこがれる	to long for, look up to
+味わう	あじわう	to savor
+扱う	あつかう	to handle, deal with
+甘やかす	あまやかす	to spoil (a child)
+言い張る	いいはる	to insist
+挑む	いどむ	to take on (a challenge)
+受け入れる	うけいれる	to accept
+打ち明ける	うちあける	to confide
+奪う	うばう	to snatch, rob
+埋める	うめる	to bury
+敬う	うやまう	to revere, honor
+補う	おぎなう	to make up for
+怠る	おこたる	to neglect
+抑える	おさえる	to hold back, suppress
+惜しむ	おしむ	to begrudge
+陥る	おちいる	to fall into (a bad situation)
+衰える	おとろえる	to weaken, decline
+脅かす	おびやかす	to threaten
+及ぼす	およぼす	to exert (an effect)
+傾く	かたむく	to lean, tilt
+叶える	かなえる	to fulfill (a wish)
+絡む	からむ	to get tangled
+築く	きずく	to build up (a career, bond)
+鍛える	きたえる	to train, strengthen
+悔やむ	くやむ	to regret
+加わる	くわわる	to join
+削る	けずる	to shave, whittle
+心掛ける	こころがける	to keep in mind
+拘る	こだわる	to be particular about
+込める	こめる	to put (feelings) into
+遮る	さえぎる	to interrupt, block
+妨げる	さまたげる	to hinder
+察する	さっする	to sense, guess (feelings)
+仕上げる	しあげる	to finish off
+強いる	しいる	to force
+慕う	したう	to adore, be devoted to
+占める	しめる	to make up (a share of)
+退く	しりぞく	to retreat
+迫る	せまる	to draw near, close in
+添える	そえる	to attach, add on
+背く	そむく	to go against, disobey
+耐える	たえる	to endure
+携わる	たずさわる	to be involved in
+蓄える	たくわえる	to store up, save
+企む	たくらむ	to scheme
+保つ	たもつ	to maintain
+頼る	たよる	to rely on
+費やす	ついやす	to spend (time or money)
+尽くす	つくす	to devote oneself
+償う	つぐなう	to make amends
+貫く	つらぬく	to carry through, stick to
+遂げる	とげる	to accomplish
+整える	ととのえる	to put in order
+唱える	となえる	to advocate; to chant
+嘆く	なげく	to lament
+怠ける	なまける	to slack off
+狙う	ねらう	to aim at
+逃す	のがす	to miss (a chance)
+臨む	のぞむ	to face (a situation)
+励ます	はげます	to encourage
+恥じる	はじる	to feel ashamed
+果たす	はたす	to fulfill (a duty)
+控える	ひかえる	to refrain from
+響く	ひびく	to resound, echo
+振り返る	ふりかえる	to look back
+触れる	ふれる	to touch on
+隔てる	へだてる	to separate (by a distance)
+誇る	ほこる	to take pride in
+紛れる	まぎれる	to get mixed in among
+招く	まねく	to invite; to bring about
+見逃す	みのがす	to overlook
+恵まれる	めぐまれる	to be blessed with
+設ける	もうける	to set up, establish
+儲ける	もうける	to make a profit
+求める	もとめる	to seek, demand
+養う	やしなう	to support (a family)
+譲る	ゆずる	to hand over, give up (a seat)
+揺れる	ゆれる	to shake, sway
+甦る	よみがえる	to come back to life
+略す	りゃくす	to abbreviate
+愛着	あいちゃく	attachment, fondness
+曖昧	あいまい	vague
+悪化	あっか	worsening
+圧倒	あっとう	overwhelming
+維持	いじ	upkeep, maintenance
+依存	いぞん	dependence
+一致	いっち	agreement, match
+意図	いと	intention
+違反	いはん	violation
+運営	うんえい	running, operation (of an organization)
+英雄	えいゆう	hero
+遠慮	えんりょ	holding back (out of politeness)
+汚染	おせん	pollution
+恩恵	おんけい	benefit, blessing
+介護	かいご	nursing care
+改善	かいぜん	improvement
+回復	かいふく	recovery
+格差	かくさ	gap, disparity
+確保	かくほ	securing
+過剰	かじょう	excess
+課題	かだい	task, issue
+葛藤	かっとう	inner conflict
+過労	かろう	overwork
+観客	かんきゃく	audience, spectators
+勧誘	かんゆう	recruiting, solicitation
+規模	きぼ	scale
+義務	ぎむ	duty, obligation
+逆転	ぎゃくてん	turnaround, comeback
+供給	きょうきゅう	supply
+共感	きょうかん	empathy
+業績	ぎょうせき	business results
+拒否	きょひ	refusal
+議論	ぎろん	discussion, argument
+緊急	きんきゅう	emergency
+経営	けいえい	running a business
+傾向	けいこう	tendency
+契約	けいやく	contract
+欠陥	けっかん	defect
+権利	けんり	right (entitlement)
+貢献	こうけん	contribution
+交渉	こうしょう	negotiation
+構造	こうぞう	structure
+購入	こうにゅう	purchase
+効率	こうりつ	efficiency
+高齢化	こうれいか	aging of society
+誤解	ごかい	misunderstanding
+克服	こくふく	overcoming
+根拠	こんきょ	basis, grounds
+災害	さいがい	disaster
+削減	さくげん	reduction, cut
+錯覚	さっかく	illusion
+支持	しじ	backing (of a policy or person)
+資源	しげん	resources
+施設	しせつ	facility
+持続	じぞく	sustaining, continuation
+失業	しつぎょう	unemployment
+実績	じっせき	track record
+指摘	してき	pointing out
+主張	しゅちょう	claim, assertion
+需要	じゅよう	demand
+障害	しょうがい	obstacle; disability
+承認	しょうにん	approval
+衝突	しょうとつ	collision
+少子化	しょうしか	falling birthrate
+情熱	じょうねつ	passion
+勝利	しょうり	victory
+処分	しょぶん	disposal
+慎重	しんちょう	cautious
+推測	すいそく	guess, inference
+衰退	すいたい	decline (of an industry or region)
+精神	せいしん	mind, spirit
+世論	よろん	public opinion
+戦略	せんりゃく	strategy
+相互	そうご	mutual
+対策	たいさく	countermeasure
+妥協	だきょう	compromise
+多様	たよう	diverse
+担当	たんとう	being in charge
+蓄積	ちくせき	accumulation
+中毒	ちゅうどく	addiction; poisoning
+沈黙	ちんもく	silence
+追求	ついきゅう	pursuit
+提案	ていあん	proposal
+抵抗	ていこう	resistance
+手間	てま	time and trouble
+展開	てんかい	development (of events)
+同情	どうじょう	sympathy
+独立	どくりつ	independence
+匿名	とくめい	anonymity
+仲直り	なかなおり	making up (after a fight)
+納得	なっとく	being convinced
+認識	にんしき	awareness, recognition
+把握	はあく	grasp, understanding
+背景	はいけい	background
+配慮	はいりょ	consideration (for others)
+破壊	はかい	destruction
+迫力	はくりょく	impact, force
+罰	ばつ	punishment
+反映	はんえい	reflection (of opinions)
+反省	はんせい	self-reflection
+悲劇	ひげき	tragedy
+否定	ひてい	denial
+批判	ひはん	criticism
+秘訣	ひけつ	secret (to success)
+評価	ひょうか	evaluation
+負担	ふたん	burden
+普及	ふきゅう	spread, becoming widespread
+雰囲気	ふんいき	atmosphere, mood
+分析	ぶんせき	analysis
+偏見	へんけん	prejudice
+報道	ほうどう	news coverage
+豊富	ほうふ	abundant
+保護	ほご	protection
+補償	ほしょう	compensation
+摩擦	まさつ	friction
+矛盾	むじゅん	contradiction
+名誉	めいよ	honor
+目安	めやす	rough guide
+有利	ゆうり	advantageous
+誘惑	ゆうわく	temptation
+余裕	よゆう	room to spare
+利益	りえき	profit
+理想	りそう	ideal
+連携	れんけい	coordination, teamwork
+労働	ろうどう	labor
+論理	ろんり	logic
+著しい	いちじるしい	remarkable, striking
+潔い	いさぎよい	graceful (in accepting defeat)
+慌ただしい	あわただしい	hectic
+荒い	あらい	rough
+大げさ	おおげさ	exaggerated
+穏やか	おだやか	calm, mild
+くだらない	くだらない	worthless, stupid
+心強い	こころづよい	reassuring
+快い	こころよい	pleasant, agreeable
+しつこい	しつこい	persistent, pushy
+図々しい	ずうずうしい	shameless, cheeky
+鮮やか	あざやか	vivid
+切ない	せつない	heartrending, painful
+相応しい	ふさわしい	fitting, worthy
+乏しい	とぼしい	scarce, lacking
+情けない	なさけない	pathetic
+鈍い	にぶい	dull, slow (to react)
+儚い	はかない	fleeting
+煩わしい	わずらわしい	bothersome
+微妙	びみょう	subtle; so-so
+貴重	きちょう	precious, valuable
+柔軟	じゅうなん	flexible
+深刻	しんこく	serious, grave
+率直	そっちょく	frank, candid
+適切	てきせつ	appropriate
+密か	ひそか	secret, private
+豊か	ゆたか	affluent, rich
+まさに	まさに	exactly, precisely
+むしろ	むしろ	rather
+いわゆる	いわゆる	so-called
+とっくに	とっくに	long ago, already
+せめて	せめて	at least
+あいにく	あいにく	unfortunately
+およそ	およそ	approximately
+かつて	かつて	once, formerly
+たちまち	たちまち	instantly
+いっそう	いっそう	even more
+到底	とうてい	(not) by any means
+一斉に	いっせいに	all at once
+ひたすら	ひたすら	single-mindedly
+わずか	わずか	only a little, slight
+とりあえず	とりあえず	for the time being
+やたら	やたら	excessively, recklessly
