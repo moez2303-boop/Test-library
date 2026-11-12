@@ -4,7 +4,7 @@ export type Section = "manga" | "game" | "library";
 
 export const SECTIONS: { key: Section; jp: string; en: string; badge: string; about: string }[] = [
   { key: "manga", jp: "マンガ", en: "Manga", badge: "読", about: "Read stories, then do exercises" },
-  { key: "game", jp: "ゲーム", en: "Word game", badge: "遊", about: "Match 500 N3–N2 words" },
+  { key: "game", jp: "ゲーム", en: "Games", badge: "遊", about: "Word match, tower, battle, detective" },
   { key: "library", jp: "動画", en: "Clips", badge: "映", about: "Video clips and questions" },
 ];
 

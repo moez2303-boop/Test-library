@@ -44,7 +44,7 @@ function savePref(key: string, value: string) {
 
 const hasKanji = (s: string) => /[一-鿿]/.test(s);
 
-export function WordMatchGame() {
+export function WordMatchGame({ onBack }: { onBack: () => void }) {
   const [filter, setFilter] = useState<Filter>(() => loadPref("kotoba.gameLevel", "all", ["all", "N3", "N2"] as const));
   const [furigana, setFurigana] = useState(() => loadPref("kotoba.gameFurigana", "on", ["on", "off"] as const) === "on");
   const [stats, setStats] = useState(loadStats);
@@ -155,6 +155,9 @@ export function WordMatchGame() {
 
   return (
     <div className="mx-auto max-w-3xl">
+      <button onClick={onBack} className="mb-3 text-sm text-sumi-soft hover:text-sumi">
+        ← All games
+      </button>
       <style>{`@keyframes shake{0%,100%{transform:translateX(0)}20%,60%{transform:translateX(-6px)}40%,80%{transform:translateX(6px)}}
 @media (prefers-reduced-motion: reduce){[class*="animate-["]{animation:none!important}}`}</style>
 

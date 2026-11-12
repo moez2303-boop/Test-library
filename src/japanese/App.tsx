@@ -4,7 +4,7 @@ import { ATASHINCHI, pickRandomVideo } from "./packs";
 import { GENERIC_QUESTIONS } from "./tiktok";
 import { loadLevel, saveLevel, uid } from "./util";
 import { RandomLessonCard } from "./components/RandomLessonCard";
-import { WordMatchGame } from "./game/WordMatchGame";
+import { GamesHub } from "./game/GamesHub";
 import { SECTIONS, SideMenu, type Section } from "./components/SideMenu";
 import {
   deleteClip,
@@ -256,7 +256,7 @@ export default function App() {
         {clips === null || lessons === null ? (
           <p className="py-20 text-center text-sumi-soft">Loading…</p>
         ) : view.name === "game" ? (
-          <WordMatchGame />
+          <GamesHub />
         ) : view.name === "manga" ? (
           <MangaHome
             lessons={lessons}
