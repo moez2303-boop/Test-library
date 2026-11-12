@@ -5,6 +5,7 @@ import { GENERIC_QUESTIONS } from "./tiktok";
 import { loadLevel, saveLevel, uid } from "./util";
 import { RandomLessonCard } from "./components/RandomLessonCard";
 import { WordMatchGame } from "./game/WordMatchGame";
+import { SECTIONS, SideMenu, type Section } from "./components/SideMenu";
 import {
   deleteClip,
   deleteMangaLesson,
@@ -47,6 +48,7 @@ export default function App() {
   const [mangaError, setMangaError] = useState<string | null>(null);
   const [settingsOpen, setSettingsOpen] = useState(false);
   const [tiktokOpen, setTiktokOpen] = useState(false);
+  const [menuOpen, setMenuOpen] = useState(false);
   const [level, setLevel] = useState<JlptLevel>(loadLevel);
   const [randomBusy, setRandomBusy] = useState<string | null>(null);
 
@@ -178,6 +180,15 @@ export default function App() {
     );
   };
 
+  const section: Section = view.name.startsWith("manga") ? "manga" : view.name === "game" ? "game" : "library";
+  const currentSection = SECTIONS.find((x) => x.key === section)!;
+  const goTo = (target: Section) => {
+    setMenuOpen(false);
+    setView(target === "manga" ? { name: "manga" } : target === "game" ? { name: "game" } : { name: "library" });
+    void refresh();
+    window.scrollTo(0, 0);
+  };
+
   const currentLesson =
     view.name === "manga-lesson" ? lessons?.find((l) => l.id === view.lessonId) : undefined;
 
@@ -189,52 +200,29 @@ export default function App() {
   return (
     <div className="min-h-screen">
       <header className="sticky top-[env(safe-area-inset-top,0px)] z-20 border-b border-washi-dark bg-washi/90 backdrop-blur">
-        <div className="mx-auto flex max-w-6xl items-center gap-3 px-4 py-3">
+        <div className="mx-auto flex max-w-6xl items-center gap-2 px-4 py-2.5">
           <button
-            onClick={() => {
-              setView({ name: "manga" });
-              void refresh();
-            }}
-            className="flex items-center gap-2"
+            onClick={() => setMenuOpen(true)}
+            className="-ml-2 grid h-11 w-11 place-items-center rounded-full hover:bg-washi-dark"
+            aria-label="Open menu"
+            aria-expanded={menuOpen}
           >
-            <span className="grid h-9 w-9 place-items-center rounded-full bg-shu font-display text-lg text-white jp">
+            <svg width="22" height="22" viewBox="0 0 22 22" aria-hidden="true">
+              <path d="M3 5.5h16M3 11h16M3 16.5h16" stroke="currentColor" strokeWidth="2" strokeLinecap="round" />
+            </svg>
+          </button>
+          <button onClick={() => goTo("manga")} className="flex min-w-0 items-center gap-2">
+            <span className="jp grid h-9 w-9 shrink-0 place-items-center rounded-full bg-shu font-display text-lg text-white">
               言
             </span>
-            <span className="text-left leading-tight">
+            <span className="min-w-0 text-left leading-tight">
               <span className="block font-display text-lg font-bold">Kotoba Clips</span>
-              <span className="hidden text-xs text-sumi-soft sm:block">Read manga, learn Japanese</span>
+              <span className="block truncate text-xs text-sumi-soft">
+                <span className="jp">{currentSection.jp}</span> · {currentSection.en}
+              </span>
             </span>
           </button>
           <div className="flex-1" />
-          <nav className="flex overflow-hidden rounded-full border border-sumi/15 text-sm">
-            {(
-              [
-                ["manga", "マンガ", "Manga"],
-                ["game", "ゲーム", "Game"],
-                ["library", "動画", "Clips"],
-              ] as const
-            ).map(([name, jp, en]) => {
-              const active =
-                name === "manga"
-                  ? view.name.startsWith("manga")
-                  : name === "game"
-                    ? view.name === "game"
-                    : !view.name.startsWith("manga") && view.name !== "game";
-              return (
-                <button
-                  key={name}
-                  onClick={() => {
-                    setView(name === "manga" ? { name: "manga" } : name === "game" ? { name: "game" } : { name: "library" });
-                    void refresh();
-                  }}
-                  className={`px-2.5 py-1.5 whitespace-nowrap sm:px-4 ${active ? "bg-sumi text-washi" : "hover:bg-washi-dark"}`}
-                >
-                  <span className="jp">{jp}</span>
-                  <span className="ml-1 hidden sm:inline">{en}</span>
-                </button>
-              );
-            })}
-          </nav>
           {!IS_ARTIFACT && (
             <button
               onClick={() => setSettingsOpen(true)}
@@ -358,6 +346,26 @@ export default function App() {
           <p className="py-20 text-center text-sumi-soft">Clip not found.</p>
         )}
       </main>
+
+      <SideMenu
+        open={menuOpen}
+        current={section}
+        onSelect={goTo}
+        onClose={() => setMenuOpen(false)}
+        extra={
+          !IS_ARTIFACT ? (
+            <button
+              onClick={() => {
+                setMenuOpen(false);
+                setSettingsOpen(true);
+              }}
+              className="flex min-h-12 w-full items-center rounded-xl px-3 text-left hover:bg-washi"
+            >
+              ⚙️ <span className="ml-3">Settings</span>
+            </button>
+          ) : undefined
+        }
+      />
 
       {tiktokOpen && (
         <TikTokQuickAdd
