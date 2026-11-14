@@ -6,6 +6,19 @@ const hasKanji = (s: string) => /[一-鿿]/.test(s);
 const KANJI_WORDS = WORDS.filter((w) => hasKanji(w.word));
 const PASS_KEY = "kotoba.gatePasses";
 
+/** Apps the gate can open after a right answer (?app=… in the link). */
+export const GATE_APPS: Record<string, { name: string; url: string }> = {
+  instagram: { name: "Instagram", url: "instagram://" },
+  x: { name: "X", url: "twitter://" },
+  youtube: { name: "YouTube", url: "youtube://" },
+  facebook: { name: "Facebook", url: "fb://" },
+};
+
+function targetApp() {
+  const key = new URLSearchParams(window.location.search).get("app") ?? "";
+  return GATE_APPS[key.toLowerCase()] ?? null;
+}
+
 interface Question {
   word: GameWord;
   options: string[];
@@ -59,6 +72,10 @@ export function KanjiGate({ onOpenApp }: { onOpenApp: () => void }) {
   const [passes, setPasses] = useState(loadPasses);
   const passed = picked === q.word.reading;
   const levelLabel = useMemo(() => q.word.level, [q]);
+  const app = useMemo(targetApp, []);
+  const openApp = () => {
+    if (app) window.location.href = app.url;
+  };
 
   const choose = (o: string) => {
     if (picked) return;
@@ -72,6 +89,8 @@ export function KanjiGate({ onOpenApp }: { onOpenApp: () => void }) {
     stats[q.word.word] = { right: s.right + (right ? 1 : 0), wrong: s.wrong + (right ? 0 : 1), last: Date.now() };
     saveStats(stats);
     if (right) {
+      // With ?app=…, go straight on to the app after a moment.
+      if (app) window.setTimeout(() => (window.location.href = app.url), 1200);
       const next = { day: todayKey(), count: loadPasses().count + 1 };
       setPasses(next);
       try {
@@ -91,7 +110,7 @@ export function KanjiGate({ onOpenApp }: { onOpenApp: () => void }) {
     <div className="mx-auto flex min-h-[100dvh] max-w-md flex-col px-4 pt-[calc(env(safe-area-inset-top,0px)+24px)] pb-[calc(env(safe-area-inset-bottom,0px)+24px)]">
       <div className="flex items-center gap-2 text-sm text-sumi-soft">
         <span className="jp grid h-8 w-8 place-items-center rounded-full bg-shu font-display text-white">言</span>
-        <span className="flex-1">Kanji gate</span>
+        <span className="flex-1">Kanji gate{app ? ` · ${app.name}` : ""}</span>
         <span className="tabular-nums">Today: {passes.count} ✓</span>
       </div>
 
@@ -130,15 +149,23 @@ export function KanjiGate({ onOpenApp }: { onOpenApp: () => void }) {
               <>
                 <p className="jp font-display text-2xl font-bold">正解！</p>
                 <p className="mt-1 text-sm">
-                  You're through{tries > 1 ? ` (after ${tries} tries)` : ""}. Go back to your app: tap ◀ at the
-                  top-left of the screen, or switch apps.
+                  You're through{tries > 1 ? ` (after ${tries} tries)` : ""}.
+                  {app ? ` Opening ${app.name}…` : " Switch back to your app."}
                 </p>
-                <div className="mt-4 flex flex-wrap justify-center gap-2">
+                <div className="mt-4 flex flex-col items-center gap-2">
+                  {app && (
+                    <button
+                      onClick={openApp}
+                      className="w-full rounded-full bg-sumi px-6 py-3 font-semibold text-washi"
+                    >
+                      Open {app.name} →
+                    </button>
+                  )}
                   <button onClick={another} className="rounded-full border border-sumi/15 px-4 py-2 text-sm hover:bg-card">
-                    One more
+                    One more kanji
                   </button>
-                  <button onClick={onOpenApp} className="rounded-full bg-sumi px-4 py-2 text-sm font-semibold text-washi">
-                    Open Kotoba Clips
+                  <button onClick={onOpenApp} className="text-xs text-sumi-soft underline">
+                    Go to Kotoba Clips instead
                   </button>
                 </div>
               </>
