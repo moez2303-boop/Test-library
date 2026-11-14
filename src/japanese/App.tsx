@@ -5,6 +5,7 @@ import { GENERIC_QUESTIONS } from "./tiktok";
 import { loadLevel, saveLevel, uid } from "./util";
 import { RandomLessonCard } from "./components/RandomLessonCard";
 import { GamesHub } from "./game/GamesHub";
+import { KanjiGate } from "./game/KanjiGate";
 import { SECTIONS, SideMenu, type Section } from "./components/SideMenu";
 import {
   deleteClip,
@@ -49,6 +50,13 @@ export default function App() {
   const [settingsOpen, setSettingsOpen] = useState(false);
   const [tiktokOpen, setTiktokOpen] = useState(false);
   const [menuOpen, setMenuOpen] = useState(false);
+  // #kanji-gate shows only the kanji question (for phone automations, e.g. when Instagram opens).
+  const [gate, setGate] = useState(() => window.location.hash === "#kanji-gate");
+  useEffect(() => {
+    const onHash = () => setGate(window.location.hash === "#kanji-gate");
+    window.addEventListener("hashchange", onHash);
+    return () => window.removeEventListener("hashchange", onHash);
+  }, []);
   const [level, setLevel] = useState<JlptLevel>(loadLevel);
   const [randomBusy, setRandomBusy] = useState<string | null>(null);
 
@@ -196,6 +204,18 @@ export default function App() {
     (view.name === "practice" || view.name === "edit") && view.clipId
       ? clips?.find((c) => c.id === view.clipId)
       : undefined;
+
+  if (gate) {
+    return (
+      <KanjiGate
+        onOpenApp={() => {
+          history.replaceState(null, "", window.location.pathname + window.location.search);
+          setGate(false);
+          setView({ name: "game" });
+        }}
+      />
+    );
+  }
 
   return (
     <div className="min-h-screen">
