@@ -13,6 +13,7 @@ export default defineConfig({
       input: {
         main: resolve(import.meta.dirname, 'index.html'),
         japanese: resolve(import.meta.dirname, 'japanese/index.html'),
+        french: resolve(import.meta.dirname, 'french/index.html'),
       },
     },
   },
