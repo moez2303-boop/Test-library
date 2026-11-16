@@ -2,13 +2,14 @@ import { useEffect, useState, type ButtonHTMLAttributes, type ReactNode } from "
 import { speak, stopSpeaking } from "../speech";
 import { addToVocab, getState, removeFromVocab, useStore, type Rating } from "../store";
 import type { Phrase } from "../content";
+import { go } from "../router";
 
 export function cx(...c: (string | false | null | undefined)[]) {
   return c.filter(Boolean).join(" ");
 }
 
 export function navigate(path: string) {
-  window.location.hash = path;
+  go(path);
 }
 
 type Variant = "primary" | "secondary" | "ghost" | "danger";

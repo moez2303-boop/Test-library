@@ -2,6 +2,7 @@ import { useState } from "react";
 import { LEVELS, LESSONS } from "../content";
 import { BADGES, lastNDays, lessonCompletion, levelCompletion, streak, totalPoints, useStore } from "../store";
 import { Button, Card, ProgressBar, cx } from "./ui";
+import { IS_ARTIFACT } from "../platform";
 
 function WeekChart() {
   const s = useStore((st) => st);
@@ -46,7 +47,7 @@ function Certificate({ level, onClose }: { level: number; onClose: () => void })
       <div className="w-full max-w-2xl space-y-3" onClick={(e) => e.stopPropagation()}>
         <div className="no-print flex gap-2">
           <input value={name} onChange={(e) => setName(e.target.value)} placeholder="Your name for the certificate" className="min-w-0 flex-1 rounded-xl border border-line bg-card px-3 py-2" />
-          <Button onClick={() => window.print()}>Print</Button>
+          {!IS_ARTIFACT && <Button onClick={() => window.print()}>Print</Button>}
           <Button variant="secondary" onClick={onClose}>Close</Button>
         </div>
         <div className="rounded-2xl border-8 border-double border-bleu bg-white p-10 text-center text-[#1c2238]">

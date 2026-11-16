@@ -4,14 +4,18 @@ import { resolve } from 'node:path'
 import { defineConfig } from 'vite'
 import { viteSingleFile } from 'vite-plugin-singlefile'
 
-// Builds Kotoba Clips as one self-contained HTML file for a claude.ai Artifact.
-// Grading there uses the viewer's Claude account instead of an API key.
+// Builds one app as a self-contained HTML file for a claude.ai Artifact.
+// ARTIFACT_APP picks the app: "japanese" (Kotoba Clips, the default) or "french" (Allons-y).
+// In the Artifact build, pages use the viewer's claude.ai capabilities instead of API keys,
+// the microphone or file downloads.
+const app = process.env.ARTIFACT_APP ?? 'japanese'
+
 export default defineConfig({
   plugins: [react(), tailwindcss(), viteSingleFile()],
   define: { __ARTIFACT__: 'true' },
   build: {
     outDir: resolve(import.meta.dirname, 'dist-artifact'),
     emptyOutDir: true,
-    rollupOptions: { input: resolve(import.meta.dirname, 'japanese/index.html') },
+    rollupOptions: { input: resolve(import.meta.dirname, `${app}/index.html`) },
   },
 })

@@ -45,6 +45,8 @@ export interface State {
   settings: Settings;
   /** Badge ids already unlocked, with the time they were earned. */
   badges: Record<string, number>;
+  /** Last change (ms), used to pick the newer copy when syncing devices. */
+  savedAt?: number;
 }
 
 const KEY = "allons-y-french:v1";
@@ -83,13 +85,28 @@ function save() {
 }
 
 function set(next: State) {
-  state = next;
+  state = { ...next, savedAt: Date.now() };
   save();
   listeners.forEach((l) => l());
 }
 
 export function getState(): State {
   return state;
+}
+
+export function subscribe(l: () => void) {
+  listeners.add(l);
+  return () => {
+    listeners.delete(l);
+  };
+}
+
+/** Replace everything with a copy loaded from elsewhere (another device). */
+export function replaceState(s: State) {
+  if (s?.version !== 1 || typeof s.progress !== "object") return;
+  state = { ...DEFAULT, ...s, settings: { ...DEFAULT.settings, ...s.settings } };
+  save();
+  listeners.forEach((l) => l());
 }
 
 export function useStore<T>(select: (s: State) => T): T {

@@ -1,5 +1,6 @@
 import { useRef, useState } from "react";
-import { recognitionSupported, ttsSupported, useFrenchVoices } from "../speech";
+import { recognitionSupported, ttsSupported, useFrenchVoices, usingClaudeVoice } from "../speech";
+import { IS_ARTIFACT, caps, useCaps } from "../platform";
 import { exportData, importData, resetProgress, updateSettings, useStore } from "../store";
 import { Button, Card, cx, say } from "./ui";
 
@@ -18,10 +19,22 @@ function Row({ label, hint, children }: { label: string; hint?: string; children
 export default function SettingsPage() {
   const settings = useStore((s) => s.settings);
   const voices = useFrenchVoices();
+  useCaps();
   const [msg, setMsg] = useState<string | null>(null);
+  const [confirmReset, setConfirmReset] = useState(false);
   const file = useRef<HTMLInputElement>(null);
 
   const download = () => {
+    if (IS_ARTIFACT) {
+      if (!caps.downloads) return setMsg("Downloads aren't available in this view.");
+      caps.downloads
+        .save({ filename: "allons-y-progress.json", data: exportData() })
+        .then(() => setMsg("Progress exported."))
+        .catch((e: { code?: string }) => {
+          if (e?.code !== "declined") setMsg("The export didn't go through. Try again in a moment.");
+        });
+      return;
+    }
     const blob = new Blob([exportData()], { type: "application/json" });
     const a = document.createElement("a");
     a.href = URL.createObjectURL(blob);
@@ -38,6 +51,11 @@ export default function SettingsPage() {
       </div>
 
       <Card className="px-5">
+        {usingClaudeVoice() ? (
+          <Row label="Voice" hint="French is read aloud in Claude's voice. Each character in a dialogue gets their own voice.">
+            <Button variant="secondary" onClick={() => void say("Bonjour ! Je suis votre voix française.")}>Test</Button>
+          </Row>
+        ) : (
         <Row label="French voice" hint={voices.length ? `${voices.length} French voice${voices.length === 1 ? "" : "s"} on this device` : "No French voice found — install one in your system's speech settings for the best audio."}>
           <div className="flex gap-2">
             <select
@@ -55,6 +73,7 @@ export default function SettingsPage() {
             <Button variant="secondary" onClick={() => void say("Bonjour ! Je suis votre voix française.")}>Test</Button>
           </div>
         </Row>
+        )}
         <Row label="Speaking speed" hint="Normal playback speed. The 🐢 button always plays slower.">
           <div className="flex items-center gap-3">
             <input type="range" min={0.6} max={1.2} step={0.05} value={settings.rate} onChange={(e) => updateSettings({ rate: Number(e.target.value) })} className="accent-[var(--color-bleu)]" />
@@ -85,15 +104,15 @@ export default function SettingsPage() {
       </Card>
 
       <Card className="px-5">
-        <Row label="Browser support" hint="Audio uses your device's built-in speech. Pronunciation scoring needs speech recognition (Chrome, Edge or Safari).">
+        <Row label="Browser support" hint={IS_ARTIFACT ? "Claude's voice and dictation work in Chrome, Edge and the Claude desktop app. Elsewhere, audio uses your device's voice and you rate your own speaking." : "Audio uses your device's built-in speech. Pronunciation scoring needs speech recognition (Chrome, Edge or Safari)."}>
           <div className="text-sm">
             <p>{ttsSupported() ? "✅" : "❌"} Text to speech</p>
-            <p>{recognitionSupported() ? "✅" : "❌"} Speech recognition</p>
+            <p>{recognitionSupported() ? "✅" : "❌"} {IS_ARTIFACT ? "Dictation (pronunciation scores)" : "Speech recognition"}</p>
           </div>
         </Row>
         <Row label="Back up progress" hint="Download your progress, or restore it on another device.">
           <div className="flex gap-2">
-            <Button variant="secondary" onClick={download}>Export</Button>
+            <Button variant="secondary" onClick={download} disabled={IS_ARTIFACT && !caps.downloads}>Export</Button>
             <Button variant="secondary" onClick={() => file.current?.click()}>Import</Button>
             <input
               ref={file}
@@ -110,17 +129,23 @@ export default function SettingsPage() {
           </div>
         </Row>
         <Row label="Reset progress" hint="Deletes all points, lesson progress, badges and saved vocab.">
-          <Button
-            variant="danger"
-            onClick={() => {
-              if (confirm("Reset all progress? This can't be undone.")) {
-                resetProgress();
-                setMsg("Progress reset.");
-              }
-            }}
-          >
-            Reset
-          </Button>
+          {confirmReset ? (
+            <div className="flex gap-2">
+              <Button
+                variant="danger"
+                onClick={() => {
+                  resetProgress();
+                  setConfirmReset(false);
+                  setMsg("Progress reset.");
+                }}
+              >
+                Yes, delete everything
+              </Button>
+              <Button variant="secondary" onClick={() => setConfirmReset(false)}>Cancel</Button>
+            </div>
+          ) : (
+            <Button variant="danger" onClick={() => setConfirmReset(true)}>Reset</Button>
+          )}
         </Row>
       </Card>
       {msg && <p className="rounded-xl bg-bleu-soft px-4 py-3 text-sm text-bleu" role="status">{msg}</p>}

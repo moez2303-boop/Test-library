@@ -1,9 +1,11 @@
 import { useEffect, useRef, useState } from "react";
 import type { Lesson } from "../content";
-import { listen, pronunciationScore, recognitionSupported, type Listening } from "../speech";
+import { listen, pronunciationScore, recognitionSupported, recordingSupported, type Listening } from "../speech";
 import { rateHear, useStore, type Rating } from "../store";
-const EMPTY: Record<number, Rating> = {};
+import { useCaps } from "../platform";
 import { Card, EmptyNote, MicIcon, ProgressBar, RatingButtons, SaveWordButton, SpeakButton, cx, say } from "./ui";
+
+const EMPTY: Record<number, Rating> = {};
 
 interface Attempt {
   heard: string[];
@@ -13,7 +15,7 @@ interface Attempt {
 
 /** Records the microphone alongside recognition so learners can hear themselves. */
 async function startRecorder(): Promise<{ stop: () => Promise<string | undefined> } | null> {
-  if (!navigator.mediaDevices?.getUserMedia || typeof MediaRecorder === "undefined") return null;
+  if (!recordingSupported()) return null;
   try {
     const stream = await navigator.mediaDevices.getUserMedia({ audio: true });
     const rec = new MediaRecorder(stream);
@@ -42,16 +44,19 @@ export function useSpeechAttempt() {
   const listening = useRef<Listening | null>(null);
   const recorder = useRef<Awaited<ReturnType<typeof startRecorder>>>(null);
   const stopManual = useRef<(() => void) | null>(null);
+  useCaps();
   const supported = recognitionSupported();
 
   const start = async (target: string): Promise<Attempt | null> => {
     setError(null);
     setRecording(true);
+    // Listening must start before anything is awaited: dictation needs the click itself.
+    listening.current = supported ? listen() : null;
     recorder.current = await startRecorder();
-    if (!supported) {
+    if (!listening.current) {
       if (!recorder.current) {
         setRecording(false);
-        setError("Microphone isn't available in this browser. Say the phrase aloud, then rate yourself.");
+        setError("Speech scoring isn't available here. Say the phrase aloud, then rate yourself.");
         return null;
       }
       // Without recognition, the learner stops the recording manually.
@@ -63,7 +68,6 @@ export function useSpeechAttempt() {
         };
       });
     }
-    listening.current = listen();
     try {
       const heard = await listening.current.result;
       const audioUrl = await recorder.current?.stop();
@@ -72,9 +76,11 @@ export function useSpeechAttempt() {
       await recorder.current?.stop();
       const msg = (e as Error).message;
       setError(
-        msg === "not-allowed" || msg === "service-not-allowed"
-          ? "Microphone permission was blocked. Allow it in your browser to get pronunciation scores."
-          : `Speech recognition failed (${msg}). You can still say it aloud and rate yourself.`,
+        msg === "not-allowed" || msg === "service-not-allowed" || msg === "not_granted"
+          ? "Microphone access is turned off for this page. Allow it to get pronunciation scores, or say it aloud and rate yourself."
+          : msg === "dismissed"
+            ? "Tap the microphone again and allow dictation to get a pronunciation score."
+            : `Speech recognition didn't work this time (${msg}). Say it aloud and rate yourself.`,
       );
       return null;
     } finally {

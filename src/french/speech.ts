@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import { IS_ARTIFACT, caps, type DictationApi } from "./platform";
 
 /* ───────── Text to speech ───────── */
 
@@ -6,8 +7,17 @@ const synth: SpeechSynthesis | undefined =
   typeof window !== "undefined" ? window.speechSynthesis : undefined;
 
 export function ttsSupported(): boolean {
-  return !!synth;
+  return !!caps.tts || !!synth;
 }
+
+/** True when audio comes from Claude's voice rather than the device's. */
+export function usingClaudeVoice(): boolean {
+  return !!caps.tts;
+}
+
+const CLAUDE_VOICES = ["buttery", "airy", "glassy", "rounded"];
+/** Set when the viewer turned reading aloud off; then we stay silent rather than use another voice. */
+let claudeVoiceRefused = false;
 
 export function frenchVoices(): SpeechSynthesisVoice[] {
   if (!synth) return [];
@@ -38,7 +48,22 @@ let speakToken = 0;
 
 /** Speak French text. Resolves when finished, or when interrupted by another call or stopSpeaking(). */
 export function speak(text: string, opts: SpeakOptions = {}): Promise<void> {
-  if (!synth) return Promise.resolve();
+  if (caps.tts) {
+    const clean = text.replace(/[«»]/g, "");
+    return caps.tts
+      .speak(clean, {
+        language: "fr",
+        rate: Math.min(1.5, Math.max(0.7, opts.rate ?? 1)),
+        voice: CLAUDE_VOICES[(opts.voiceIndex ?? 0) % CLAUDE_VOICES.length],
+      })
+      .then(
+        () => undefined,
+        (e: { code?: string }) => {
+          if (e?.code === "not_granted") claudeVoiceRefused = true;
+        },
+      );
+  }
+  if (claudeVoiceRefused || !synth) return Promise.resolve();
   synth.cancel();
   const token = ++speakToken;
   return new Promise((resolve) => {
@@ -67,6 +92,7 @@ export function speak(text: string, opts: SpeakOptions = {}): Promise<void> {
 
 export function stopSpeaking(): void {
   speakToken++;
+  caps.tts?.stop().catch(() => {});
   synth?.cancel();
 }
 
@@ -100,7 +126,65 @@ function recognitionCtor(): RecognitionCtor | undefined {
 }
 
 export function recognitionSupported(): boolean {
-  return typeof window !== "undefined" && !!recognitionCtor();
+  if (caps.dictation) return true;
+  // The Artifact frame refuses the browser's own microphone access.
+  return !IS_ARTIFACT && typeof window !== "undefined" && !!recognitionCtor();
+}
+
+/** Recording yourself for playback needs direct microphone access. */
+export function recordingSupported(): boolean {
+  return !IS_ARTIFACT && !!navigator.mediaDevices?.getUserMedia && typeof MediaRecorder !== "undefined";
+}
+
+/** Claude dictation: must be started straight from a click, so this never awaits before start(). */
+function listenWithDictation(d: DictationApi): Listening {
+  let text = "";
+  let settled = false;
+  let quiet: number | undefined;
+  const unsubs: (() => void)[] = [];
+  const result = new Promise<string[]>((resolve, reject) => {
+    const cleanup = () => {
+      settled = true;
+      clearTimeout(quiet);
+      clearTimeout(cap);
+      unsubs.forEach((u) => u());
+    };
+    const finish = () => {
+      if (settled) return;
+      cleanup();
+      resolve(text.trim() ? [text.trim()] : []);
+    };
+    const fail = (code: string) => {
+      if (settled) return;
+      cleanup();
+      reject(new RecognitionError(code));
+    };
+    // Stop once the learner pauses for a moment after speaking.
+    const arm = () => {
+      clearTimeout(quiet);
+      quiet = window.setTimeout(() => void d.stop().catch(() => {}), 1400);
+    };
+    const cap = window.setTimeout(() => void d.stop().catch(() => {}), 15000);
+    unsubs.push(
+      d.onFinal(({ text: t }) => {
+        text += t;
+        arm();
+      }),
+      d.onPartial(({ text: t }) => {
+        if (t) arm();
+      }),
+      d.onState(({ state, reason }) => {
+        if (state !== "idle") return;
+        if (!reason || ["stopped", "viewer_stopped", "hidden", "time_limit"].includes(reason)) finish();
+        else fail(reason);
+      }),
+    );
+    d.start({ language: "fr" }).catch((e: { code?: string }) => {
+      if (e?.code === "stopped") finish();
+      else fail(e?.code ?? "upstream_error");
+    });
+  });
+  return { result, stop: () => void d.stop().catch(() => {}) };
 }
 
 export interface Listening {
@@ -113,6 +197,7 @@ export class RecognitionError extends Error {}
 
 /** Listen for one French utterance. */
 export function listen(): Listening {
+  if (caps.dictation) return listenWithDictation(caps.dictation);
   const Ctor = recognitionCtor();
   if (!Ctor) {
     return { result: Promise.reject(new RecognitionError("unsupported")), stop() {} };

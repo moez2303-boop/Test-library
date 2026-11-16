@@ -2,6 +2,11 @@ import { useEffect, useState } from "react";
 import { getLesson } from "./content";
 import { onBadge, streak, todayPoints, useStore, type ActivityId, type Badge } from "./store";
 import { cx, navigate, stopSay } from "./components/ui";
+import { currentPath, interceptLinks, onRoute } from "./router";
+import { initPlatform } from "./platform";
+
+interceptLinks();
+initPlatform();
 import Dashboard from "./components/Dashboard";
 import LessonPage from "./components/LessonPage";
 import Vocab from "./components/Vocab";
@@ -17,8 +22,8 @@ type Route =
 
 const ACTIVITY_IDS: ActivityId[] = ["lesson", "hear", "write", "know", "quiz", "play"];
 
-function parse(hash: string): Route {
-  const parts = hash.replace(/^#\/?/, "").split("/").filter(Boolean);
+function parse(path: string): Route {
+  const parts = path.replace(/^#?\/?/, "").split("/").filter(Boolean);
   switch (parts[0]) {
     case "level":
       return { name: "home", level: Number(parts[1]) || 1 };
@@ -40,16 +45,16 @@ function parse(hash: string): Route {
 }
 
 function useRoute(): Route {
-  const [route, setRoute] = useState(() => parse(window.location.hash));
-  useEffect(() => {
-    const on = () => {
-      stopSay();
-      setRoute(parse(window.location.hash));
-      window.scrollTo({ top: 0 });
-    };
-    window.addEventListener("hashchange", on);
-    return () => window.removeEventListener("hashchange", on);
-  }, []);
+  const [route, setRoute] = useState(() => parse(currentPath()));
+  useEffect(
+    () =>
+      onRoute(() => {
+        stopSay();
+        setRoute(parse(currentPath()));
+        window.scrollTo({ top: 0 });
+      }),
+    [],
+  );
   return route;
 }
 
@@ -163,7 +168,7 @@ export default function App() {
 
       <div className="min-w-0 flex-1">
         {/* Top bar (mobile) */}
-        <header className="no-print sticky top-0 z-30 flex items-center justify-between border-b border-line bg-card/95 px-4 py-3 backdrop-blur md:hidden">
+        <header className="no-print sticky top-[env(safe-area-inset-top,0px)] z-30 flex items-center justify-between border-b border-line bg-card/95 px-4 py-3 backdrop-blur md:hidden">
           <Logo />
           <StatChips />
         </header>
