@@ -5,7 +5,8 @@ import { readFileSync, writeFileSync } from 'node:fs'
 
 const APPS = {
   japanese: { title: 'Kotoba Clips', out: 'kotoba-clips.html' },
-  french: { title: 'Allons-y French', out: 'allons-y-french.html' },
+  // The French + Japanese course; the file name is kept so the published Artifact keeps its source path.
+  course: { title: 'Allons-y & Ikimashō', out: 'allons-y-french.html' },
 }
 const app = process.env.ARTIFACT_APP ?? 'japanese'
 const { title, out } = APPS[app]

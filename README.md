@@ -42,15 +42,17 @@ npm run build
 
 ---
 
-# Allons-y French
+# Allons-y & Ikimashō: French and Japanese courses
 
-A complete French course in the browser, at `/french/` (`npm run dev`, then open
-`http://localhost:5173/french/`).
+Two complete language courses in one app, at `/course/` (`npm run dev`, then
+open `http://localhost:5173/course/`). A switch in the sidebar (or the top bar
+on phones) changes between **French (Allons-y)** and **Japanese (Ikimashō)**.
+Each course keeps its own points, streak, badges, lesson progress and vocab;
+settings such as theme and daily goal are shared.
 
-## What's inside
+## What's inside each course
 
-- **28 lessons over 3 levels** (Débutant, Intermédiaire, Avancé), grouped into
-  modules. Two kinds:
+- **28 lessons over 3 levels**, grouped into modules. Two kinds:
   - **Interactive audio lessons** — a dialogue you can play line by line or as a
     whole, at normal or slow speed, with English shown or hidden.
   - **Language & culture lessons** — grammar and culture notes with playable
@@ -58,21 +60,38 @@ A complete French course in the browser, at `/french/` (`npm run dev`, then open
 - **Six activities per lesson**, each tracked separately:
   - **Hear It Say It** — listen, record yourself, get a pronunciation score
     (speech recognition) and play your own recording back.
-  - **Write It** — dictation with an accent keyboard and forgiving grading.
+  - **Write It** — dictation. French has an accent keyboard; Japanese accepts
+    kana, romaji in any common spelling, or the written form.
   - **Know It** — flip cards in both directions with Hard / Good / Easy ratings.
-  - **Quiz** — multiple choice, listening, fill-the-gap and word-order questions.
+  - **Quiz** — multiple choice, listening, fill-the-gap and word-order
+    questions; Japanese adds "how is this kanji read?".
   - **Play It** — role-play: pick a character and say their lines in the conversation.
 - **My Vocab** — save any phrase; review with spaced repetition. Cards you rate
   "Hard" are added automatically.
-- **Verbs** — 22 essential verbs in six tenses (present, passé composé,
-  imparfait, future, conditional, subjunctive) plus a conjugation drill.
+- **Verbs** — French: 22 verbs in six tenses. Japanese: 25 verbs in polite,
+  plain and eight more forms (て form, potential, volitional, passive…),
+  generated from each verb's class. Both have a conjugation drill.
 - **Survival Kit** — the travel phrases you'll need most.
 - **Progress** — points, daily goal, day streak, 14-day chart, 16 badges and a
   printable certificate for each completed level.
-- **Settings** — French voice, speed, daily goal, theme, backup/restore.
+- **Settings** — voice, speed, daily goal, theme, kana/romaji display for
+  Japanese, backup/restore.
 
-Audio uses the browser's built-in French text-to-speech; pronunciation scoring
-uses the Web Speech API (Chrome, Edge, Safari). Progress is stored in
+Japanese phrases carry a kana reading (`reading`, words separated by spaces);
+the app derives romaji from it (`src/course/kana.ts`) for display and for
+grading typed answers.
+
+Audio uses the browser's built-in text-to-speech; pronunciation scoring uses
+the Web Speech API (Chrome, Edge, Safari). Progress is stored in
 `localStorage` on the device.
 
-Code lives in `src/french/`; lesson content is in `src/french/content/`.
+Code lives in `src/course/`; each language's content is in
+`src/course/languages/<fr|ja>/`.
+
+## claude.ai Artifact build
+
+`npm run build:artifact:course` builds the whole app as one HTML file
+(`dist-artifact/allons-y-french.html`) for a claude.ai Artifact. There it uses
+the viewer's capabilities instead of browser APIs the Artifact frame blocks:
+Claude's voice, Claude dictation for pronunciation scores, downloads for
+backups, and a private per-user store that syncs progress across devices.

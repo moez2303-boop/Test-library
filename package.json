@@ -9,7 +9,7 @@
     "lint": "oxlint",
     "preview": "vite preview",
     "build:artifact": "vite build --config vite.artifact.config.ts && node scripts/artifact-page.mjs",
-    "build:artifact:french": "ARTIFACT_APP=french vite build --config vite.artifact.config.ts && ARTIFACT_APP=french node scripts/artifact-page.mjs"
+    "build:artifact:course": "ARTIFACT_APP=course vite build --config vite.artifact.config.ts && ARTIFACT_APP=course node scripts/artifact-page.mjs"
   },
   "dependencies": {
     "@anthropic-ai/sdk": "^1.4.0",

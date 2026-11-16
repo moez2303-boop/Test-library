@@ -5,7 +5,7 @@ import { defineConfig } from 'vite'
 import { viteSingleFile } from 'vite-plugin-singlefile'
 
 // Builds one app as a self-contained HTML file for a claude.ai Artifact.
-// ARTIFACT_APP picks the app: "japanese" (Kotoba Clips, the default) or "french" (Allons-y).
+// ARTIFACT_APP picks the app: "japanese" (Kotoba Clips, the default) or "course" (the French + Japanese course).
 // In the Artifact build, pages use the viewer's claude.ai capabilities instead of API keys,
 // the microphone or file downloads.
 const app = process.env.ARTIFACT_APP ?? 'japanese'
