@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { GATE_APPS } from "./KanjiGate";
 import { ClueDetective } from "./ClueDetective";
+import { ConversationGame } from "./ConversationGame";
 import { GrammarBattle } from "./GrammarBattle";
 import { VocabTower } from "./VocabTower";
 import { WordMatchGame } from "./WordMatchGame";
@@ -9,7 +10,7 @@ import { DETECTIVE_CASES } from "./detective";
 import { GRAMMAR_ITEMS } from "./grammar";
 import { WORDS } from "./words";
 
-type GameKey = "match" | "tower" | "battle" | "detective" | "gate";
+type GameKey = "talk" | "match" | "tower" | "battle" | "detective" | "gate";
 
 const GATE_BASE = "https://moez2303-boop.github.io/Test-library/japanese/";
 const gateUrl = (app: string) => `${GATE_BASE}?app=${app}#kanji-gate`;
@@ -92,6 +93,14 @@ function GateSetup({ onBack }: { onBack: () => void }) {
 
 const GAMES: { key: GameKey; badge: string; jp: string; en: string; about: string; stat: () => string }[] = [
   {
+    key: "talk",
+    badge: "話",
+    jp: "会話パートナー",
+    en: "Conversation partner",
+    about: "Chat in Japanese about a topic, with gentle live corrections.",
+    stat: () => "Type or speak · uses Claude",
+  },
+  {
     key: "match",
     badge: "繋",
     jp: "言葉つなぎ",
@@ -140,6 +149,7 @@ export function GamesHub() {
     window.scrollTo(0, 0);
   };
 
+  if (game === "talk") return <ConversationGame onBack={back} />;
   if (game === "match") return <WordMatchGame onBack={back} />;
   if (game === "tower") return <VocabTower onBack={back} />;
   if (game === "battle") return <GrammarBattle onBack={back} />;
